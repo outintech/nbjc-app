@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Basic app set up:
+install ruby-2.7.2 - use whatever ruby manager you want. I use rvm.
+`brew install node` - or use nvm if you prefer
+`brew install yarn`
+`brew install postgres`
+`brew services start postgres`
+`brew install redis`
+`brew services start redis`
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+`bundle install`
+`rake db:create`
+`rake db:migrate`
+`rails s`
