@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_18_053917) do
+ActiveRecord::Schema.define(version: 2020_12_07_182943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "spaces", force: :cascade do |t|
+    t.string "yelp_id"
+    t.string "phone"
+    t.text "name"
+    t.text "yelp_url"
+    t.text "url"
+    t.jsonb "hours_of_op"
+    t.point "coordinates"
+    t.integer "price_level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
