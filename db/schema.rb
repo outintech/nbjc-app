@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_11_160620) do
+ActiveRecord::Schema.define(version: 2020_12_11_174656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "indicator_lists", force: :cascade do |t|
+    t.bigint "space_id"
+    t.boolean "atm", default: false
+    t.boolean "queer_friendly", default: false
+    t.boolean "asl_friendly", default: false
+    t.boolean "wheelchair_accessible", default: false
+    t.boolean "gender_neutral_restroom", default: false
+    t.boolean "black_owned", default: false
+    t.boolean "poc_owned", default: false
+    t.string "languages", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["languages"], name: "index_indicator_lists_on_languages", using: :gin
+    t.index ["space_id"], name: "index_indicator_lists_on_space_id", unique: true
+  end
 
   create_table "reviews", force: :cascade do |t|
     t.boolean "anonymous"
@@ -51,5 +67,6 @@ ActiveRecord::Schema.define(version: 2020_12_11_160620) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "indicator_lists", "spaces"
   add_foreign_key "reviews", "spaces"
 end
