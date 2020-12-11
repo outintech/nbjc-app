@@ -1,0 +1,2 @@
+class IndicatorList < ApplicationRecord
+end
