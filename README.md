@@ -35,6 +35,7 @@
 - Get the database up and running: `rake db:create`
 
 - Get the schema setup: `rake db:migrate`
+> Note: if you make a change in a migration file that has not been committed and do not see the change reflected in the schema run `rake db:rollback` and rerun the migration.
 
 - Start the app: `rails s`
 
