@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_07_182943) do
+ActiveRecord::Schema.define(version: 2020_12_11_160620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "reviews", force: :cascade do |t|
+    t.boolean "anonymous"
+    t.integer "vibe_check"
+    t.integer "rating"
+    t.text "content"
+    t.bigint "space_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["space_id"], name: "index_reviews_on_space_id", unique: true
+  end
 
   create_table "spaces", force: :cascade do |t|
     t.string "yelp_id"
@@ -40,4 +51,5 @@ ActiveRecord::Schema.define(version: 2020_12_07_182943) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "reviews", "spaces"
 end

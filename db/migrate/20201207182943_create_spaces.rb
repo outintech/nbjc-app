@@ -5,7 +5,6 @@ class CreateSpaces < ActiveRecord::Migration[6.0]
       t.text :name, :yelp_url, :url
       t.jsonb :hours_of_op
       t.point :coordinates
-      
       t.integer :price_level
       t.timestamps
     end
