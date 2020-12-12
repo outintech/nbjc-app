@@ -42,6 +42,32 @@ rails db:migrate:down VERSION=<NUMBER>
 rails destroy model <MODEL_NAME>
 ```
 
+#### Seeding the database
+
+- If you have a list that you want to seed the database with, first create a file with that list. For example, `indicators.txt`:
+
+```text
+ATM
+LGBTQ+ Friendly
+ASL
+Wheelchair Ramp
+Gender-neutral Restroom
+Black-owned
+POC-owned
+```
+
+- Convert that easily to paste into a seeding script by running in your terminal:
+
+```sh
+cat indicators.txt | awk '{for (i=1;i<NF;i++) {getline}; printf("{name: \x22%s\x22}, ", $0)}'
+```
+
+You can paste the output of the output into the seeding script:
+
+```sh
+{name: "ATM"}, {name: "ASL"}, {name: "Gender-neutral Restroom"}, {name: "Black-owned"}, {name: "POC-owned"}
+```
+
 ### Start up the app
 
 - Get the database up and running: `rake db:create`

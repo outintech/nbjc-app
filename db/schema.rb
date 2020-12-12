@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_174007) do
+ActiveRecord::Schema.define(version: 2020_12_12_194946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,18 @@ ActiveRecord::Schema.define(version: 2020_12_12_174007) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["space_id"], name: "index_addresses_on_space_id", unique: true
+  end
+
+  create_table "indicators", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "photos", force: :cascade do |t|
@@ -45,7 +57,27 @@ ActiveRecord::Schema.define(version: 2020_12_12_174007) do
     t.bigint "space_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
     t.index ["space_id"], name: "index_reviews_on_space_id", unique: true
+    t.index ["user_id"], name: "index_reviews_on_user_id", unique: true
+  end
+
+  create_table "space_indicators", force: :cascade do |t|
+    t.bigint "space_id"
+    t.bigint "indicator_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["indicator_id"], name: "index_space_indicators_on_indicator_id"
+    t.index ["space_id"], name: "index_space_indicators_on_space_id"
+  end
+
+  create_table "space_languages", force: :cascade do |t|
+    t.bigint "space_id"
+    t.bigint "language_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["language_id"], name: "index_space_languages_on_language_id"
+    t.index ["space_id"], name: "index_space_languages_on_space_id"
   end
 
   create_table "spaces", force: :cascade do |t|
@@ -76,4 +108,5 @@ ActiveRecord::Schema.define(version: 2020_12_12_174007) do
   add_foreign_key "addresses", "spaces"
   add_foreign_key "photos", "spaces"
   add_foreign_key "reviews", "spaces"
+  add_foreign_key "reviews", "users"
 end
