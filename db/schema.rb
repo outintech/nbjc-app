@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_173440) do
+ActiveRecord::Schema.define(version: 2020_12_12_174007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 2020_12_12_173440) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["languages"], name: "index_indicator_lists_on_languages", using: :gin
     t.index ["space_id"], name: "index_indicator_lists_on_space_id", unique: true
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.bigint "space_id"
+    t.text "url"
+    t.boolean "cover", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["space_id"], name: "index_photos_on_space_id", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -82,5 +91,6 @@ ActiveRecord::Schema.define(version: 2020_12_12_173440) do
 
   add_foreign_key "addresses", "spaces"
   add_foreign_key "indicator_lists", "spaces"
+  add_foreign_key "photos", "spaces"
   add_foreign_key "reviews", "spaces"
 end
