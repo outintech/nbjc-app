@@ -30,6 +30,18 @@
 
 - Install gems with `bundle install`
 
+### Adding and removing a new model
+
+- If you need to remove a model, first migrate down the relevant version
+```sh
+rails db:migrate:down VERSION=<NUMBER>
+```
+
+- Then destroy the model
+```sh
+rails destroy model <MODEL_NAME>
+```
+
 ### Start up the app
 
 - Get the database up and running: `rake db:create`
