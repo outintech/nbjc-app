@@ -3,4 +3,6 @@ class ApplicationController < ActionController::Base
 
   # uncomment when we have a protected controller
   # before_action :authenticate_user!
+  
+  respond_to :json
 end
