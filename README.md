@@ -77,5 +77,11 @@ You can paste the output of the output into the seeding script:
 
 - Start the app: `rails s`
 
+#### Test the routes
+
+##### Spaces
+
+- POST: `http://127.0.0.1:3000/api/v1/spaces` 
+
 [redis-ubuntu-tutorial]: https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04
 	[postgres-ubuntu-tutorial]: https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart
