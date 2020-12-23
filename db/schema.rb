@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_180622) do
+ActiveRecord::Schema.define(version: 2020_12_12_194946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,20 +28,16 @@ ActiveRecord::Schema.define(version: 2020_12_12_180622) do
     t.index ["space_id"], name: "index_addresses_on_space_id", unique: true
   end
 
-  create_table "indicator_lists", force: :cascade do |t|
-    t.bigint "space_id"
-    t.boolean "atm", default: false
-    t.boolean "queer_friendly", default: false
-    t.boolean "asl_friendly", default: false
-    t.boolean "wheelchair_accessible", default: false
-    t.boolean "gender_neutral_restroom", default: false
-    t.boolean "black_owned", default: false
-    t.boolean "poc_owned", default: false
-    t.string "languages", default: [], array: true
+  create_table "indicators", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["languages"], name: "index_indicator_lists_on_languages", using: :gin
-    t.index ["space_id"], name: "index_indicator_lists_on_space_id", unique: true
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "photos", force: :cascade do |t|
@@ -65,6 +61,23 @@ ActiveRecord::Schema.define(version: 2020_12_12_180622) do
     t.index ["space_id"], name: "index_reviews_on_space_id", unique: true
     t.index ["user_id"], name: "index_reviews_on_user_id", unique: true
   end
+
+  create_table "space_indicators", force: :cascade do |t|
+    t.bigint "space_id"
+    t.bigint "indicator_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["indicator_id"], name: "index_space_indicators_on_indicator_id"
+    t.index ["space_id"], name: "index_space_indicators_on_space_id"
+  end
+
+  create_table "space_languages", force: :cascade do |t|
+    t.bigint "space_id"
+    t.bigint "language_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["language_id"], name: "index_space_languages_on_language_id"
+    t.index ["space_id"], name: "index_space_languages_on_space_id"
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
@@ -107,7 +120,6 @@ ActiveRecord::Schema.define(version: 2020_12_12_180622) do
   end
 
   add_foreign_key "addresses", "spaces"
-  add_foreign_key "indicator_lists", "spaces"
   add_foreign_key "photos", "spaces"
   add_foreign_key "reviews", "spaces"
   add_foreign_key "reviews", "users"

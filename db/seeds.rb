@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+languages = Language.create([{name: "Armenian"}, {name: "Azerbaijani"}, {name: "Bulgarian"}, {name: "Catalan"}, {name: "Chinese"}, {name: "Czech"}, {name: "Dutch"}, {name: "English"}, {name: "Estonian"}, {name: "Finnish"}, {name: "French"}, {name: "German"}, {name: "Hebrew"}, {name: "Hindi"}, {name: "Hungarian"}, {name: "Icelandic"}, {name: "Indonesian"}, {name: "Italian"}, {name: "Japanese"}, {name: "Korean"}, {name: "Persian"}, {name: "Polish"}, {name: "Portuguese"}, {name: "Romanian"}, {name: "Russian"}, {name: "Slovak"}, {name: "Spanish"}, {name: "Swedish"}, {name: "Turkish"}, {name: "Ukrainian"}, {name: "Vietnamese"}])
+
+indicators = Indicator.create([{name: "ATM"}, {name: "ASL"}, {name: "Gender-neutral Restroom"}, {name: "Black-owned"}, {name: "POC-owned"}])

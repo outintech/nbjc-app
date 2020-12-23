@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class IndicatorListTest < ActiveSupport::TestCase
+class SpaceIndicatorTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
