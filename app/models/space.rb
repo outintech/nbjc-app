@@ -9,4 +9,20 @@ class Space < ApplicationRecord
 
   validates :price_level, :inclusion => { :in => 1..4 }
   accepts_nested_attributes_for :reviews, :address, :photos, :indicators, :languages
+
+  before_save :find_languages, :find_indicators
+
+  private
+
+  def find_languages
+    self.languages = self.languages.map do |language|
+      Language.find_by(name: language.name)
+    end
+  end
+
+  def find_indicators
+    self.indicators = self.indicators.map do |indicator|
+      Indicator.find_by(name: indicator.name)
+    end
+  end
 end
