@@ -46,7 +46,7 @@ class Api::V1::SpacesController < ApplicationController
   private
 
   def space_params
-    params.require(:space).permit(:phone, :name, :price_level)
+    params.require(:space).permit(:phone, :name, :price_level, :yelp_id, hours_of_op: {}, address_attributes: [:id, :address_1, :address_2, :city, :postal_code, :country, :state])
   end
 
   def find_space
