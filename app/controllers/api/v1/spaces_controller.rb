@@ -10,7 +10,7 @@ class Api::V1::SpacesController < ApplicationController
 
   # GET /spaces/:id
   def show
-    render json: @space
+    render json: @space.to_json(:include => [:address, :reviews, :photos, :indicators, :languages])
   end
 
   # POST /spaces

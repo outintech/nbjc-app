@@ -98,7 +98,7 @@ You can paste the output of the output into the seeding script:
 {
     "space": {
         "yelp_id": "bxU7CnSO9cFhq_1tQyX40A",
-        "yelp_url": "https://www.yelp.com/biz/787-coffee-new-york-2?adjust_creative=cZpSYyZPR1LaxFGR9syHlQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=cZpSYyZPR1LaxFGR9syHlQ",
+        "yelp_url": "url_to_business_page_on_yelp",
         "name": "787 Coffee",
         "price_level": 2,
         "address_attributes": {
@@ -196,6 +196,131 @@ You can paste the output of the output into the seeding script:
     </td>
     <td>
 	201 success
+    </td>
+  </tr>
+    <tr>
+    <td>GET /api/v1/spaces/:space_id</td>
+    <td>Get a space's details</td>
+    <td>
+    </td>
+    <td>
+{
+    "id": 3,
+    "yelp_id": "bxU7CnSO9cFhq_1tQyX40A",
+    "phone": "+16466492774",
+    "name": "787 Coffee",
+    "yelp_url": "https://www.yelp.com/biz/787-coffee-new-york-2?adjust_creative=cZpSYyZPR1LaxFGR9syHlQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=cZpSYyZPR1LaxFGR9syHlQ",
+    "url": null,
+    "hours_of_op": {
+        "open": [
+            {
+                "day": 0,
+                "end": "1500",
+                "start": "0800",
+                "is_overnight": false
+            },
+            {
+                "day": 1,
+                "end": "1500",
+                "start": "0800",
+                "is_overnight": false
+            },
+            {
+                "day": 2,
+                "end": "1500",
+                "start": "0800",
+                "is_overnight": false
+            },
+            {
+                "day": 3,
+                "end": "1500",
+                "start": "0800",
+                "is_overnight": false
+            },
+            {
+                "day": 4,
+                "end": "1600",
+                "start": "0800",
+                "is_overnight": false
+            },
+            {
+                "day": 5,
+                "end": "1800",
+                "start": "0800",
+                "is_overnight": false
+            },
+            {
+                "day": 6,
+                "end": "1600",
+                "start": "0800",
+                "is_overnight": false
+            }
+        ]
+    },
+    "coordinates": null,
+    "price_level": 2,
+    "created_at": "2020-12-28T03:29:02.884Z",
+    "updated_at": "2020-12-28T03:29:02.884Z",
+    "address": {
+        "id": 3,
+        "space_id": 3,
+        "address_1": "131 E 7th St",
+        "address_2": "",
+        "city": "New York",
+        "postal_code": "10009",
+        "country": "US",
+        "state": "NY",
+        "created_at": "2020-12-28T03:29:02.888Z",
+        "updated_at": "2020-12-28T03:29:02.888Z"
+    },
+    "reviews": [],
+    "photos": [
+        {
+            "id": 5,
+            "space_id": 3,
+            "url": "https://s3-media2.fl.yelpcdn.com/bphoto/NerXLTb8BzHFxuWBft50YA/o.jpg",
+            "cover": true,
+            "created_at": "2020-12-28T03:29:02.891Z",
+            "updated_at": "2020-12-28T03:29:02.891Z"
+        },
+        {
+            "id": 6,
+            "space_id": 3,
+            "url": "https://s3-media2.fl.yelpcdn.com/bphoto/OhBsrtX8b7VQ5qKD4hFOCw/o.jpg",
+            "cover": false,
+            "created_at": "2020-12-28T03:29:02.893Z",
+            "updated_at": "2020-12-28T03:29:02.893Z"
+        }
+    ],
+    "indicators": [
+        {
+            "id": 1,
+            "name": "ATM",
+            "created_at": "2020-12-28T01:24:48.231Z",
+            "updated_at": "2020-12-28T01:24:48.231Z"
+        },
+        {
+            "id": 2,
+            "name": "ASL",
+            "created_at": "2020-12-28T01:24:48.237Z",
+            "updated_at": "2020-12-28T01:24:48.237Z"
+        }
+    ],
+    "languages": [
+        {
+            "id": 22,
+            "name": "Polish",
+            "created_at": "2020-12-28T01:24:48.171Z",
+            "updated_at": "2020-12-28T01:24:48.171Z"
+        },
+        {
+            "id": 25,
+            "name": "Russian",
+            "created_at": "2020-12-28T01:24:48.186Z",
+            "updated_at": "2020-12-28T01:24:48.186Z"
+        }
+    ]
+}
     </td>
   </tr>
 </table>
