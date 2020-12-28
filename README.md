@@ -180,6 +180,7 @@ You can paste the output of the output into the seeding script:
     <td>
     </td>
     <td>
+<pre lang="json">
 {
     "id": 3,
     "yelp_id": "bxU7CnSO9cFhq_1tQyX40A",
@@ -267,6 +268,7 @@ You can paste the output of the output into the seeding script:
         }
     ]
 }
+</pre>
     </td>
   </tr>
 </table>
