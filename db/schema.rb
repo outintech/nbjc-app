@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_194946) do
+ActiveRecord::Schema.define(version: 2020_12_28_012738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_12_12_194946) do
     t.boolean "cover", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["space_id"], name: "index_photos_on_space_id", unique: true
+    t.index ["space_id"], name: "index_photos_on_space_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 2020_12_12_194946) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
-    t.index ["space_id"], name: "index_reviews_on_space_id", unique: true
-    t.index ["user_id"], name: "index_reviews_on_user_id", unique: true
+    t.index ["space_id"], name: "index_reviews_on_space_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
