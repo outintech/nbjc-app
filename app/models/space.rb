@@ -7,7 +7,7 @@ class Space < ApplicationRecord
   has_many :space_languages, dependent: :destroy
   has_many :languages, :through => :space_languages
 
-  validates :price_level, :inclusion => { :in => 1..4 }
+  validates :price_level, :inclusion => { :in => 1..4 }, :allow_blank => true
   accepts_nested_attributes_for :reviews, :address, :photos, :indicators, :languages
 
   before_save :find_languages, :find_indicators

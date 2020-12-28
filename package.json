@@ -5,7 +5,9 @@
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
-    "turbolinks": "^5.2.0"
+    "json-server": "^0.16.3",
+    "turbolinks": "^5.2.0",
+    "webpack": "^5.11.1"
   },
   "version": "0.1.0",
   "devDependencies": {

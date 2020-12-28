@@ -75,6 +75,9 @@ You can paste the output of the output into the seeding script:
 - Get the schema setup: `rake db:migrate`
 > Note: if you make a change in a migration file that has not been committed and do not see the change reflected in the schema run `rake db:rollback` and rerun the migration.
 
+- Seed the database" `rake db:seed`
+> If you need to drop the database and reseed use `rake db:reset`
+
 - Start the app: `rails s`
 
 #### Test the routes
