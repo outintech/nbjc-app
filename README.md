@@ -161,30 +161,6 @@ You can paste the output of the output into the seeding script:
                 {
                     "is_overnight": false,
                     "start": "0800",
-                    "end": "1500",
-                    "day": 2
-                },
-                {
-                    "is_overnight": false,
-                    "start": "0800",
-                    "end": "1500",
-                    "day": 3
-                },
-                {
-                    "is_overnight": false,
-                    "start": "0800",
-                    "end": "1600",
-                    "day": 4
-                },
-                {
-                    "is_overnight": false,
-                    "start": "0800",
-                    "end": "1800",
-                    "day": 5
-                },
-                {
-                    "is_overnight": false,
-                    "start": "0800",
                     "end": "1600",
                     "day": 6
                 }
@@ -216,36 +192,6 @@ You can paste the output of the output into the seeding script:
             {
                 "day": 0,
                 "end": "1500",
-                "start": "0800",
-                "is_overnight": false
-            },
-            {
-                "day": 1,
-                "end": "1500",
-                "start": "0800",
-                "is_overnight": false
-            },
-            {
-                "day": 2,
-                "end": "1500",
-                "start": "0800",
-                "is_overnight": false
-            },
-            {
-                "day": 3,
-                "end": "1500",
-                "start": "0800",
-                "is_overnight": false
-            },
-            {
-                "day": 4,
-                "end": "1600",
-                "start": "0800",
-                "is_overnight": false
-            },
-            {
-                "day": 5,
-                "end": "1800",
                 "start": "0800",
                 "is_overnight": false
             },
