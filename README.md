@@ -100,7 +100,7 @@ You can paste the output of the output into the seeding script:
     <td>Example Resonse</td>
   </tr>
   <tr>
-    <td>`POST /api/v1/spaces`</td>
+    <td><pre>POST /api/v1/spaces</pre></td>
     <td>Create a new space, for a list of the fields and their types, refer to the schema</td>
     <td>
       <pre lang="json">
@@ -108,8 +108,8 @@ You can paste the output of the output into the seeding script:
     "space": {
         "yelp_id": "bxU7CnSO9cFhq_1tQyX40A",
         "yelp_url": "url_to_business_page_on_yelp",
-        "name": "787 Coffee",
-        "price_level": 2,
+        "name": "787 Coffee", String
+        "price_level": 2, 
         "address_attributes": {
             "address_1": "131 E 7th St",
             "address_2": "",
@@ -179,19 +179,19 @@ You can paste the output of the output into the seeding script:
 }
       </pre>
     </td>
-    <td>`201 success`</td>
+    <td><pre>201 success</pre></td>
   </tr>
     <tr>
-    <td>`GET /api/v1/spaces/:space_id`</td>
+    <td><pre>GET /api/v1/spaces/:space_id</pre></td>
     <td>Get a space's details</td>
     <td>Includes all possible fields</td>
-    <td>See the mock response for a fake space `/spaces/1`</td>
+    <td>See the mock response for a fake space <pre>/spaces/1</pre></td>
   </tr>
   <tr>
-    <td>`GET /api/vi/spaces?search=terms`</td>
+    <td><pre>GET /api/vi/spaces?search=terms</pre></td>
     <td>Get all spaces with the serach term in their name</td>
-    <td>The search terms should be the values for the `search` key</td>
-    <td>See this the mock for `/spaces?search=bakery` </td>
+    <td>The search terms should be the values for the "search" key</td>
+    <td>See this the mock for <pre>/spaces?search=bakery</pre></td>
   </tr>
 </table>
 
