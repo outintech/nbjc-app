@@ -122,10 +122,10 @@ You can paste the output of the output into the seeding script:
         ],
         "indicators_attributes": [
             {
-                "name": "ATM"
+                "id": 2
             },
             {
-                "name": "ASL"
+                "id": 4
             }
         ],
         "photos_attributes": [
@@ -141,8 +141,8 @@ You can paste the output of the output into the seeding script:
         "reviews_attributes": [
             {
                 "anonymous": true,
-                "vibe_check": "3",
-                "rating": "4",
+                "vibe_check": 3,
+                "rating": 4,
                 "content": "This is a great place to drink coffee."
             }
         ],
