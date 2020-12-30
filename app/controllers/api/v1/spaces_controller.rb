@@ -5,9 +5,14 @@ class Api::V1::SpacesController < ApplicationController
   # GET /spaces
   # TODO implement search feature for names
   def index
-    if params[:search].blank?
     @spaces = Space.all
-    render json: @spaces.to_json(:include => [:address, :reviews, :photos, :indicators, :languages])
+    if params[:search].blank?
+      render json: @spaces.to_json(:include => [:address, :reviews, :photos, :indicators, :languages])
+    else
+      @terms = params[:search].downcase
+      @results = @spaces.where("lower(name) LIKE :search", search: "%#{@terms}%")
+      render json: @results.to_json(:include => [:address, :reviews, :photos, :indicators, :languages])
+    end
   end
 
   # GET /spaces/:id
