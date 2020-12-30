@@ -108,7 +108,7 @@ You can paste the output of the output into the seeding script:
     "space": {
         "yelp_id": "bxU7CnSO9cFhq_1tQyX40A",
         "yelp_url": "url_to_business_page_on_yelp",
-        "name": "787 Coffee", String
+        "name": "787 Coffee",
         "price_level": 2, 
         "address_attributes": {
             "address_1": "131 E 7th St",
@@ -121,27 +121,17 @@ You can paste the output of the output into the seeding script:
         "languages_attributes": [
             {
                 "name": "Polish"
-            },
-            {
-                "name": "Russian"
             }
         ],
         "indicators_attributes": [
             {
                 "id": 2
-            },
-            {
-                "id": 4
             }
         ],
         "photos_attributes": [
             {
                 "url": "https://s3-media2.fl.yelpcdn.com/bphoto/NerXLTb8BzHFxuWBft50YA/o.jpg",
                 "cover": true
-            },
-            {
-                "url": "https://s3-media2.fl.yelpcdn.com/bphoto/OhBsrtX8b7VQ5qKD4hFOCw/o.jpg",
-                "cover": false
             }
         ],
         "reviews_attributes": [
@@ -160,12 +150,6 @@ You can paste the output of the output into the seeding script:
                     "start": "0800",
                     "end": "1500",
                     "day": 0
-                },
-                {
-                    "is_overnight": false,
-                    "start": "0800",
-                    "end": "1500",
-                    "day": 1
                 },
                 {
                     "is_overnight": false,
