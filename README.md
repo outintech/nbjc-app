@@ -72,7 +72,7 @@ You can paste the output of the output into the seeding script:
 
 - Get the database up and running: `rake db:create`
 
-- Get the schema setup: `rake db:migrate`
+- Get the [schema][schema] setup: `rake db:migrate`
 > Note: if you make a change in a migration file that has not been committed and do not see the change reflected in the schema run `rake db:rollback` and rerun the migration.
 
 - Seed the database" `rake db:seed`
@@ -84,6 +84,12 @@ You can paste the output of the output into the seeding script:
 
 - To get a full list of available routes check `rails routes`
 
+##### Mocked routes
+
+- [api/v1/spaces?search=bakery][bakeries]
+- [api/v1/space/1][fake-space-details]
+- [api/v1/indicators][indicators]
+
 ##### Spaces
 
 <table>
@@ -94,8 +100,8 @@ You can paste the output of the output into the seeding script:
     <td>Example Resonse</td>
   </tr>
   <tr>
-    <td>POST /api/v1/spaces</td>
-    <td>Create a new space, for a list of the fields and their types, refer to the [schema][schema]</td>
+    <td>`POST /api/v1/spaces`</td>
+    <td>Create a new space, for a list of the fields and their types, refer to the schema</td>
     <td>
       <pre lang="json">
 {
@@ -173,23 +179,19 @@ You can paste the output of the output into the seeding script:
 }
       </pre>
     </td>
-    <td>
-	201 success
-    </td>
+    <td>`201 success`</td>
   </tr>
     <tr>
-    <td>GET /api/v1/spaces/:space_id</td>
+    <td>`GET /api/v1/spaces/:space_id`</td>
     <td>Get a space's details</td>
-    <td>See the mock response for a fake space [/spaces/1][fake-space-details]</td>
-    <td>
-	
-    </td>
+    <td>Includes all possible fields</td>
+    <td>See the mock response for a fake space `/spaces/1`</td>
   </tr>
-    <tr>
-    <td>GET /api/vi/spaces?search=terms</td>
+  <tr>
+    <td>`GET /api/vi/spaces?search=terms`</td>
     <td>Get all spaces with the serach term in their name</td>
     <td>The search terms should be the values for the `search` key</td>
-    <td>See this the mock for [/spaces?search=bakery][bakeries] </td>
+    <td>See this the mock for `/spaces?search=bakery` </td>
   </tr>
 </table>
 
@@ -199,3 +201,4 @@ You can paste the output of the output into the seeding script:
 [schema]: https://github.com/outintech/nbjc-app/blob/main/db/schema.rb
 [fake-space-details]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/spaces/1
 [bakeries]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/spaces?search=bakery
+[indicators]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/indicators
