@@ -3,7 +3,6 @@ class Api::V1::SpacesController < ApplicationController
   before_action :find_space, only: [:show, :update, :destroy]
 
   # GET /spaces
-  # TODO implement search feature for names
   def index
     @spaces = Space.all
     if params[:search].blank?
