@@ -91,7 +91,7 @@ You can paste the output of the output into the seeding script:
 - [api/v1/indicators][indicators]
 
 ##### Spaces
-
+<div>
 <table>
   <tr>
     <td>Endpoint</td>
@@ -130,7 +130,7 @@ You can paste the output of the output into the seeding script:
         ],
         "photos_attributes": [
             {
-                "url": "https://s3-media2.fl.yelpcdn.com/bphoto/NerXLTb8BzHFxuWBft50YA/o.jpg",
+                "url": "https://s3-media2.fl.yelpcdn.com/photo.jpg",
                 "cover": true
             }
         ],
@@ -139,7 +139,7 @@ You can paste the output of the output into the seeding script:
                 "anonymous": true,
                 "vibe_check": 3,
                 "rating": 4,
-                "content": "This is a great place to drink coffee."
+                "content": "This is a great place."
             }
         ],
         "phone": "+16466492774",
@@ -150,12 +150,6 @@ You can paste the output of the output into the seeding script:
                     "start": "0800",
                     "end": "1500",
                     "day": 0
-                },
-                {
-                    "is_overnight": false,
-                    "start": "0800",
-                    "end": "1600",
-                    "day": 6
                 }
             ]
         }
@@ -173,11 +167,12 @@ You can paste the output of the output into the seeding script:
   </tr>
   <tr>
     <td><pre>GET /api/vi/spaces?search=terms</pre></td>
-    <td>Get all spaces with the serach term in their name</td>
+    <td>Get all spaces with the search terms in their names</td>
     <td>The search terms should be the values for the "search" key</td>
     <td>See this the mock for <pre>/spaces?search=bakery</pre></td>
   </tr>
 </table>
+</div>
 
 
 [redis-ubuntu-tutorial]: https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04
