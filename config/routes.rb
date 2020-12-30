@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         resources :space_indicators
         resources :space_languages
       end
+      resources :indicators
     end
   end
 end

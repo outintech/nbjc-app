@@ -5,6 +5,7 @@ class Api::V1::SpacesController < ApplicationController
   # GET /spaces
   # TODO implement search feature for names
   def index
+    if params[:search].blank?
     @spaces = Space.all
     render json: @spaces.to_json(:include => [:address, :reviews, :photos, :indicators, :languages])
   end
