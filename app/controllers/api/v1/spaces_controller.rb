@@ -4,19 +4,24 @@ class Api::V1::SpacesController < ApplicationController
 
   # GET /spaces
   def index
-    @spaces = Space.all
+    # handle search
     if params[:search].blank?
-      render json: @spaces.to_json(:include => [:address, :reviews, :photos, :indicators, :languages])
+      @spaces = Space.all
     else
       @terms = params[:search].downcase
-      @results = @spaces.where("lower(name) LIKE :search", search: "%#{@terms}%")
-      render json: @results.to_json(:include => [:address, :reviews, :photos, :indicators, :languages])
+      @spaces = Space.where("lower(spaces.name) LIKE :search", search: "%#{@terms}%")
     end
+
+    #handle filtering
+    @spaces = @spaces.filter_by_price(params[:price]).with_indicators(params[:indicators])
+    # TODO calculate average rating
+    render json: @spaces, include: [:address, :reviews, :photos, :indicators, :languages]
   end
 
   # GET /spaces/:id
   def show
-    render json: @space.to_json(:include => [:address, :reviews, :photos, :indicators, :languages])
+    # TODO calculate average rating
+    render json: @space, include: [:address, :reviews, :photos, :indicators, :languages]
   end
 
   # POST /spaces
@@ -57,5 +62,9 @@ class Api::V1::SpacesController < ApplicationController
 
   def find_space
     @space = Space.find(params[:id])
+  end
+
+  def filtering_params(params)
+    params.slice(:price)
   end
 end

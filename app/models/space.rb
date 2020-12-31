@@ -1,4 +1,7 @@
 class Space < ApplicationRecord
+  scope :filter_by_price, -> (price) { where("spaces.price_level <= ?", price) if price }
+  scope :with_indicators, -> (ids) { includes(:indicators).where(indicators: { id: [*ids]}) if ids }
+
   has_many :reviews, dependent: :destroy
   has_one :address, dependent: :destroy
   has_many :photos, dependent: :destroy
