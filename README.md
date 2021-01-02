@@ -166,9 +166,16 @@ You can paste the output of the output into the seeding script:
     <td>See the mock response for a fake space <pre>/spaces/1</pre></td>
   </tr>
   <tr>
-    <td><pre>GET /api/vi/spaces?search=terms</pre></td>
+    <td><pre>GET /api/vi/spaces?search=terms and filtering with indicators</pre></td>
     <td>Get all spaces with the search terms in their names</td>
-    <td>The search terms should be the values for the "search" key</td>
+    <td>The search terms should be the values for the "search" key and the indicators should be an array of indicator ids.
+	      <pre lang="json">
+			  {
+				  "search": "bakery",
+				  "indicators": [1, 2]
+			  }
+		  </pre>
+	</td>
     <td>See this the mock for <pre>/spaces?search=bakery</pre></td>
   </tr>
 </table>
