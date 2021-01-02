@@ -166,12 +166,13 @@ You can paste the output of the output into the seeding script:
     <td>See the mock response for a fake space <pre>/spaces/1</pre></td>
   </tr>
   <tr>
-    <td><pre>GET /api/vi/spaces?search=terms and filtering with indicators</pre></td>
+    <td><pre>GET /api/vi/spaces?search=terms and filtering</pre></td>
     <td>Get all spaces with the search terms in their names</td>
-    <td>The search terms should be the values for the "search" key and the indicators should be an array of indicator ids.
+    <td>The search terms should be the values for the "search" key, the price between 1-4 and the indicators should be an array of indicator ids.
 	      <pre lang="json">
 			  {
 				  "search": "bakery",
+				  "price": 2
 				  "indicators": [1, 2]
 			  }
 		  </pre>
@@ -186,5 +187,5 @@ You can paste the output of the output into the seeding script:
 [postgres-ubuntu-tutorial]: https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart
 [schema]: https://github.com/outintech/nbjc-app/blob/main/db/schema.rb
 [fake-space-details]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/spaces/1
-[bakeries]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/spaces?search=bakery
+[bakeries]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/spaces?price=3&search=bakery
 [indicators]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/indicators
