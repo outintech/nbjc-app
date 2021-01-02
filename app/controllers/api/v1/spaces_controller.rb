@@ -5,7 +5,7 @@ class Api::V1::SpacesController < ApplicationController
   # GET /spaces
   def index
     # handle search
-    if params[:search].blank?
+    if params[:search].blank? || params[:search].nil?
       @spaces = Space.all
     else
       @terms = params[:search].downcase

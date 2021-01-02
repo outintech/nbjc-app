@@ -28,8 +28,8 @@ open("yelp_response_ny.json") do |file|
   businesses = businesses_data["businesses"]
   businesses.each do |business|
     space = {
-      "yelp_id": business["id"],
-      "yelp_url": business["url"],
+      "provider_urn": "yelp:" + business["id"],
+      "provider_url": business["url"],
       "name": business["name"],
       "price_level": business["price"].nil? ? nil : business["price"].length,
       "address_attributes": {
