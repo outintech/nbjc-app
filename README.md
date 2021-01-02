@@ -173,13 +173,13 @@ You can paste the output of the output into the seeding script:
 			  {
 				  "search": "bakery",
 				  "filtering": {
-					  "price": 2
+					  "price": 2,
 					  "indicators": [1, 2]
 				  }
 			  }
 		  </pre>
 	</td>
-    <td>See this the mock for <pre>/spaces?search=bakery</pre></td>
+    <td>See this the mock for <pre>api/v1/spaces?price=3&search=bakery</pre></td>
   </tr>
 </table>
 </div>
