@@ -11,7 +11,7 @@ require 'faker'
 
 languages = {name: "Armenian"}, {name: "Azerbaijani"}, {name: "Bulgarian"}, {name: "Catalan"}, {name: "Chinese"}, {name: "Czech"}, {name: "Dutch"}, {name: "English"}, {name: "Estonian"}, {name: "Finnish"}, {name: "French"}, {name: "German"}, {name: "Hebrew"}, {name: "Hindi"}, {name: "Hungarian"}, {name: "Icelandic"}, {name: "Indonesian"}, {name: "Italian"}, {name: "Japanese"}, {name: "Korean"}, {name: "Persian"}, {name: "Polish"}, {name: "Portuguese"}, {name: "Romanian"}, {name: "Russian"}, {name: "Slovak"}, {name: "Spanish"}, {name: "Swedish"}, {name: "Turkish"}, {name: "Ukrainian"}, {name: "Vietnamese"}
 
-indicators = [{name: "ATM"}, {name: "ASL"}, {name: "Gender-neutral Restroom"}, {name: "Black-owned"}, {name: "POC-owned"}]
+indicators = [{name: "LGBTQIA+ Friendly"}, {name: "Gender-Neutral Restroom"}, {name: "Black-Owned"}, {name: "Black-Friendly"}, {name: "Inclusive"}, {name: "Multilingual"}, {name: "Trans-Owned"}, {name: "Trans-Trained"}, {name: "Accessible"}]
 
 puts "Adding languages"
 Language.create(languages)
