@@ -15,20 +15,20 @@ class Api::V1::SpacesController < ApplicationController
     #handle filtering
     @spaces = @spaces.filter_by_price(params[:price]).with_indicators(params[:indicators])
     # TODO calculate average rating
-    render json: @spaces, include: [:address, :reviews, :photos, :indicators, :languages]
+    render json: { data: @spaces }, include: [:address, :reviews, :photos, :indicators, :languages]
   end
 
   # GET /spaces/:id
   def show
     # TODO calculate average rating
-    render json: @space, include: [:address, :reviews, :photos, :indicators, :languages]
+    render json: { data: @space }, include: [:address, :reviews, :photos, :indicators, :languages]
   end
 
   # POST /spaces
   def create
     @space = Space.new(space_params)
     if @space.save!
-      render json: @space, status: 201
+      render json: { data: @space }, status: 201
     else
       render json: { error: 'Unable to create space' }, status:400
     end

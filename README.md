@@ -86,9 +86,9 @@ You can paste the output of the output into the seeding script:
 
 ##### Mocked routes
 
-- [api/v1/spaces?search=bakery][bakeries]
-- [api/v1/space/1][fake-space-details]
-- [api/v1/indicators][indicators]
+- Filtered by indicators with id 1 and 2 (ATM and ASL): [api/v1/spaces?price=3&search=bakery][bakeries]
+- A single space's details: [api/v1/space/1][fake-space-details]
+- All indicators: [api/v1/indicators][indicators]
 
 ##### Spaces
 <div>
@@ -172,8 +172,10 @@ You can paste the output of the output into the seeding script:
 	      <pre lang="json">
 			  {
 				  "search": "bakery",
-				  "price": 2
-				  "indicators": [1, 2]
+				  "filtering": {
+					  "price": 2
+					  "indicators": [1, 2]
+				  }
 			  }
 		  </pre>
 	</td>
@@ -186,6 +188,6 @@ You can paste the output of the output into the seeding script:
 [redis-ubuntu-tutorial]: https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04
 [postgres-ubuntu-tutorial]: https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart
 [schema]: https://github.com/outintech/nbjc-app/blob/main/db/schema.rb
-[fake-space-details]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/spaces/1
-[bakeries]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/spaces?price=3&search=bakery
-[indicators]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/indicators
+[fake-space-details]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/api/v1/spaces/1
+[bakeries]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/api/v1/spaces
+[indicators]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/api/v1indicators
