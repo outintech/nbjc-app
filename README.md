@@ -101,13 +101,13 @@ You can paste the output of the output into the seeding script:
   </tr>
   <tr>
     <td><pre>POST /api/v1/spaces</pre></td>
-    <td>Create a new space, for a list of the fields and their types, refer to the schema</td>
+    <td>Create a new space, for a list of the fields and their types, refer to the schema and descriptions [here][schema-sheet]</td>
     <td>
       <pre lang="json">
 {
     "space": {
-        "yelp_id": "bxU7CnSO9cFhq_1tQyX40A",
-        "yelp_url": "url_to_business_page_on_yelp",
+        "provider_urn": "yelp:bxU7CnSO9cFhq_1tQyX40A",
+        "provider_url": "https://www.yelp.com/biz/name",
         "name": "787 Coffee",
         "price_level": 2, 
         "address_attributes": {
@@ -191,3 +191,4 @@ You can paste the output of the output into the seeding script:
 [fake-space-details]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/api/v1/spaces/1
 [bakeries]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/api/v1/spaces
 [indicators]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/api/v1indicators
+[schema-sheet]: https://docs.google.com/spreadsheets/d/1825fpT5UzzrGEKcjvgeZmKQ9xdnfNUvj3xu11WbTxKQ/edit?usp=sharing

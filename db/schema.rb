@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_28_012738) do
+ActiveRecord::Schema.define(version: 2021_01_02_205658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,10 +87,10 @@ ActiveRecord::Schema.define(version: 2020_12_28_012738) do
   end
 
   create_table "spaces", force: :cascade do |t|
-    t.string "yelp_id"
+    t.string "provider_urn"
     t.string "phone"
     t.text "name"
-    t.text "yelp_url"
+    t.text "provider_url"
     t.text "url"
     t.jsonb "hours_of_op"
     t.point "coordinates"
