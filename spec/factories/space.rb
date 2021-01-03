@@ -9,7 +9,13 @@ FactoryBot.define do
     country { "US" }
     state {Faker::Address.state_abbr}
   end
-  
+
+  ## INDICATOR
+  factory :indicator, class: Indicator do
+    name {Faker::Color.color_name}
+  end
+
+  ## SPACE
   factory :random_space, class: Space do
     provider_urn {"yelp:"+Faker::Crypto.md5}
     provider_url {Faker::Internet.url}
@@ -41,6 +47,18 @@ FactoryBot.define do
       after(:build) do |space|
         space.price_level = 3
       end
+    end
+  end
+
+  factory :space_with_indicators, parent: :random_space do
+    transient do
+      space { FactoryBot.create(:indicator) }
+    end
+
+    after(:create) do |space, evaluator|
+      space.price_level = nil
+      space.indicators << evaluator.indicators
+      space.save
     end
   end
 end

@@ -36,15 +36,24 @@ RSpec.describe "Api::V1::Spaces" do
     end
 
     describe 'with filters', type: :request do
+      let!(:indicators) do
+        FactoryBot.create_list(:indicator, 5)
+      end
       let!(:spaces) do
         FactoryBot.create_list(:random_space, 5, :with_price_one)
         FactoryBot.create_list(:random_space, 3, :with_price_two)
         FactoryBot.create_list(:random_space, 1, :with_price_three)
+        FactoryBot.create_list(:space_with_indicators, 2, indicators: indicators)
       end
 
       it 'returns all spaces with a price at or below the filter' do
         get '/api/v1/spaces', params: { filters: { price: 2 } }
         expect(JSON.parse(response.body)['data'].size).to eq(8)
+      end
+
+      it 'returns all spaces with the specified indicators' do
+        get '/api/v1/spaces', params: { filters: { indicators: [6,7]}}
+        expect(JSON.parse(response.body)['data'].size).to eq(2)
       end
     end
   end
