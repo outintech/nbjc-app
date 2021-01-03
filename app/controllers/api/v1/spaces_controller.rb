@@ -13,7 +13,7 @@ class Api::V1::SpacesController < ApplicationController
     end
 
     #handle filtering
-    @spaces = @spaces.filter_by_price(params[:price]).with_indicators(params[:indicators])
+    @spaces = @spaces.filter_by_price(filtering_params['price']).with_indicators(filtering_params['indicators'])
     # TODO calculate average rating
     render json: { data: @spaces }, include: [:address, :reviews, :photos, :indicators, :languages]
   end
@@ -64,7 +64,7 @@ class Api::V1::SpacesController < ApplicationController
     @space = Space.find(params[:id])
   end
 
-  def filtering_params(params)
-    params.slice(:price)
+  def filtering_params
+    params.fetch(:filters, {})
   end
 end

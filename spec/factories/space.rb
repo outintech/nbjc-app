@@ -22,5 +22,25 @@ FactoryBot.define do
         space.save
       end
     end
+
+    trait :with_price_one do
+      after(:build) do |space|
+        space.price_level = 1
+      end
+    end
+
+    
+    trait :with_price_two do
+      after(:build) do |space|
+        space.price_level = 2
+      end
+    end
+
+    
+    trait :with_price_three do
+      after(:build) do |space|
+        space.price_level = 3
+      end
+    end
   end
 end
