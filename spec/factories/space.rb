@@ -16,9 +16,10 @@ FactoryBot.define do
     name {Faker::Company.name}
     price_level {Faker::Number.between(from: 1, to: 4)}
 
-    trait :with_languages do
+    trait :with_similar_name do
       after(:build) do |space|
-        space.languages << Language.sample(Faker::Number.between(from: 0, to: Language.all.length - 1))
+        space.name = space.name + " Cafe"
+        space.save
       end
     end
   end
