@@ -28,7 +28,7 @@ class Api::V1::SpacesController < ApplicationController
   def create
     @space = Space.new(space_params)
     if @space.save!
-      render json: { data: @space }, status: 201
+      render json: { data: { space: @space } }, status: 201
     else
       render json: { error: 'Unable to create space' }, status:400
     end

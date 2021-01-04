@@ -26,7 +26,7 @@ RSpec.describe "Api::V1::Spaces" do
 
       it 'gets all the spaces with the search term in their name' do
         get '/api/v1/spaces', params: { :search => 'cafe'}
-        expect(JSON.parse(response.body)['data'].size).to eq(5)
+
       end
 
       it 'gets all spaces if search term is blank' do
@@ -55,6 +55,59 @@ RSpec.describe "Api::V1::Spaces" do
         get '/api/v1/spaces', params: { filters: { indicators: [6,7]}}
         expect(JSON.parse(response.body)['data'].size).to eq(2)
       end
+    end
+  end
+
+  describe "POST spaces route" do
+    before do
+      Language.create({name: "English"})
+      Indicator.create({name: "Indicator"})
+      post '/api/v1/spaces', params: {
+             space: {
+               provider_urn: "yelp:" + Faker::Crypto.md5,
+               provider_url: Faker::Internet.url,
+               name: Faker::Company.name,
+               price_level: Faker::Boolean.boolean ? Faker::Number.between(from: 1, to: 4) : nil,
+               phone: "+" + Faker::Number.number(digits: 10).to_s,
+               hours_of_op: {
+                 start: "0800",
+                 stop: "1500",
+                 day: 0
+               },
+               address_attributes: {
+                 address_1: Faker::Address.street_address,
+                 address_2: Faker::Address.secondary_address,
+                 city: Faker::Address.city_prefix + " " + Faker::Address.city_suffix,
+                 postal_code: Faker::Address.postcode,
+                 country: "US",
+                 state: Faker::Address.state_abbr
+               },
+               photos_attributes: [
+                 {
+                   url: Faker::Internet.url,
+                   cover: true
+                 }
+               ],
+               languages_attributes: [
+                 {
+                   name: "English"
+                 }
+               ],
+               indicators_attributes: [
+                 {
+                   name: "Indicator"
+                 }
+               ]
+             }
+           }
+    end
+
+    it 'returns the space' do
+      expect(JSON.parse(response.body)['data'].size).to eq(1)
+    end
+
+    it 'returns a created status' do
+      expect(response).to have_http_status(:created)
     end
   end
 end
