@@ -62,6 +62,12 @@ ActiveRecord::Schema.define(version: 2020_12_12_194946) do
     t.index ["user_id"], name: "index_reviews_on_user_id", unique: true
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "space_indicators", force: :cascade do |t|
     t.bigint "space_id"
     t.bigint "indicator_id"
@@ -78,11 +84,6 @@ ActiveRecord::Schema.define(version: 2020_12_12_194946) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["language_id"], name: "index_space_languages_on_language_id"
     t.index ["space_id"], name: "index_space_languages_on_space_id"
-
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "spaces", force: :cascade do |t|

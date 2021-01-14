@@ -14,13 +14,19 @@
 
 > ### :exclamation: On Ubuntu and probably other linux distributions
 > Yarn: `curl --compressed -o- -L https://yarnpkg.com/install.sh | bash`
+>
 > Postgres:
 >  * Install `postgresql-contrib` and `libpq-dev` along with `postgresql`, see [tutorial][postgres-ubuntu-tutorial].
 >  * Make sure you create a new user for yourself with the corresponding privileges.
 >  * Create a new user with the password as specified in `database.yml` by using the postgres command `CREATE USER new_user with PASSWORD 'your_super_secret_password';`
+>
 > Redis:
 >  * Install `redis-server`
 >  * Edit the `supervised` directive to `systemd`, see [tutorial][redis-ubuntu-tutorial].
+
+- To create a new postgres user
+  * Start the postgres CLI (`psql postgres` for macOS)
+  * Run `CREATE ROLE nbjc_app LOGIN SUPERUSER PASSWORD 'password1';`
 
 - Start the services.
 	> If you installed these with `brew`, you can start them with `brew services start <SERVICE>`. 
