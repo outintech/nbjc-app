@@ -58,56 +58,84 @@ RSpec.describe "Api::V1::Spaces" do
     end
   end
 
-  describe "POST spaces route" do
+  describe "POST spaces and GET space details routes" do
+    space = {
+      provider_urn: "yelp:" + Faker::Crypto.md5,
+      provider_url: Faker::Internet.url,
+      name: Faker::Company.name,
+      price_level: Faker::Boolean.boolean ? Faker::Number.between(from: 1, to: 4) : nil,
+      phone: "+" + Faker::Number.number(digits: 10).to_s,
+      hours_of_op: {
+        start: "0800",
+        stop: "1500",
+        day: 0
+      },
+      address_attributes: {
+        address_1: Faker::Address.street_address,
+        address_2: Faker::Address.secondary_address,
+        city: Faker::Address.city_prefix + " " + Faker::Address.city_suffix,
+        postal_code: Faker::Address.postcode,
+        country: "US",
+        state: Faker::Address.state_abbr
+      },
+      photos_attributes: [
+        {
+          url: Faker::Internet.url,
+          cover: true
+        }
+      ],
+      languages_attributes: [
+        {
+          name: "English"
+        }
+      ],
+      indicators_attributes: [
+        {
+          name: "Indicator"
+        }
+      ]
+    }
+    
     before do
       Language.create({name: "English"})
       Indicator.create({name: "Indicator"})
-      post '/api/v1/spaces', params: {
-             space: {
-               provider_urn: "yelp:" + Faker::Crypto.md5,
-               provider_url: Faker::Internet.url,
-               name: Faker::Company.name,
-               price_level: Faker::Boolean.boolean ? Faker::Number.between(from: 1, to: 4) : nil,
-               phone: "+" + Faker::Number.number(digits: 10).to_s,
-               hours_of_op: {
-                 start: "0800",
-                 stop: "1500",
-                 day: 0
-               },
-               address_attributes: {
-                 address_1: Faker::Address.street_address,
-                 address_2: Faker::Address.secondary_address,
-                 city: Faker::Address.city_prefix + " " + Faker::Address.city_suffix,
-                 postal_code: Faker::Address.postcode,
-                 country: "US",
-                 state: Faker::Address.state_abbr
-               },
-               photos_attributes: [
-                 {
-                   url: Faker::Internet.url,
-                   cover: true
-                 }
-               ],
-               languages_attributes: [
-                 {
-                   name: "English"
-                 }
-               ],
-               indicators_attributes: [
-                 {
-                   name: "Indicator"
-                 }
-               ]
-             }
-           }
+      post '/api/v1/spaces', params: { space: space }
     end
 
     it 'returns the space' do
-      expect(JSON.parse(response.body)['data'].size).to eq(1)
+      expect(JSON.parse(response.body).size).to eq(1)
     end
 
     it 'returns a created status' do
       expect(response).to have_http_status(:created)
+    end
+
+    it 'returns all the details for a space' do
+      id = JSON.parse(response.body)['data']['space']['id']
+      get "/api/v1/spaces/#{id}"
+      data = JSON.parse(response.body)['data']
+      expect(data['name']).to eq(space[:name])
+      expect(data['price_level']).to eq(space[:price_level])
+      expect(data['phone']).to eq(space[:phone])
+      expect(data['provider_urn']).to eq(space[:provider_urn])
+      expect(data['provider_url']).to eq(space[:provider_url])
+    end
+  end
+
+  describe "Update a space's details" do
+    before(:each) do
+      @space = create(:random_space)
+    end
+
+    it 'updates a space' do
+      @new_name = Faker::Company.name
+      @new_phone = "+1" + Faker::Number.number(digits: 10).to_s
+      put "/api/v1/spaces/#{@space.id}", params: {
+            space: { name: @new_name, phone: @new_phone } }
+
+      expect(response.status).to eq(202)
+      expect(Space.find(@space.id).name).to eq(@new_name)
+      expect(Space.find(@space.id).phone).to eq(@new_phone)
     end
   end
 end

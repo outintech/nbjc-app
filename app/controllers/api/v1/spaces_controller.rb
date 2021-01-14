@@ -38,7 +38,7 @@ class Api::V1::SpacesController < ApplicationController
   def update
     if @space
       @space.update(space_params)
-      render json: { message: 'Space updated successfully.' }, status: 200
+      render json: { message: 'Space updated successfully.' }, status: 202
     else
       render json: { error: 'Unable to update space.' }, status: 400
     end

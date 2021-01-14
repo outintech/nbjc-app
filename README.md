@@ -181,6 +181,12 @@ You can paste the output of the output into the seeding script:
 	</td>
     <td>See this the mock for <pre>api/v1/spaces?price=3&search=bakery</pre></td>
   </tr>
+  <tr>
+    <td>PUT /api/v1/spaces/:space_id</td>
+    <td>Update a space's details</td>
+    <td>See the POST route for available fields for update</td>
+    <td>202 Success</td>
+  </tr>
 </table>
 </div>
 
