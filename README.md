@@ -17,16 +17,12 @@
 >
 > Postgres:
 >  * Install `postgresql-contrib` and `libpq-dev` along with `postgresql`, see [tutorial][postgres-ubuntu-tutorial].
->  * Make sure you create a new user for yourself with the corresponding privileges.
->  * Create a new user with the password as specified in `database.yml` by using the postgres command `CREATE USER new_user with PASSWORD 'your_super_secret_password';`
 >
 > Redis:
 >  * Install `redis-server`
 >  * Edit the `supervised` directive to `systemd`, see [tutorial][redis-ubuntu-tutorial].
 
-- To create a new postgres user
-  * Start the postgres CLI (`psql postgres` for macOS)
-  * Run `CREATE ROLE nbjc_app LOGIN SUPERUSER PASSWORD 'password1';`
+- Create a new user with the password as specified in `database.yml` by using the postgres command `CREATE USER new_user with PASSWORD 'your_super_secret_password';`
 
 - Start the services.
 	> If you installed these with `brew`, you can start them with `brew services start <SERVICE>`. 
@@ -50,29 +46,10 @@ rails destroy model <MODEL_NAME>
 
 #### Seeding the database
 
-- If you have a list that you want to seed the database with, first create a file with that list. For example, `indicators.txt`:
-
-```text
-ATM
-LGBTQ+ Friendly
-ASL
-Wheelchair Ramp
-Gender-neutral Restroom
-Black-owned
-POC-owned
-```
-
-- Convert that easily to paste into a seeding script by running in your terminal:
-
-```sh
-cat indicators.txt | awk '{for (i=1;i<NF;i++) {getline}; printf("{name: \x22%s\x22}, ", $0)}'
-```
-
-You can paste the output of the output into the seeding script:
-
-```sh
-{name: "ATM"}, {name: "ASL"}, {name: "Gender-neutral Restroom"}, {name: "Black-owned"}, {name: "POC-owned"}
-```
+- All CSV files under `db/seed_data/` will automatically be used to seed the DB
+- To add seeding data for a new table, create a new file under the mentioned directory that matches the table name
+- All CSV files in the directory must contain a header row and columns matching (at least) all required fields
+- See `db/seed_data/languages.csv` (which will seed the `languages` table) for an example
 
 ### Start up the app
 
