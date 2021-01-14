@@ -48,7 +48,7 @@ class Api::V1::SpacesController < ApplicationController
   def destroy
     if @space
       @space.destroy
-      render json: { message: 'Space deleted successfully.' }, status: 200
+      render json: { message: 'Space deleted successfully.' }, status: 204
     else
       render json: { message: 'Unable to delete space.' }, status: 400
     end

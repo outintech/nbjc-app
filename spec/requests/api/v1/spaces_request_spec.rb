@@ -138,4 +138,24 @@ RSpec.describe "Api::V1::Spaces" do
       expect(Space.find(@space.id).phone).to eq(@new_phone)
     end
   end
+
+  describe "Delete a space" do
+    before(:each) do
+      @space_one = create(:random_space)
+      @space_two = create(:random_space)
+    end
+
+    it 'should delete the space' do
+      get '/api/v1/spaces'
+      expect(response.status).to eq(200)
+      expect(JSON.parse(response.body)['data'].size).to eq(2)
+
+      delete "/api/v1/spaces/#{@space_one.id}"
+      expect(response.status).to eq(204)
+
+      get '/api/v1/spaces'
+      expect(response.status).to eq(200)
+      expect(JSON.parse(response.body)['data'].size).to eq(1)
+    end
+  end
 end

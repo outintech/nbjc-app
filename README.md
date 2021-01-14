@@ -187,6 +187,12 @@ You can paste the output of the output into the seeding script:
     <td>See the POST route for available fields for update</td>
     <td>202 Success</td>
   </tr>
+    <tr>
+    <td>DELETE /api/v1/spaces/:space_id</td>
+    <td>Deletes a space</td>
+    <td>Only admins will be able to delete a space</td>
+    <td>204 Success</td>
+  </tr>
 </table>
 </div>
 
