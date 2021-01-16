@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    namespace :v1 do
+      resources :spaces, only: [:create, :index, :show, :update, :destroy] do
+        resources :reviews
+        resources :address
+        resources :photos
+        resources :space_indicators
+        resources :space_languages
+      end
+      resources :indicators
+    end
+  end
 end

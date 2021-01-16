@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
-  protect_from_forgery with: :exception
+  include ActionController::RequestForgeryProtection
+  protect_from_forgery unless: -> { request.format.json? }
 
   # uncomment when we have a protected controller
   # before_action :authenticate_user!

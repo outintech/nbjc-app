@@ -76,6 +76,7 @@ GEM
     childprocess (3.0.0)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
+    database_cleaner (1.8.5)
     devise (4.7.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -89,6 +90,8 @@ GEM
     factory_bot_rails (6.1.0)
       factory_bot (~> 6.1.0)
       railties (>= 5.0.0)
+    faker (2.15.1)
+      i18n (>= 1.6, < 2)
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -96,6 +99,7 @@ GEM
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.1)
       activesupport (>= 5.0.0)
+    json (2.5.1)
     listen (3.3.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -241,9 +245,12 @@ DEPENDENCIES
   byebug
   cancancan
   capybara (>= 2.15)
+  database_cleaner
   devise
   factory_bot_rails
+  faker
   jbuilder (~> 2.7)
+  json
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
