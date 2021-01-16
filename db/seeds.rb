@@ -1,25 +1,19 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 require 'open-uri'
 require 'json'
 require 'faker'
+require "csv"
 
-languages = {name: "Armenian"}, {name: "Azerbaijani"}, {name: "Bulgarian"}, {name: "Catalan"}, {name: "Chinese"}, {name: "Czech"}, {name: "Dutch"}, {name: "English"}, {name: "Estonian"}, {name: "Finnish"}, {name: "French"}, {name: "German"}, {name: "Hebrew"}, {name: "Hindi"}, {name: "Hungarian"}, {name: "Icelandic"}, {name: "Indonesian"}, {name: "Italian"}, {name: "Japanese"}, {name: "Korean"}, {name: "Persian"}, {name: "Polish"}, {name: "Portuguese"}, {name: "Romanian"}, {name: "Russian"}, {name: "Slovak"}, {name: "Spanish"}, {name: "Swedish"}, {name: "Turkish"}, {name: "Ukrainian"}, {name: "Vietnamese"}
+# Please see the README for instructions on adding seed data
 
-indicators = [{name: "LGBTQIA+ Friendly"}, {name: "Gender-Neutral Restroom"}, {name: "Black-Owned"}, {name: "Black-Friendly"}, {name: "Inclusive"}, {name: "Multilingual"}, {name: "Trans-Owned"}, {name: "Trans-Trained"}, {name: "Accessible"}]
+Dir.glob("db/seed_data/*.csv") do |file|
+  model = Object.const_get(file.split("/").last.split(".").first.singularize.camelcase)
+  CSV.foreach(file, headers: true) do |row|
+    model.create!(row.to_hash)
+  end
+  puts "#{model} seeded"
+end
 
-puts "Adding languages"
-Language.create(languages)
-
-
-puts "Adding indicators"
-Indicator.create(indicators)
-
+# Used for development purposes only
 puts "Adding spaces"
 open("yelp_response_ny.json") do |file|
   spaces = []
@@ -98,3 +92,4 @@ open("yelp_response_ny.json") do |file|
 end
 
 puts "Done seeding"
+

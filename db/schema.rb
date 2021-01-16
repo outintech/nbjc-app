@@ -68,6 +68,12 @@ ActiveRecord::Schema.define(version: 2021_01_02_205658) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "space_indicators", force: :cascade do |t|
     t.bigint "space_id"
     t.bigint "indicator_id"
