@@ -34,8 +34,10 @@ open("yelp_response_ny.json") do |file|
                              "country": business["location"]["country"],
                              "state": business["location"]["state"]
                             },
-      "languages_attributes": Faker::Boolean.boolean ? languages.sample(Faker::Number.between(from: 0, to: languages.length - 1)) : [],
-      "indicators_attributes": indicators.sample(Faker::Number.between(from: 0, to: indicators.length - 1)),
+             "languages_attributes": Faker::Boolean.boolean ? Language.all.pluck(:name).sample(
+                                                                Faker::Number.between(from: 0, to: Language.all.count - 1))
+                                                                .map{|n| { name: n } } : [],
+      "indicators_attributes": Indicator.all.pluck(:name).sample(Faker::Number.between(from: 1, to: Indicator.all.count - 1)).map{ |n| { name: n } },
       "photos_attributes": [{ "url": business["image_url"], "cover": true
                             }],
       "phone": business["phone"],

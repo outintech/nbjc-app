@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_02_205658) do
+ActiveRecord::Schema.define(version: 2021_01_16_172136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,22 @@ ActiveRecord::Schema.define(version: 2021_01_02_205658) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["space_id"], name: "index_addresses_on_space_id", unique: true
+  end
+
+  create_table "category_aliases", force: :cascade do |t|
+    t.string "alias"
+    t.string "title"
+    t.bigint "category_buckets_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_buckets_id"], name: "index_category_aliases_on_category_buckets_id"
+  end
+
+  create_table "category_buckets", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "indicators", force: :cascade do |t|
@@ -60,12 +76,6 @@ ActiveRecord::Schema.define(version: 2021_01_02_205658) do
     t.bigint "user_id"
     t.index ["space_id"], name: "index_reviews_on_space_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
-  end
-
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "roles", force: :cascade do |t|
