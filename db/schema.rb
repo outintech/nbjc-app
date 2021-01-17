@@ -31,10 +31,12 @@ ActiveRecord::Schema.define(version: 2021_01_16_172136) do
   create_table "category_aliases", force: :cascade do |t|
     t.string "alias"
     t.string "title"
-    t.bigint "category_buckets_id"
+    t.bigint "category_bucket_id"
+    t.bigint "space_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_buckets_id"], name: "index_category_aliases_on_category_buckets_id"
+    t.index ["category_bucket_id"], name: "index_category_aliases_on_category_bucket_id"
+    t.index ["space_id"], name: "index_category_aliases_on_space_id"
   end
 
   create_table "category_buckets", force: :cascade do |t|
@@ -137,6 +139,8 @@ ActiveRecord::Schema.define(version: 2021_01_16_172136) do
   end
 
   add_foreign_key "addresses", "spaces"
+  add_foreign_key "category_aliases", "category_buckets"
+  add_foreign_key "category_aliases", "spaces"
   add_foreign_key "photos", "spaces"
   add_foreign_key "reviews", "spaces"
   add_foreign_key "reviews", "users"

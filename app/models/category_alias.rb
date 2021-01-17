@@ -1,4 +1,4 @@
 class CategoryAlias < ApplicationRecord
     belongs_to :category_bucket
-    # has_many :spaces
+    belongs_to :space
 end
