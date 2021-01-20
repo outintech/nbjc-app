@@ -1,0 +1,1577 @@
+title,alias,category_bucket
+Airsoft,airsoft,Activity
+Amateur Sports Teams,amateursportsteams,Activity
+Amusement Parks,amusementparks,Activity
+Aquariums,aquariums,Activity
+Archery,archery,Activity
+ATV Rentals/Tours,atvrentals,Activity
+Axe Throwing,axethrowing,Activity
+Badminton,badminton,Activity
+Baseball Fields,baseballfields,Activity
+Basketball Courts,basketballcourts,Activity
+Bathing Area,bathing_area,Activity
+Batting Cages,battingcages,Activity
+Beach Equipment Rentals,beachequipmentrental,Activity
+Beaches,beaches,Activity
+Beach Volleyball,beachvolleyball,Activity
+Bicycle Paths,bicyclepaths,Activity
+Bike Parking,bikeparking,Activity
+Bike Rentals,bikerentals,Activity
+Boating,boating,Activity
+Bobsledding,bobsledding,Activity
+Bocce Ball,bocceball,Activity
+Bowling,bowling,Activity
+Bubble Soccer,bubblesoccer,Activity
+Bungee Jumping,bungeejumping,Activity
+Canyoneering,canyoneering,Activity
+Carousels,carousels,Activity
+Challenge Courses,challengecourses,Activity
+Climbing,climbing,Activity
+Cycling Classes,cyclingclasses,Activity
+Dart Arenas,dartarenas,Activity
+Day Camps,daycamps,Activity
+Disc Golf,discgolf,Activity
+Diving,diving,Activity
+Escape Games,escapegames,Activity
+Experiences,experiences,Activity
+Fencing Clubs,fencing,Activity
+Fishing,fishing,Activity
+Fitness & Instruction,fitness,Activity
+Flyboarding,flyboarding,Activity
+Soccer,football,Activity
+Gliding,gliding,Activity
+Go Karts,gokarts,Activity
+Golf,golf,Activity
+Gun/Rifle Ranges,gun_ranges,Activity
+Gymnastics,gymnastics,Activity
+Handball,handball,Activity
+Hang Gliding,hanggliding,Activity
+Hiking,hiking,Activity
+Horseback Riding,horsebackriding,Activity
+Horse Racing,horseracing,Activity
+Hot Air Balloons,hot_air_balloons,Activity
+Indoor Playcentre,indoor_playcenter,Activity
+Jet Skis,jetskis,Activity
+Kids Activities,kids_activities,Activity
+Kiteboarding,kiteboarding,Activity
+Lakes,lakes,Activity
+Laser Tag,lasertag,Activity
+Lawn Bowling,lawn_bowling,Activity
+Leisure Centers,leisure_centers,Activity
+Mini Golf,mini_golf,Activity
+Mountain Biking,mountainbiking,Activity
+Nudist,nudist,Activity
+Paddleboarding,paddleboarding,Activity
+Paintball,paintball,Activity
+Paragliding,paragliding,Activity
+Parasailing,parasailing,Activity
+Parks,parks,Activity
+Pickleball,pickleball,Activity
+Playgrounds,playgrounds,Activity
+Public Plazas,publicplazas,Activity
+Races & Competitions,races,Activity
+Racing Experience,racingexperience,Activity
+Rafting/Kayaking,rafting,Activity
+Recreation Centers,recreation,Activity
+Rock Climbing,rock_climbing,Activity
+Sailing,sailing,Activity
+Scavenger Hunts,scavengerhunts,Activity
+Scooter Rentals,scooterrentals,Activity
+Senior Centers,seniorcenters,Activity
+Skating Rinks,skatingrinks,Activity
+Skiing,skiing,Activity
+Skydiving,skydiving,Activity
+Sledding,sledding,Activity
+Snorkeling,snorkeling,Activity
+Spin Classes,spinclasses,Activity
+Sport Equipment Hire,sport_equipment_hire,Activity
+Sports Clubs,sports_clubs,Activity
+Squash,squash,Activity
+Summer Camps,summer_camps,Activity
+Surfing,surfing,Activity
+Surf Lifesaving,surflifesaving,Activity
+Swimming Pools,swimmingpools,Activity
+Tennis,tennis,Activity
+Trampoline Parks,trampoline,Activity
+Tubing,tubing,Activity
+Volleyball,volleyball,Activity
+Water Parks,waterparks,Activity
+Wildlife Hunting Ranges,wildlifehunting,Activity
+Ziplining,zipline,Activity
+Zoos,zoos,Activity
+Zorbing,zorbing,Activity
+Strip Clubs,stripclubs,Nightlife
+Striptease Dancers,stripteasedancers,Nightlife
+Senegalese,senegalese,Food & Drink
+South African,southafrican,Food & Drink
+Airport Terminals,airportterminals,Travel
+Arab Pizza,arabpizza,Food & Drink
+Glass Blowing,glassblowing,Professional Services
+Arcades,arcades,Attraction
+Betting Centers,bettingcenters,Attraction
+Bingo Halls,bingo,Attraction
+Cabaret,cabaret,Attraction
+Casinos,casinos,Attraction
+Castles,castles,Attraction
+Choirs,choirs,Attraction
+Country Clubs,countryclubs,Attraction
+Cultural Center,culturalcenter,Attraction
+Eatertainment,eatertainment,Attraction
+Farms,farms,Attraction
+Festivals,festivals,Attraction
+Art Galleries,galleries,Attraction
+Botanical Gardens,gardens,Attraction
+Haunted Houses,hauntedhouses,Attraction
+Jazz & Blues,jazzandblues,Attraction
+LAN Centers,lancenters,Attraction
+Mah Jong Halls,mahjong,Attraction
+Makerspaces,makerspaces,Attraction
+Marching Bands,marchingbands,Attraction
+Cinema,movietheaters,Attraction
+Museums,museums,Attraction
+Music Venues,musicvenues,Attraction
+Observatories,observatories,Attraction
+Opera & Ballet,opera,Attraction
+Pachinko,pachinko,Attraction
+Paint & Sip,paintandsip,Attraction
+Planetarium,planetarium,Attraction
+Supernatural Readings,psychic_astrology,Attraction
+Race Tracks,racetracks,Attraction
+Rodeo,rodeo,Attraction
+Social Clubs,social_clubs,Attraction
+Sports Betting,sportsbetting,Attraction
+Professional Sports Teams,sportsteams,Attraction
+Stadiums & Arenas,stadiumsarenas,Attraction
+Street Art,streetart,Attraction
+Studio Taping,studiotaping,Attraction
+Tablao Flamenco,tablaoflamenco,Attraction
+Performing Arts,theater,Attraction
+Ticket Sales,ticketsales,Attraction
+Virtual Reality Centers,virtualrealitycenters,Attraction
+Wineries,wineries,Attraction
+Art Supplies,artsupplies,Shopping
+Ateliers,ateliers,Shopping
+Cooking Classes,cookingclasses,Shopping
+Costumes,costumes,Shopping
+Embroidery & Crochet,embroideryandcrochet,Shopping
+Fabric Stores,fabricstores,Shopping
+Framing,framing,Shopping
+Paint-Your-Own Pottery,paintyourownpottery,Shopping
+Aircraft Dealers,aircraftdealers,Auto
+Aircraft Repairs,aircraftrepairs,Auto
+Auto Detailing,auto_detailing,Auto
+Auto Customization,autocustomization,Auto
+Car Inspectors,autodamageassessment,Auto
+Auto Electric Services,autoelectric,Auto
+Auto Glass Services,autoglass,Auto
+Auto Loan Providers,autoloanproviders,Auto
+Auto Parts & Supplies,autopartssupplies,Auto
+Auto Repair,autorepair,Auto
+Auto Security,autosecurity,Auto
+Auto Upholstery,autoupholstery,Auto
+Aviation Services,aviationservices,Auto
+Boat Dealers,boatdealers,Auto
+Boat Parts & Supplies,boatpartsandsupplies,Auto
+Body Shops,bodyshops,Auto
+Car Dealers,car_dealers,Auto
+Car Auctions,carauctions,Auto
+Car Brokers,carbrokers,Auto
+Car Buyers,carbuyers,Auto
+Car Share Services,carshares,Auto
+Car Wash,carwash,Auto
+EV Charging Stations,evchargingstations,Auto
+Fuel Docks,fueldocks,Auto
+Gas Stations,gasstations,Auto
+Golf Cart Dealers,golfcartdealers,Auto
+Hybrid Car Repair,hybridcarrepair,Auto
+Interlock Systems,interlocksystems,Auto
+Marinas,marinas,Auto
+Mobile Dent Repair,mobiledentrepair,Auto
+Mobility Equipment Sales & Services,mobilityequipment,Auto
+Motorsport Vehicle Dealers,motodealers,Auto
+Motorcycle Dealers,motorcycledealers,Auto
+Motorcycle Repair,motorcyclerepair,Auto
+Motorsport Vehicle Repairs,motorepairs,Auto
+Oil Change Stations,oilchange,Auto
+Parking,parking,Auto
+Registration Services,registrationservices,Auto
+Roadside Assistance,roadsideassist,Auto
+RV Dealers,rv_dealers,Auto
+RV Repair,rvrepair,Auto
+Service Stations,service_stations,Auto
+Gas Stations,servicestations,Auto
+Smog Check Stations,smog_check_stations,Auto
+Car Stereo Installation,stereo_installation,Auto
+Tires,tires,Auto
+Towing,towing,Auto
+Trailer Dealers,trailerdealers,Auto
+Trailer Rental,trailerrental,Auto
+Trailer Repair,trailerrepair,Auto
+Transmission Repair,transmissionrepair,Auto
+Truck Rental,truck_rental,Auto
+Commercial Truck Dealers,truckdealers,Auto
+Commercial Truck Repair,truckrepair,Auto
+Used Car Dealers,usedcardealers,Auto
+Vehicle Shipping,vehicleshipping,Auto
+Vehicle Wraps,vehiclewraps,Auto
+Wheel & Rim Repair,wheelrimrepair,Auto
+Windshield Installation & Repair,windshieldinstallrepair,Auto
+Car Window Tinting,carwindowtinting,Auto
+Motorcycle Parts & Supplies,motorcyclepartsandsupplies,Auto
+DIY Auto Shop,diyautoshop,Auto
+Absinthe Bars,absinthebars,Alcohol
+Airport Lounges,airportlounges,Alcohol
+Beach Bars,beachbars,Alcohol
+Beer Bar,beerbar,Alcohol
+Champagne Bars,champagne_bars,Alcohol
+Cigar Bars,cigarbars,Alcohol
+Cocktail Bars,cocktailbars,Alcohol
+Dive Bars,divebars,Alcohol
+Drive-Thru Bars,drivethrubars,Alcohol
+Gay Bars,gaybars,Alcohol
+Hookah Bars,hookah_bars,Alcohol
+Hotel bar,hotel_bar,Alcohol
+Irish Pub,irish_pubs,Alcohol
+Lounges,lounges,Alcohol
+Pubs,pubs,Alcohol
+Pulquerias,pulquerias,Alcohol
+Sake Bars,sakebars,Alcohol
+Speakeasies,speakeasies,Alcohol
+Sports Bars,sportsbars,Alcohol
+Tabac,tabac,Alcohol
+Tiki Bars,tikibars,Alcohol
+Vermouth Bars,vermouthbars,Alcohol
+Whiskey Bars,whiskeybars,Alcohol
+Wine Bars,wine_bars,Alcohol
+Acne Treatment,acnetreatment,Beauty
+Barbers,barbers,Beauty
+Cosmetics & Beauty Supply,cosmetics,Beauty
+Erotic Massage,eroticmassage,Beauty
+Eyebrow Services,eyebrowservices,Beauty
+Eyelash Service,eyelashservice,Beauty
+Foot Care,footcare,Beauty
+Hair Salons,hair,Beauty
+Hair Extensions,hair_extensions,Beauty
+Hair Loss Centers,hairloss,Beauty
+Hair Removal,hairremoval,Beauty
+Hot Springs,hotsprings,Beauty
+Makeup Artists,makeupartists,Beauty
+Massage,massage,Beauty
+Nail Salons,othersalons,Beauty
+Permanent Makeup,permanentmakeup,Beauty
+Piercing,piercing,Beauty
+Rolfing,rolfing,Beauty
+Skin Care,skincare,Beauty
+Day Spas,spas,Beauty
+Tanning,tanning,Beauty
+Tattoo,tattoo,Beauty
+Teeth Whitening,teethwhitening,Beauty
+Flemish,flemish,Food & Drink
+Bike Associations,bikeassociations,Activity
+Bike Repair,bikerepair,Activity
+Bike Shop,bikeshop,Activity
+Special Bikes,specialbikes,Activity
+Brazilian Empanadas,brazilianempanadas,Food & Drink
+Central Brazilian,centralbrazilian,Food & Drink
+Northeastern Brazilian,northeasternbrazilian,Food & Drink
+Northern Brazilian,northernbrazilian,Food & Drink
+Rodizios,rodizios,Food & Drink
+Pancakes,pancakes,Food & Drink
+Brewpubs,brewpubs,Alcohol
+Psychoanalysts,psychoanalysts,Wellness
+Psychologists,psychologists,Wellness
+Psychotherapists,psychotherapists,Wellness
+Sex Therapists,sextherapists,Wellness
+Sophrologists,sophrologists,Wellness
+Sports Psychologists,sportspsychologists,Wellness
+Themed Cafes,themedcafes,Food & Drink
+Cannabis Tours,cannabistours,Wellness
+Dominican,dominican,Food & Drink
+Haitian,haitian,Food & Drink
+Puerto Rican,puertorican,Food & Drink
+Trinidadian,trinidadian,Food & Drink
+Cantonese,cantonese,Food & Drink
+Congee,congee,Food & Drink
+Dim Sum,dimsum,Food & Drink
+Fuzhou,fuzhou,Food & Drink
+Hainan,hainan,Food & Drink
+Hakka,hakka,Food & Drink
+Henghwa,henghwa,Food & Drink
+Hokkien,hokkien,Food & Drink
+Hunan,hunan,Food & Drink
+Pekinese,pekinese,Food & Drink
+Shanghainese,shanghainese,Food & Drink
+Szechuan,szechuan,Food & Drink
+Teochew,teochew,Food & Drink
+Faith-based Crisis Pregnancy Centers,faithbasedcpc,Wellness
+Storefront Clinics,dentalhygeiniststorefront,Wellness
+Mobile Clinics,dentalhygienistsmobile,Wellness
+Cosmetic Dentists,cosmeticdentists,Wellness
+Endodontists,endodontists,Wellness
+General Dentistry,generaldentistry,Wellness
+Oral Surgeons,oralsurgeons,Wellness
+Orthodontists,orthodontists,Wellness
+Pediatric Dentists,pediatric_dentists,Wellness
+Periodontists,periodontists,Wellness
+Diagnostic Imaging,diagnosticimaging,Wellness
+Laboratory Testing,laboratorytesting,Wellness
+Free Diving,freediving,Activity
+Scuba Diving,scuba,Activity
+Gyudon,gyudon,Food & Drink
+Oyakodon,oyakodon,Food & Drink
+Adult Education,adultedu,Education
+Art Classes,artclasses,Education
+College Counseling,collegecounseling,Education
+Colleges & Universities,collegeuniv,Education
+Educational Services,educationservices,Education
+Elementary Schools,elementaryschools,Education
+Middle Schools & High Schools,highschools,Education
+Montessori Schools,montessori,Education
+Preschools,preschools,Education
+Private Schools,privateschools,Education
+Private Tutors,privatetutors,Education
+Religious Schools,religiousschools,Education
+Special Education,specialed,Education
+Specialty Schools,specialtyschools,Education
+Tasting Classes,tastingclasses,Education
+Test Preparation,testprep,Education
+Tutoring Centers,tutoring,Education
+Waldorf Schools,waldorfschools,Education
+"Wills, Trusts, & Probates",willstrustsprobates,Professional Services
+Balloon Services,balloonservices,Professional Services
+Bartenders,bartenders,Professional Services
+Boat Charters,boatcharters,Professional Services
+Caricatures,caricatures,Professional Services
+Caterers,catering,Professional Services
+Clowns,clowns,Professional Services
+DJs,djs,Professional Services
+Party & Event Planning,eventplanning,Professional Services
+Face Painting,facepainting,Professional Services
+Floral Designers,floraldesigners,Professional Services
+Game Truck Rental,gametruckrental,Professional Services
+Golf Cart Rentals,golfcartrentals,Professional Services
+Henna Artists,hennaartists,Professional Services
+Hotels,hotels,Professional Services
+Magicians,magicians,Professional Services
+Mohels,mohels,Professional Services
+Musicians,musicians,Professional Services
+Officiants,officiants,Professional Services
+Party Bike Rentals,partybikerentals,Professional Services
+Party Bus Rentals,partybusrentals,Professional Services
+Party Characters,partycharacters,Professional Services
+Party Equipment Rentals,partyequipmentrentals,Professional Services
+Party Supplies,partysupplies,Professional Services
+Personal Chefs,personalchefs,Professional Services
+Photo Booth Rentals,photoboothrentals,Professional Services
+Photographers,photographers,Professional Services
+Silent Disco,silentdisco,Professional Services
+Sommelier Services,sommelierservices,Professional Services
+Cards & Stationery,stationery,Professional Services
+Team Building Activities,teambuilding,Professional Services
+Trivia Hosts,triviahosts,Professional Services
+Valet Services,valetservices,Professional Services
+Venues & Event Spaces,venues,Professional Services
+Videographers,videographers,Professional Services
+Wedding Planning,wedding_planning,Professional Services
+Wedding Chapels,weddingchappels,Professional Services
+Attraction Farms,attractionfarms,Attraction
+Pick Your Own Farms,pickyourown,Attraction
+Ranches,ranches,Attraction
+Accessories,accessories,Shopping
+Ceremonial Clothing,ceremonialclothing,Shopping
+Children's Clothing,childcloth,Shopping
+Clothing Rental,clothingrental,Shopping
+Formal Wear,formalwear,Shopping
+Fur Clothing,furclothing,Shopping
+Hats,hats,Shopping
+Kimonos,kimonos,Shopping
+Leather Goods,leather,Shopping
+Lingerie,lingerie,Shopping
+Maternity Wear,maternity,Shopping
+Men's Clothing,menscloth,Shopping
+Plus Size Fashion,plus_size_fashion,Shopping
+Shoe Stores,shoes,Shopping
+Sleepwear,sleepwear,Shopping
+Sports Wear,sportswear,Shopping
+Stockings,stockings,Shopping
+Surf Shop,surfshop,Shopping
+Swimwear,swimwear,Shopping
+Traditional Clothing,tradclothing,Shopping
+"Used, Vintage & Consignment",vintage,Shopping
+Women's Clothing,womenscloth,Shopping
+Fun Fair,funfair,Events
+General Festivals,generalfestivals,Events
+Trade Fairs,tradefairs,Events
+Christmas Markets,xmasmarkets,Events
+Banks & Credit Unions,banks,Professional Services
+Business Financing,businessfinancing,Professional Services
+Currency Exchange,currencyexchange,Professional Services
+Debt Relief Services,debtrelief,Professional Services
+Financial Advising,financialadvising,Professional Services
+Installment Loans,installmentloans,Professional Services
+Insurance,insurance,Professional Services
+Investing,investing,Professional Services
+Mortgage Lenders,mortgagelenders,Professional Services
+Check Cashing/Pay-day Loans,paydayloans,Professional Services
+Tax Services,taxservices,Professional Services
+Title Loans,titleloans,Professional Services
+Aerial Fitness,aerialfitness,Activity
+Barre Classes,barreclasses,Activity
+Boot Camps,bootcamps,Activity
+Boxing,boxing,Activity
+Cardio Classes,cardioclasses,Activity
+Dance Studios,dancestudio,Activity
+EMS Training,emstraining,Activity
+Golf Lessons,golflessons,Activity
+Gyms,gyms,Activity
+Trainers,healthtrainers,Activity
+Martial Arts,martialarts,Activity
+Meditation Centers,meditationcenters,Activity
+Pilates,pilates,Activity
+Qi Gong,qigong,Activity
+Self-defense Classes,selfdefenseclasses,Activity
+Swimming Lessons/Schools,swimminglessons,Activity
+Tai Chi,taichi,Activity
+Yoga,yoga,Activity
+Florists,florists,Shopping
+Flowers,flowersonly,Shopping
+Gift Shops,giftshops,Shopping
+Acai Bowls,acaibowls,Food & Drink
+Backshop,backshop,Food & Drink
+Bagels,bagels,Food & Drink
+Bakeries,bakeries,Food & Drink
+"Beer, Wine & Spirits",beer_and_wine,Food & Drink
+Bento,bento,Food & Drink
+Beverage Store,beverage_stores,Food & Drink
+Breweries,breweries,Food & Drink
+Bubble Tea,bubbletea,Food & Drink
+Butcher,butcher,Food & Drink
+Patisserie/Cake Shop,cakeshop,Food & Drink
+Chimney Cakes,chimneycakes,Food & Drink
+Churros,churros,Food & Drink
+Cideries,cideries,Food & Drink
+Coffee & Tea,coffee,Food & Drink
+Coffee Roasteries,coffeeroasteries,Food & Drink
+Coffee & Tea Supplies,coffeeteasupplies,Food & Drink
+Convenience Stores,convenience,Food & Drink
+CSA,csa,Food & Drink
+Cupcakes,cupcakes,Food & Drink
+Custom Cakes,customcakes,Food & Drink
+Delicatessen,delicatessen,Food & Drink
+Desserts,desserts,Food & Drink
+Distilleries,distilleries,Food & Drink
+Do-It-Yourself Food,diyfood,Food & Drink
+Donairs,donairs,Food & Drink
+Donuts,donuts,Food & Drink
+Parent Cafes,eltern_cafes,Food & Drink
+Empanadas,empanadas,Food & Drink
+Ethical Grocery,ethicgrocery,Food & Drink
+Ethnic Grocery,ethnicgrocery,Food & Drink
+Farmers Market,farmersmarket,Food & Drink
+Fishmonger,fishmonger,Food & Drink
+Food Delivery Services,fooddeliveryservices,Food & Drink
+Food Trucks,foodtrucks,Food & Drink
+Friterie,friterie,Food & Drink
+Gelato,gelato,Food & Drink
+Mulled Wine,gluhwein,Food & Drink
+Specialty Food,gourmet,Food & Drink
+Grocery,grocery,Food & Drink
+Hawker Centre,hawkercentre,Food & Drink
+Honey,honey,Food & Drink
+Ice Cream & Frozen Yogurt,icecream,Food & Drink
+Imported Food,importedfood,Food & Drink
+Internet Cafes,internetcafe,Food & Drink
+International Grocery,intlgrocery,Food & Drink
+Japanese Sweets,jpsweets,Food & Drink
+Juice Bars & Smoothies,juicebars,Food & Drink
+Kiosk,kiosk,Food & Drink
+Kombucha,kombucha,Food & Drink
+Meaderies,meaderies,Food & Drink
+Milkshake Bars,milkshakebars,Food & Drink
+Nasi Lemak,nasilemak,Food & Drink
+Organic Stores,organic_stores,Food & Drink
+Panzerotti,panzerotti,Food & Drink
+Piadina,piadina,Food & Drink
+Poke,poke,Food & Drink
+Pretzels,pretzels,Food & Drink
+Salumerie,salumerie,Food & Drink
+Shaved Ice,shavedice,Food & Drink
+Shaved Snow,shavedsnow,Food & Drink
+Smokehouse,smokehouse,Food & Drink
+Street Vendors,streetvendors,Food & Drink
+Sugar Shacks,sugarshacks,Food & Drink
+Tea Rooms,tea,Food & Drink
+Torshi,torshi,Food & Drink
+Tortillas,tortillas,Food & Drink
+Water Stores,waterstores,Food & Drink
+Zapiekanka,zapiekanka,Food & Drink
+Alsatian,alsatian,Food & Drink
+Auvergnat,auvergnat,Food & Drink
+Berrichon,berrichon,Food & Drink
+Bourguignon,bourguignon,Food & Drink
+Mauritius,mauritius,Food & Drink
+Nicoise,nicois,Food & Drink
+Provencal,provencal,Food & Drink
+Reunion,reunion,Food & Drink
+Cremation Services,cremationservices,Professional Services
+Mortuary Services,mortuaryservices,Professional Services
+Hydroponics,hydroponics,Home Services
+Baden,baden,Food & Drink
+Eastern German,easterngerman,Food & Drink
+Franconian,franconian,Food & Drink
+Hessian,hessian,Food & Drink
+Northern German,northerngerman,Food & Drink
+Palatine,palatine,Food & Drink
+Rhinelandian,rhinelandian,Food & Drink
+Candy Stores,candy,Food & Drink
+Cheese Shops,cheese,Food & Drink
+Chocolatiers & Shops,chocolate,Food & Drink
+Dagashi,dagashi,Food & Drink
+Dried Fruit,driedfruit,Food & Drink
+Ethnic Food,ethnicmarkets,Food & Drink
+Frozen Food,frozenfood,Food & Drink
+Health Markets,healthmarkets,Food & Drink
+Herbs & Spices,herbsandspices,Food & Drink
+Macarons,macarons,Food & Drink
+Fruits & Veggies,markets,Food & Drink
+Meat Shops,meats,Food & Drink
+Olive Oil,oliveoil,Food & Drink
+Pasta Shops,pastashops,Food & Drink
+Popcorn Shops,popcorn,Food & Drink
+Seafood Markets,seafoodmarkets,Food & Drink
+Tofu Shops,tofu,Food & Drink
+Circuit Training Gyms,circuittraininggyms,Activity
+Interval Training Gyms,intervaltraininggyms,Activity
+Blow Dry/Out Services,blowoutservices,Beauty
+Hair Stylists,hairstylists,Beauty
+Kids Hair Salons,kidshairsalons,Beauty
+Men's Hair Salons,menshair,Beauty
+Laser Hair Removal,laser_hair_removal,Beauty
+Sugaring,sugaring,Beauty
+Threading Services,threadingservices,Beauty
+Waxing,waxing,Beauty
+Acupuncture,acupuncture,Wellness
+Alternative Medicine,alternativemedicine,Wellness
+Animal Assisted Therapy,animalassistedtherapy,Wellness
+Assisted Living Facilities,assistedliving,Wellness
+Ayurveda,ayurveda,Wellness
+Behavior Analysts,behavioranalysts,Wellness
+Blood & Plasma Donation Centers,blooddonation,Wellness
+Body Contouring,bodycontouring,Wellness
+Counseling & Mental Health,c_and_mh,Wellness
+Cannabis Clinics,cannabis_clinics,Wellness
+Cannabis Collective,cannabiscollective,Wellness
+Medical Cannabis Referrals,cannabisreferrals,Wellness
+Chiropractors,chiropractors,Wellness
+Colonics,colonics,Wellness
+Concierge Medicine,conciergemedicine,Wellness
+Crisis Pregnancy Centers,crisispregnancycenters,Wellness
+Cryotherapy,cryotherapy,Wellness
+Dental Hygienists,dentalhygienists,Wellness
+Dentists,dentists,Wellness
+Diagnostic Services,diagnosticservices,Wellness
+Dialysis Clinics,dialysisclinics,Wellness
+Dietitians,dietitians,Wellness
+Doulas,doulas,Wellness
+Emergency Rooms,emergencyrooms,Wellness
+Float Spa,floatspa,Wellness
+Habilitative Services,habilitativeservices,Wellness
+Halfway Houses,halfwayhouses,Wellness
+Halotherapy,halotherapy,Wellness
+Health Coach,healthcoach,Wellness
+Health Insurance Offices,healthinsurance,Wellness
+Hearing Aids,hearing_aids,Wellness
+Hearing Aid Providers,hearingaidproviders,Wellness
+Herbal Shops,herbalshops,Wellness
+Home Health Care,homehealthcare,Wellness
+Hospice,hospice,Wellness
+Hospitals,hospitals,Wellness
+Hydrotherapy,hydrotherapy,Wellness
+Hypnosis/Hypnotherapy,hypnosis,Wellness
+IV Hydration,ivhydration,Wellness
+Lactation Services,lactationservices,Wellness
+Laser Eye Surgery/Lasik,laserlasikeyes,Wellness
+Lice Services,liceservices,Wellness
+Massage Therapy,massage_therapy,Wellness
+Medical Centers,medcenters,Wellness
+Medical Foot Care,medicalfoot,Wellness
+Medical Spas,medicalspa,Wellness
+Medical Transportation,medicaltransportation,Wellness
+Memory Care,memorycare,Wellness
+Midwives,midwives,Wellness
+Nurse Practitioner,nursepractitioner,Wellness
+Nutritionists,nutritionists,Wellness
+Occupational Therapy,occupationaltherapy,Wellness
+Optometrists,optometrists,Wellness
+Organ & Tissue Donor Services,organdonorservices,Wellness
+Orthotics,orthotics,Wellness
+Oxygen Bars,oxygenbars,Wellness
+Personal Care Services,personalcare,Wellness
+Pharmacy,pharmacy,Wellness
+Physical Therapy,physicaltherapy,Wellness
+Doctors,physicians,Wellness
+Placenta Encapsulations,placentaencapsulation,Wellness
+Postpartum Care,postpartumcare,Wellness
+Prenatal/Perinatal Care,prenatal,Wellness
+Prosthetics,prosthetics,Wellness
+Prosthodontists,prosthodontists,Wellness
+Psychotechnical Tests,psychotechnicaltests,Wellness
+Reflexology,reflexology,Wellness
+Rehabilitation Center,rehabilitation_center,Wellness
+Reiki,reiki,Wellness
+Reproductive Health Services,reproductivehealthservices,Wellness
+Retirement Homes,retirement_homes,Wellness
+Saunas,saunas,Wellness
+Skilled Nursing,skillednursing,Wellness
+Sleep Specialists,sleepspecialists,Wellness
+Speech Therapists,speech_therapists,Wellness
+Sperm Clinic,spermclinic,Wellness
+Traditional Chinese Medicine,tcm,Wellness
+Ultrasound Imaging Centers,ultrasoundimagingcenters,Wellness
+Urgent Care,urgent_care,Wellness
+Weight Loss Centers,weightlosscenters,Wellness
+Appliances,appliances,Home Services
+Candle Stores,candlestores,Home Services
+Christmas Trees,christmastrees,Home Services
+Furniture Stores,furniture,Home Services
+Nurseries & Gardening,gardening,Home Services
+Grilling Equipment,grillingequipment,Home Services
+Hardware Stores,hardware,Home Services
+Holiday Decorations,holidaydecorations,Home Services
+Home Decor,homedecor,Home Services
+Hot Tub & Pool,hottubandpool,Home Services
+Kitchen & Bath,kitchenandbath,Home Services
+Lighting Stores,lightingstores,Home Services
+Linens,linens,Home Services
+Materiale elettrico,materialeelettrico,Home Services
+Mattresses,mattresses,Home Services
+Outdoor Furniture Stores,outdoorfurniture,Home Services
+Paint Stores,paintstores,Home Services
+Playsets,playsets,Home Services
+Pumpkin Patches,pumpkinpatches,Home Services
+Rugs,rugs,Home Services
+Sheds & Outdoor Storage,shedsandoutdoorstorage,Home Services
+Tableware,tableware,Home Services
+Artificial Turf,artificialturf,Home Services
+Shades & Blinds,blinds,Home Services
+Building Supplies,buildingsupplies,Home Services
+Cabinetry,cabinetry,Home Services
+Carpenters,carpenters,Home Services
+Carpeting,carpeting,Home Services
+Carpet Installation,carpetinstallation,Home Services
+Childproofing,childproofing,Home Services
+Chimney Sweeps,chimneysweeps,Home Services
+Contractors,contractors,Home Services
+Countertop Installation,countertopinstall,Home Services
+Damage Restoration,damagerestoration,Home Services
+Decks & Railing,decksrailing,Home Services
+Demolition Services,demolitionservices,Home Services
+Door Sales/Installation,doorsales,Home Services
+Drywall Installation & Repair,drywall,Home Services
+Electricians,electricians,Home Services
+Excavation Services,excavationservices,Home Services
+Fences & Gates,fencesgates,Home Services
+Fireplace Services,fireplace,Home Services
+Fire Protection Services,fireprotection,Home Services
+Firewood,firewood,Home Services
+Flooring,flooring,Home Services
+Foundation Repair,foundationrepair,Home Services
+Furniture Assembly,furnitureassembly,Home Services
+Garage Door Services,garage_door_services,Home Services
+Gardeners,gardeners,Home Services
+Glass & Mirrors,glassandmirrors,Home Services
+Grout Services,groutservices,Home Services
+Gutter Services,gutterservices,Home Services
+Handyman,handyman,Home Services
+Home Inspectors,home_inspectors,Home Services
+Home Organization,home_organization,Home Services
+Home Automation,homeautomation,Home Services
+Home Cleaning,homecleaning,Home Services
+Home Energy Auditors,homeenergyauditors,Home Services
+Home Network Installation,homenetworkinstall,Home Services
+Home Theatre Installation,hometheatreinstallation,Home Services
+Home Window Tinting,homewindowtinting,Home Services
+House Sitters,housesitters,Home Services
+Heating & Air Conditioning/HVAC,hvac,Home Services
+Insulation Installation,insulationinstallation,Home Services
+Interior Design,interiordesign,Home Services
+Irrigation,irrigation,Home Services
+Landscape Architects,landscapearchitects,Home Services
+Landscaping,landscaping,Home Services
+Lighting Fixtures & Equipment,lighting,Home Services
+Keys & Locksmiths,locksmiths,Home Services
+Masonry/Concrete,masonry_concrete,Home Services
+Mobile Home Repair,mobile_home_repair,Home Services
+Movers,movers,Home Services
+Packing Services,packingservices,Home Services
+Painters,painters,Home Services
+Patio Coverings,patiocoverings,Home Services
+Plumbing,plumbing,Home Services
+Pool Cleaners,poolcleaners,Home Services
+Pool & Hot Tub Service,poolservice,Home Services
+Pressure Washers,pressurewashers,Home Services
+Real Estate,realestate,Home Services
+Refinishing Services,refinishing,Home Services
+Roofing,roofing,Home Services
+Roof Inspectors,roofinspectors,Home Services
+Sauna Installation & Repair,saunainstallation,Home Services
+Holiday Decorating Services,seasonaldecorservices,Home Services
+Security Systems,securitysystems,Home Services
+Shutters,shutters,Home Services
+Solar Installation,solarinstallation,Home Services
+Solar Panel Cleaning,solarpanelcleaning,Home Services
+Structural Engineers,structuralengineers,Home Services
+Stucco Services,stucco,Home Services
+Television Service Providers,televisionserviceproviders,Home Services
+Tiling,tiling,Home Services
+Tree Services,treeservices,Home Services
+Utilities,utilities,Home Services
+Siding,vinylsiding,Home Services
+Wallpapering,wallpapering,Home Services
+Water Heater Installation/Repair,waterheaterinstallrepair,Home Services
+Waterproofing,waterproofing,Home Services
+Water Purification Services,waterpurification,Home Services
+Windows Installation,windowsinstallation,Home Services
+Window Washing,windowwashing,Home Services
+Agriturismi,agriturismi,Travel
+Mountain Huts,mountainhuts,Travel
+Pensions,pensions,Travel
+Residences,residences,Travel
+Rest Stops,reststops,Travel
+Ryokan,ryokan,Travel
+Airports,airports,Travel
+Bed & Breakfast,bedbreakfast,Travel
+Campgrounds,campgrounds,Travel
+Car Rental,carrental,Travel
+Guest Houses,guesthouses,Travel
+Health Retreats,healthretreats,Travel
+Hostels,hostels,Travel
+Motorcycle Rental,motorcycle_rental,Travel
+Resorts,resorts,Travel
+RV Parks,rvparks,Travel
+RV Rental,rvrental,Travel
+Ski Resorts,skiresorts,Travel
+Tours,tours,Travel
+Train Stations,trainstations,Travel
+Transportation,transport,Travel
+Travel Services,travelservices,Travel
+Vacation Rentals,vacation_rentals,Travel
+Vacation Rental Agents,vacationrentalagents,Travel
+Auto Insurance,autoinsurance,Professional Services
+Home & Rental Insurance,homeinsurance,Professional Services
+Life Insurance,lifeinsurance,Professional Services
+Abruzzese,abruzzese,Food & Drink
+Altoatesine,altoatesine,Food & Drink
+Apulian,apulian,Food & Drink
+Calabrian,calabrian,Food & Drink
+Cucina campana,cucinacampana,Food & Drink
+Emilian,emilian,Food & Drink
+Friulan,friulan,Food & Drink
+Ligurian,ligurian,Food & Drink
+Lumbard,lumbard,Food & Drink
+Napoletana,napoletana,Food & Drink
+Piemonte,piemonte,Food & Drink
+Roman,roman,Food & Drink
+Sardinian,sardinian,Food & Drink
+Sicilian,sicilian,Food & Drink
+Tuscan,tuscan,Food & Drink
+Venetian,venetian,Food & Drink
+Data Recovery,datarecovery,Professional Services
+Mobile Phone Repair,mobilephonerepair,Professional Services
+Telecommunications,telecommunications,Professional Services
+Blowfish,blowfish,Food & Drink
+Conveyor Belt Sushi,conveyorsushi,Food & Drink
+Donburi,donburi,Food & Drink
+Hand Rolls,handrolls,Food & Drink
+Horumon,horumon,Food & Drink
+Izakaya,izakaya,Food & Drink
+Japanese Curry,japacurry,Food & Drink
+Kaiseki,kaiseki,Food & Drink
+Kushikatsu,kushikatsu,Food & Drink
+Oden,oden,Food & Drink
+Okinawan,okinawan,Food & Drink
+Okonomiyaki,okonomiyaki,Food & Drink
+Onigiri,onigiri,Food & Drink
+Ramen,ramen,Food & Drink
+Robatayaki,robatayaki,Food & Drink
+Soba,soba,Food & Drink
+Sukiyaki,sukiyaki,Food & Drink
+Takoyaki,takoyaki,Food & Drink
+Tempura,tempura,Food & Drink
+Teppanyaki,teppanyaki,Food & Drink
+Tonkatsu,tonkatsu,Food & Drink
+Udon,udon,Food & Drink
+Unagi,unagi,Food & Drink
+Western Style Japanese Food,westernjapanese,Food & Drink
+Yakiniku,yakiniku,Food & Drink
+Yakitori,yakitori,Food & Drink
+Taiyaki,taiyaki,Food & Drink
+Dumpster Rental,dumpsterrental,Professional Services
+Kitchen Supplies,kitchensupplies,Shopping
+Lawn Services,lawnservices,Professional Services
+Colombian,colombian,Food & Drink
+Salvadoran,salvadoran,Food & Drink
+Venezuelan,venezuelan,Food & Drink
+Dry Cleaning,dryclean,Professional Services
+Laundromat,laundromat,Professional Services
+Bankruptcy Law,bankruptcy,Professional Services
+Business Law,businesslawyers,Professional Services
+Consumer Law,consumerlaw,Professional Services
+Contract Law,contractlaw,Professional Services
+Criminal Defense Law,criminaldefense,Professional Services
+Disability Law,disabilitylaw,Professional Services
+Divorce & Family Law,divorce,Professional Services
+DUI Law,duilawyers,Professional Services
+Elder Law,elderlaw,Professional Services
+Employment Law,employmentlawyers,Professional Services
+Entertainment Law,entertainmentlaw,Professional Services
+Estate Planning Law,estateplanning,Professional Services
+General Litigation,general_litigation,Professional Services
+Immigration Law,immigrationlawyers,Professional Services
+IP & Internet Law,iplaw,Professional Services
+Medical Law,medicallaw,Professional Services
+Personal Injury Law,personal_injury,Professional Services
+Real Estate Law,realestatelawyers,Professional Services
+Social Security Law,socialsecuritylaw,Professional Services
+Tax Law,taxlaw,Professional Services
+Traffic Ticketing Law,trafficticketinglaw,Professional Services
+Workers Compensation Law,workerscomplaw,Professional Services
+Court Reporters,courtreporters,Professional Services
+Process Servers,processservers,Professional Services
+Parklets,parklets,Food & Drink
+Public Art,publicart,Food & Drink
+Unofficial Yelp Events,unofficialyelpevents,Food & Drink
+Yelp Events,yelpevents,Food & Drink
+3D Printing,3dprinting,Professional Services
+Adoption Services,adoptionservices,Professional Services
+Air Duct Cleaning,airductcleaning,Professional Services
+Appraisal Services,appraisalservices,Professional Services
+Art Installation,artinstallation,Professional Services
+Art Restoration,artrestoration,Professional Services
+Awnings,awnings,Professional Services
+Bail Bondsmen,bailbondsmen,Professional Services
+Bike Repair/Maintenance,bike_repair_maintenance,Professional Services
+Biohazard Cleanup,biohazardcleanup,Professional Services
+Bookbinding,bookbinding,Professional Services
+Bus Rental,busrental,Professional Services
+Calligraphy,calligraphy,Professional Services
+Carpet Cleaning,carpet_cleaning,Professional Services
+Carpet Dyeing,carpetdyeing,Professional Services
+Child Care & Day Care,childcare,Professional Services
+Clock Repair,clockrepair,Professional Services
+Community Book Box,communitybookbox,Professional Services
+Community Gardens,communitygardens,Professional Services
+Printing Services,copyshops,Professional Services
+Couriers & Delivery Services,couriers,Professional Services
+Crane Services,craneservices,Professional Services
+Donation Center,donationcenter,Professional Services
+Dry Cleaning & Laundry,drycleaninglaundry,Professional Services
+Elder Care Planning,eldercareplanning,Professional Services
+Electronics Repair,electronicsrepair,Professional Services
+Elevator Services,elevatorservices,Professional Services
+Engraving,engraving,Professional Services
+Environmental Abatement,enviroabatement,Professional Services
+Environmental Testing,environmentaltesting,Professional Services
+Farm Equipment Repair,farmequipmentrepair,Professional Services
+Fingerprinting,fingerprinting,Professional Services
+Forestry,forestry,Professional Services
+Funeral Services & Cemeteries,funeralservices,Professional Services
+Furniture Repair,furniturerepair,Professional Services
+Generator Installation/Repair,generatorinstallrepair,Professional Services
+Gestorias,gestorias,Professional Services
+Grill Services,grillservices,Professional Services
+Gunsmith,gunsmith,Professional Services
+Hazardous Waste Disposal,hazardouswastedisposal,Professional Services
+Appliances & Repair,homeappliancerepair,Professional Services
+Hydro-jetting,hydrojetting,Professional Services
+Ice Delivery,icedelivery,Professional Services
+Internet Booths & Calling Centers,internetbooth,Professional Services
+IT Services & Computer Repair,itservices,Professional Services
+Jewelry Repair,jewelryrepair,Professional Services
+Junk Removal & Hauling,junkremovalandhauling,Professional Services
+Junkyards,junkyards,Professional Services
+Knife Sharpening,knifesharpening,Professional Services
+Laundry Services,laundryservices,Professional Services
+Machine & Tool Rental,machinerental,Professional Services
+Machine Shops,machineshops,Professional Services
+Mailbox Centers,mailboxcenters,Professional Services
+Metal Detector Services,metaldetectorservices,Professional Services
+Metal Fabricators,metalfabricators,Professional Services
+Misting System Services,mistingsystemservices,Professional Services
+Musical Instrument Services,musicinstrumentservices,Professional Services
+Nanny Services,nannys,Professional Services
+Community Service/Non-Profit,nonprofit,Professional Services
+Notaries,notaries,Professional Services
+Outdoor Power Equipment Services,outdoorpowerequipmentservices,Professional Services
+Pest Control,pest_control,Professional Services
+Portable Toilet Services,portabletoiletservices,Professional Services
+Powder Coating,powdercoating,Professional Services
+Propane,propane,Professional Services
+Record Labels,record_labels,Professional Services
+Recording & Rehearsal Studios,recording_studios,Professional Services
+Recycling Center,recyclingcenter,Professional Services
+Furniture Rental,rentfurniture,Professional Services
+Furniture Reupholstery,reupholstery,Professional Services
+Sandblasting,sandblasting,Professional Services
+Screen Printing/T-Shirt Printing,screen_printing_tshirt_printing,Professional Services
+Screen Printing,screenprinting,Professional Services
+Self Storage,selfstorage,Professional Services
+Septic Services,septicservices,Professional Services
+Sewing & Alterations,sewingalterations,Professional Services
+Shipping Centers,shipping_centers,Professional Services
+Shoe Repair,shoerepair,Professional Services
+Shoe Shine,shoeshine,Professional Services
+Smoking Areas,smokingareas,Professional Services
+Snow Removal,snowremoval,Professional Services
+Snuggle Services,snuggleservices,Professional Services
+Stonemasons,stonemasons,Professional Services
+TV Mounting,tvmounting,Professional Services
+Watch Repair,watch_repair,Professional Services
+Water Delivery,waterdelivery,Professional Services
+Well Drilling,welldrilling,Professional Services
+Wildlife Control,wildlifecontrol,Professional Services
+Youth Club,youth_club,Professional Services
+Mamak,mamak,Food & Drink
+Nyonya,nyonya,Food & Drink
+Brazilian Jiu-jitsu,brazilianjiujitsu,Activity
+Chinese Martial Arts,chinesemartialarts,Activity
+Karate,karate,Activity
+Kickboxing,kickboxing,Activity
+Muay Thai,muaythai,Activity
+Taekwondo,taekwondo,Activity
+Print Media,printmedia,Media
+Radio Stations,radiostations,Media
+Television Stations,televisionstations,Media
+Bulk Billing,bulkbilling,Media
+Osteopaths,osteopaths,Media
+Walk-in Clinics,walkinclinics,Wellness
+Bookstores,bookstores,Media
+Comic Books,comicbooks,Media
+Newspapers & Magazines,mags,Media
+Music & DVDs,musicvideo,Media
+Videos & Video Game Rental,videoandgames,Media
+Video Game Stores,videogamestores,Media
+Vinyl Records,vinyl_records,Media
+Aestheticians,aestheticians,Wellness
+Falafel,falafel,Food & Drink
+Eastern Mexican,easternmexican,Food & Drink
+Jaliscan,jaliscan,Food & Drink
+Northern Mexican,northernmexican,Food & Drink
+Oaxacan,oaxacan,Food & Drink
+Pueblan,pueblan,Food & Drink
+Tacos,tacos,Food & Drink
+Tamales,tamales,Food & Drink
+Yucatan,yucatan,Food & Drink
+Egyptian,egyptian,Food & Drink
+Lebanese,lebanese,Food & Drink
+Drive-In Theater,driveintheater,Attraction
+Outdoor Movies,outdoormovies,Attraction
+Art Museums,artmuseums,Attraction
+Children's Museums,childrensmuseums,Attraction
+Guitar Stores,guitarstores,Professional Services
+Piano Services,pianoservices,Professional Services
+Piano Stores,pianostores,Professional Services
+Vocal Coach,vocalcoach,Professional Services
+Adult Entertainment,adultentertainment,Nightlife
+Bar Crawl,barcrawl,Nightlife
+Bars,bars,Nightlife
+Beer Gardens,beergardens,Nightlife
+Club Crawl,clubcrawl,Nightlife
+Coffeeshops,coffeeshops,Nightlife
+Comedy Clubs,comedyclubs,Nightlife
+Country Dance Halls,countrydancehalls,Nightlife
+Dance Clubs,danceclubs,Nightlife
+Dance Restaurants,dancerestaurants,Nightlife
+Fasil Music,fasil,Nightlife
+Karaoke,karaoke,Nightlife
+Piano Bars,pianobars,Nightlife
+Pool Halls,poolhalls,Nightlife
+Food Banks,foodbanks,Professional Services
+Homeless Shelters,homelessshelters,Professional Services
+Retina Specialists,retinaspecialists,Wellness
+Sunglasses,sunglasses,Wellness
+Nail Technicians,nailtechnicians,Beauty
+Dog Parks,dog_parks,Attraction
+Skate Parks,skate_parks,Attraction
+Audio/Visual Equipment Rental,audiovisualequipmentrental,Professional Services
+Bounce House Rentals,bouncehouserentals,Professional Services
+Karaoke Rental,karaokerental,Professional Services
+Pet Boarding,petboarding,Pets
+Animal Shelters,animalshelters,Pets
+Horse Boarding,horse_boarding,Pets
+Pet Adoption,petadoption,Pets
+Pet Services,petservices,Pets
+Pet Stores,petstore,Pets
+Veterinarians,vet,Pets
+Holistic Animal Care,animalholistic,Pets
+Animal Physical Therapy,animalphysicaltherapy,Pets
+Aquarium Services,aquariumservices,Pets
+Dog Walkers,dogwalkers,Pets
+Emergency Pet Hospital,emergencypethospital,Pets
+Farriers,farriers,Pets
+Pet Groomers,groomer,Pets
+Pet Sitting,pet_sitting,Pets
+Pet Training,pet_training,Pets
+Pet Breeders,petbreeders,Pets
+Pet Cremation Services,petcremation,Pets
+Pet Hospice,pethospice,Pets
+Pet Insurance,petinsurance,Pets
+Pet Photography,petphotography,Pets
+Pet Transportation,pettransport,Pets
+Pet Waste Removal,petwasteremoval,Pets
+Bird Shops,birdshops,Pets
+Local Fish Stores,localfishstores,Pets
+Reptile Shops,reptileshops,Pets
+Boudoir Photography,boudoirphotography,Professional Services
+Event Photography,eventphotography,Professional Services
+Session Photography,sessionphotography,Professional Services
+Addiction Medicine,addictionmedicine,Wellness
+Allergists,allergist,Wellness
+Anesthesiologists,anesthesiologists,Wellness
+Audiologist,audiologist,Wellness
+Cardiologists,cardiology,Wellness
+Cosmetic Surgeons,cosmeticsurgeons,Wellness
+Dermatologists,dermatology,Wellness
+Ear Nose & Throat,earnosethroat,Wellness
+Emergency Medicine,emergencymedicine,Wellness
+Endocrinologists,endocrinologists,Wellness
+Family Practice,familydr,Wellness
+Fertility,fertility,Wellness
+Gastroenterologist,gastroenterologist,Wellness
+Geneticists,geneticists,Wellness
+Gerontologists,gerontologist,Wellness
+Hepatologists,hepatologists,Wellness
+Homeopathic,homeopathic,Wellness
+Hospitalists,hospitalists,Wellness
+Immunodermatologists,immunodermatologists,Wellness
+Infectious Disease Specialists,infectiousdisease,Wellness
+Internal Medicine,internalmed,Wellness
+Naturopathic/Holistic,naturopathic,Wellness
+Nephrologists,nephrologists,Wellness
+Neurologist,neurologist,Wellness
+Neuropathologists,neuropathologists,Wellness
+Neurotologists,neurotologists,Wellness
+Obstetricians & Gynecologists,obgyn,Wellness
+Oncologist,oncologist,Wellness
+Ophthalmologists,opthamalogists,Wellness
+Orthopedists,orthopedists,Wellness
+Osteopathic Physicians,osteopathicphysicians,Wellness
+Otologists,otologists,Wellness
+Pain Management,painmanagement,Wellness
+Pathologists,pathologists,Wellness
+Pediatricians,pediatricians,Wellness
+Phlebologists,phlebologists,Wellness
+Plastic Surgeons,plasticsurgeons,Wellness
+Podiatrists,podiatrists,Wellness
+Preventive Medicine,preventivemedicine,Wellness
+Proctologists,proctologist,Wellness
+Psychiatrists,psychiatrists,Wellness
+Pulmonologist,pulmonologist,Wellness
+Radiologists,radiologists,Wellness
+Rheumatologists,rhematologists,Wellness
+Spine Surgeons,spinesurgeons,Wellness
+Sports Medicine,sportsmed,Wellness
+Surgeons,surgeons,Wellness
+Tattoo Removal,tattooremoval,Wellness
+Toxicologists,toxicologists,Wellness
+Tropical Medicine,tropicalmedicine,Wellness
+Undersea/Hyperbaric Medicine,underseamedicine,Wellness
+Urologists,urologists,Wellness
+Vascular Medicine,vascularmedicine,Wellness
+Backflow Services,backflowservices,Professional Services
+Pierogis,pierogis,Food & Drink
+Alentejo,alentejo,Food & Drink
+Algarve,algarve,Food & Drink
+Azores,azores,Food & Drink
+Beira,beira,Food & Drink
+Fado Houses,fado_houses,Food & Drink
+Madeira,madeira,Food & Drink
+Minho,minho,Food & Drink
+Ribatejo,ribatejo,Food & Drink
+Tras-os-Montes,tras_os_montes,Food & Drink
+Accountants,accountants,Professional Services
+Advertising,advertising,Professional Services
+Architects,architects,Professional Services
+Art Consultants,artconsultants,Professional Services
+Billing Services,billingservices,Professional Services
+Boat Repair,boatrepair,Professional Services
+Bookkeepers,bookkeepers,Professional Services
+Business Consulting,businessconsulting,Professional Services
+Career Counseling,careercounseling,Professional Services
+Commissioned Artists,commissionedartists,Professional Services
+Customs Brokers,customsbrokers,Professional Services
+Digitizing Services,digitizingservices,Professional Services
+Duplication Services,duplicationservices,Professional Services
+Editorial Services,editorialservices,Professional Services
+Employment Agencies,employmentagencies,Professional Services
+Feng Shui,fengshui,Professional Services
+Graphic Design,graphicdesign,Professional Services
+Indoor Landscaping,indoorlandscaping,Professional Services
+Internet Service Providers,isps,Professional Services
+Lawyers,lawyers,Professional Services
+Legal Services,legalservices,Professional Services
+Life Coach,lifecoach,Professional Services
+Marketing,marketing,Professional Services
+Matchmakers,matchmakers,Professional Services
+Mediators,mediators,Professional Services
+Music Production Services,musicproduction,Professional Services
+Office Cleaning,officecleaning,Professional Services
+Patent Law,patentlaw,Professional Services
+Payroll Services,payroll,Professional Services
+Personal Assistants,personalassistants,Professional Services
+Private Investigation,privateinvestigation,Professional Services
+Product Design,productdesign,Professional Services
+Public Adjusters,publicadjusters,Professional Services
+Public Relations,publicrelations,Professional Services
+Security Services,security,Professional Services
+Shredding Services,shredding,Professional Services
+Signmaking,signmaking,Professional Services
+Software Development,softwaredevelopment,Professional Services
+Talent Agencies,talentagencies,Professional Services
+Taxidermy,taxidermy,Professional Services
+Tenant and Eviction Law,tenantlaw,Professional Services
+Translation Services,translationservices,Professional Services
+Video/Film Production,videofilmproductions,Professional Services
+Web Design,web_design,Professional Services
+Wholesalers,wholesalers,Professional Services
+Astrologers,astrologers,Professional Services
+Mystics,mystics,Professional Services
+Psychic Mediums,psychicmediums,Professional Services
+Psychics,psychics,Professional Services
+Authorized Postal Representative,authorized_postal_representative,Government
+Civic Center,civiccenter,Government
+Community Centers,communitycenters,Government
+Courthouses,courthouses,Government
+Departments of Motor Vehicles,departmentsofmotorvehicles,Government
+Embassy,embassy,Government
+Fire Departments,firedepartments,Government
+Jails & Prisons,jailsandprisons,Government
+Landmarks & Historical Buildings,landmarks,Government
+Libraries,libraries,Government
+Municipality,municipality,Government
+Police Departments,policedepartments,Government
+Post Offices,postoffices,Government
+Registry Office,registry_office,Government
+Tax Office,taxoffice,Government
+Town Hall,townhall,Government
+Apartments,apartments,Professional Services
+Art Space Rentals,artspacerentals,Professional Services
+Commercial Real Estate,commercialrealestate,Professional Services
+Condominiums,condominiums,Professional Services
+Estate Liquidation,estateliquidation,Professional Services
+Home Developers,homedevelopers,Professional Services
+Homeowner Association,homeownerassociation,Professional Services
+Home Staging,homestaging,Professional Services
+Housing Cooperatives,housingcooperatives,Professional Services
+Kitchen Incubators,kitchenincubators,Professional Services
+Mobile Home Dealers,mobilehomes,Professional Services
+Mobile Home Parks,mobileparks,Professional Services
+Mortgage Brokers,mortgagebrokers,Professional Services
+Property Management,propertymgmt,Professional Services
+Real Estate Agents,realestateagents,Professional Services
+Real Estate Services,realestatesvcs,Professional Services
+Shared Office Spaces,sharedofficespaces,Professional Services
+University Housing,university_housing,Professional Services
+Apartment Agents,apartmentagents,Professional Services
+Real Estate Photography,estatephotography,Professional Services
+Land Surveying,landsurveying,Professional Services
+Afro-Brazilian,afrobrazilian,Religious
+Buddhist Temples,buddhist_temples,Religious
+Churches,churches,Religious
+Hindu Temples,hindu_temples,Religious
+Mosques,mosques,Religious
+Shrines,shrines,Religious
+Sikh Temples,sikhtemples,Religious
+Spiritism,spiritism,Religious
+Synagogues,synagogues,Religious
+Taoist Temples,taoisttemples,Religious
+Afghan,afghani,Food & Drink
+African,african,Food & Drink
+Andalusian,andalusian,Food & Drink
+Arabian,arabian,Food & Drink
+Argentine,argentine,Food & Drink
+Armenian,armenian,Food & Drink
+Asian Fusion,asianfusion,Food & Drink
+Asturian,asturian,Food & Drink
+Australian,australian,Food & Drink
+Austrian,austrian,Food & Drink
+Baguettes,baguettes,Food & Drink
+Bangladeshi,bangladeshi,Food & Drink
+Basque,basque,Food & Drink
+Bavarian,bavarian,Food & Drink
+Barbeque,bbq,Food & Drink
+Beer Garden,beergarden,Food & Drink
+Beer Hall,beerhall,Food & Drink
+Beisl,beisl,Food & Drink
+Belgian,belgian,Food & Drink
+Bistros,bistros,Food & Drink
+Black Sea,blacksea,Food & Drink
+Brasseries,brasseries,Food & Drink
+Brazilian,brazilian,Food & Drink
+Breakfast & Brunch,breakfast_brunch,Food & Drink
+British,british,Food & Drink
+Buffets,buffets,Food & Drink
+Bulgarian,bulgarian,Food & Drink
+Burgers,burgers,Food & Drink
+Burmese,burmese,Food & Drink
+Cafes,cafes,Food & Drink
+Cafeteria,cafeteria,Food & Drink
+Cajun/Creole,cajun,Food & Drink
+Cambodian,cambodian,Food & Drink
+Canteen,canteen,Food & Drink
+Caribbean,caribbean,Food & Drink
+Catalan,catalan,Food & Drink
+Chech,chech,Food & Drink
+Cheesesteaks,cheesesteaks,Food & Drink
+Chicken Wings,chicken_wings,Food & Drink
+Chicken Shop,chickenshop,Food & Drink
+Chilean,chilean,Food & Drink
+Chinese,chinese,Food & Drink
+Comfort Food,comfortfood,Food & Drink
+Corsican,corsican,Food & Drink
+Creperies,creperies,Food & Drink
+Cuban,cuban,Food & Drink
+Curry Sausage,currysausage,Food & Drink
+Cypriot,cypriot,Food & Drink
+Czech,czech,Food & Drink
+Czech/Slovakian,czechslovakian,Food & Drink
+Danish,danish,Food & Drink
+Delis,delis,Food & Drink
+Diners,diners,Food & Drink
+Dinner Theater,dinnertheater,Food & Drink
+Dumplings,dumplings,Food & Drink
+Eastern European,eastern_european,Food & Drink
+Eritrean,eritrean,Food & Drink
+Ethiopian,ethiopian,Food & Drink
+Filipino,filipino,Food & Drink
+Fischbroetchen,fischbroetchen,Food & Drink
+Fish & Chips,fishnchips,Food & Drink
+Flatbread,flatbread,Food & Drink
+Fondue,fondue,Food & Drink
+Food Court,food_court,Food & Drink
+Food Stands,foodstands,Food & Drink
+Freiduria,freiduria,Food & Drink
+French,french,Food & Drink
+Galician,galician,Food & Drink
+Game Meat,gamemeat,Food & Drink
+Gastropubs,gastropubs,Food & Drink
+Georgian,georgian,Food & Drink
+German,german,Food & Drink
+Giblets,giblets,Food & Drink
+Gluten-Free,gluten_free,Food & Drink
+Greek,greek,Food & Drink
+Guamanian,guamanian,Food & Drink
+Halal,halal,Food & Drink
+Hawaiian,hawaiian,Food & Drink
+Heuriger,heuriger,Food & Drink
+Himalayan/Nepalese,himalayan,Food & Drink
+Hong Kong Style Cafe,hkcafe,Food & Drink
+Honduran,honduran,Food & Drink
+Hot Dogs,hotdog,Food & Drink
+Fast Food,hotdogs,Food & Drink
+Hot Pot,hotpot,Food & Drink
+Hungarian,hungarian,Food & Drink
+Iberian,iberian,Food & Drink
+Indonesian,indonesian,Food & Drink
+Indian,indpak,Food & Drink
+International,international,Food & Drink
+Irish,irish,Food & Drink
+Island Pub,island_pub,Food & Drink
+Israeli,israeli,Food & Drink
+Italian,italian,Food & Drink
+Japanese,japanese,Food & Drink
+Jewish,jewish,Food & Drink
+Kebab,kebab,Food & Drink
+Kopitiam,kopitiam,Food & Drink
+Korean,korean,Food & Drink
+Kosher,kosher,Food & Drink
+Kurdish,kurdish,Food & Drink
+Laos,laos,Food & Drink
+Laotian,laotian,Food & Drink
+Latin American,latin,Food & Drink
+Lyonnais,lyonnais,Food & Drink
+Malaysian,malaysian,Food & Drink
+Meatballs,meatballs,Food & Drink
+Mediterranean,mediterranean,Food & Drink
+Mexican,mexican,Food & Drink
+Middle Eastern,mideastern,Food & Drink
+Milk Bars,milkbars,Food & Drink
+Modern Australian,modern_australian,Food & Drink
+Modern European,modern_european,Food & Drink
+Mongolian,mongolian,Food & Drink
+Moroccan,moroccan,Food & Drink
+American (New),newamerican,Food & Drink
+Canadian (New),newcanadian,Food & Drink
+New Mexican Cuisine,newmexican,Food & Drink
+New Zealand,newzealand,Food & Drink
+Nicaraguan,nicaraguan,Food & Drink
+Night Food,nightfood,Food & Drink
+Nikkei,nikkei,Food & Drink
+Noodles,noodles,Food & Drink
+Norcinerie,norcinerie,Food & Drink
+Traditional Norwegian,norwegian,Food & Drink
+Open Sandwiches,opensandwiches,Food & Drink
+Oriental,oriental,Food & Drink
+Pakistani,pakistani,Food & Drink
+Pan Asian,panasian,Food & Drink
+Parma,parma,Food & Drink
+Persian/Iranian,persian,Food & Drink
+Peruvian,peruvian,Food & Drink
+PF/Comercial,pfcomercial,Food & Drink
+Pita,pita,Food & Drink
+Pizza,pizza,Food & Drink
+Polish,polish,Food & Drink
+Polynesian,polynesian,Food & Drink
+Pop-Up Restaurants,popuprestaurants,Food & Drink
+Portuguese,portuguese,Food & Drink
+Potatoes,potatoes,Food & Drink
+Poutineries,poutineries,Food & Drink
+Pub Food,pubfood,Food & Drink
+Live/Raw Food,raw_food,Food & Drink
+Rice,riceshop,Food & Drink
+Romanian,romanian,Food & Drink
+Rotisserie Chicken,rotisserie_chicken,Food & Drink
+Rumanian,rumanian,Food & Drink
+Russian,russian,Food & Drink
+Salad,salad,Food & Drink
+Sandwiches,sandwiches,Food & Drink
+Scandinavian,scandinavian,Food & Drink
+Schnitzel,schnitzel,Food & Drink
+Scottish,scottish,Food & Drink
+Seafood,seafood,Food & Drink
+Serbo Croatian,serbocroatian,Food & Drink
+Signature Cuisine,signature_cuisine,Food & Drink
+Singaporean,singaporean,Food & Drink
+Slovakian,slovakian,Food & Drink
+Somali,somali,Food & Drink
+Soul Food,soulfood,Food & Drink
+Soup,soup,Food & Drink
+Southern,southern,Food & Drink
+Spanish,spanish,Food & Drink
+Sri Lankan,srilankan,Food & Drink
+Steakhouses,steak,Food & Drink
+French Southwest,sud_ouest,Food & Drink
+Supper Clubs,supperclubs,Food & Drink
+Sushi Bars,sushi,Food & Drink
+Swabian,swabian,Food & Drink
+Swedish,swedish,Food & Drink
+Swiss Food,swissfood,Food & Drink
+Syrian,syrian,Food & Drink
+Tabernas,tabernas,Food & Drink
+Taiwanese,taiwanese,Food & Drink
+Tapas Bars,tapas,Food & Drink
+Tapas/Small Plates,tapasmallplates,Food & Drink
+Tavola Calda,tavolacalda,Food & Drink
+Tex-Mex,tex-mex,Food & Drink
+Thai,thai,Food & Drink
+American (Traditional),tradamerican,Food & Drink
+Traditional Swedish,traditional_swedish,Food & Drink
+Trattorie,trattorie,Food & Drink
+Turkish,turkish,Food & Drink
+Ukrainian,ukrainian,Food & Drink
+Uzbek,uzbek,Food & Drink
+Vegan,vegan,Food & Drink
+Vegetarian,vegetarian,Food & Drink
+Venison,venison,Food & Drink
+Vietnamese,vietnamese,Food & Drink
+Waffles,waffles,Food & Drink
+Wok,wok,Food & Drink
+Wraps,wraps,Food & Drink
+Yugoslav,yugoslav,Food & Drink
+Adult,adult,Shopping
+Antiques,antiques,Shopping
+Arts & Crafts,artsandcrafts,Shopping
+Auction Houses,auctionhouses,Shopping
+Baby Gear & Furniture,baby_gear,Shopping
+Battery Stores,batterystores,Shopping
+Bespoke Clothing,bespoke,Shopping
+Brewing Supplies,brewingsupplies,Shopping
+Bridal,bridal,Shopping
+Cannabis Dispensaries,cannabisdispensaries,Shopping
+Mobile Phone Accessories,cellphoneaccessories,Shopping
+Chinese Bazaar,chinesebazaar,Shopping
+Computers,computers,Shopping
+Concept Shops,concept_shops,Shopping
+Customized Merchandise,custommerchandise,Shopping
+Department Stores,deptstores,Shopping
+Diamond Buyers,diamondbuyers,Shopping
+Discount Store,discountstore,Shopping
+Drones,drones,Shopping
+Drugstores,drugstores,Shopping
+Duty-Free Shops,dutyfreeshops,Shopping
+Electronics,electronics,Shopping
+Farming Equipment,farmingequipment,Shopping
+Fashion,fashion,Shopping
+Fireworks,fireworks,Shopping
+Fitness/Exercise Equipment,fitnessequipment,Shopping
+Flea Markets,fleamarkets,Shopping
+Flowers & Gifts,flowers,Shopping
+Gemstones & Minerals,gemstonesandminerals,Shopping
+Gold Buyers,goldbuyers,Shopping
+Golf Equipment Shops,golfshops,Shopping
+Guns & Ammo,guns_and_ammo,Shopping
+Head Shops,headshops,Shopping
+High Fidelity Audio Equipment,hifi,Shopping
+Hobby Shops,hobbyshops,Shopping
+Home & Garden,homeandgarden,Shopping
+Horse Equipment Shops,horsequipment,Shopping
+Jewelry,jewelry,Shopping
+Knitting Supplies,knittingsupplies,Shopping
+Livestock Feed & Supply,livestocksupply,Shopping
+Luggage,luggage,Shopping
+Market Stalls,marketstalls,Shopping
+"Books, Mags, Music & Video",media,Shopping
+Medical Supplies,medicalsupplies,Shopping
+Military Surplus,militarysurplus,Shopping
+Mobile Phones,mobilephones,Shopping
+Motorcycle Gear,motorcyclinggear,Shopping
+Musical Instruments & Teachers,musicalinstrumentsandteachers,Shopping
+Office Equipment,officeequipment,Shopping
+Eyewear & Opticians,opticians,Shopping
+Outlet Stores,outlet_stores,Shopping
+Packing Supplies,packingsupplies,Shopping
+Pawn Shops,pawn,Shopping
+Perfume,perfume,Shopping
+Personal Shopping,personal_shopping,Shopping
+Photography Stores & Services,photographystores,Shopping
+Pool & Billiards,poolbilliards,Shopping
+Pop-up Shops,popupshops,Shopping
+Props,props,Shopping
+Public Markets,publicmarkets,Shopping
+Religious Items,religiousitems,Shopping
+Safe Stores,safestores,Shopping
+Safety Equipment,safetyequipment,Shopping
+Scandinavian Design,scandinaviandesign,Shopping
+Shopping Centers,shoppingcenters,Shopping
+Shopping Passages,shoppingpassages,Shopping
+Souvenir Shops,souvenirs,Shopping
+Spiritual Shop,spiritual_shop,Shopping
+Sporting Goods,sportgoods,Shopping
+Tabletop Games,tabletopgames,Shopping
+Teacher Supplies,teachersupplies,Shopping
+Thrift Stores,thrift_stores,Shopping
+Tickets,tickets,Shopping
+Tobacco Shops,tobaccoshops,Shopping
+Toy Stores,toys,Shopping
+Trophy Shops,trophyshops,Shopping
+Uniforms,uniforms,Shopping
+Used Bookstore,usedbooks,Shopping
+Vape Shops,vapeshops,Shopping
+Vitamins & Supplements,vitaminssupplements,Shopping
+Watches,watches,Shopping
+Wholesale Stores,wholesale_stores,Shopping
+Wigs,wigs,Shopping
+Estheticians,estheticians,Beauty
+Veterans Organizations,veteransorganizations,Activity
+Arroceria / Paella,arroceria_paella,Food & Drink
+Art Schools,artschools,Education
+Bartending Schools,bartendingschools,Education
+Cheerleading,cheerleading,Education
+Childbirth Education,childbirthedu,Education
+Circus Schools,circusschools,Education
+Cooking Schools,cookingschools,Education
+Cosmetology Schools,cosmetology_schools,Education
+CPR Classes,cprclasses,Education
+Dance Schools,dance_schools,Education
+Drama Schools,dramaschools,Education
+Driving Schools,driving_schools,Education
+DUI Schools,duischools,Education
+Firearm Training,firearmtraining,Education
+First Aid Classes,firstaidclasses,Education
+Flight Instruction,flightinstruction,Education
+Food Safety Training,foodsafety,Education
+Language Schools,language_schools,Education
+Massage Schools,massage_schools,Education
+Nursing Schools,nursingschools,Education
+Parenting Classes,parentingclasses,Education
+Photography Classes,photoclasses,Education
+Pole Dancing Classes,poledancingclasses,Education
+Samba Schools,sambaschools,Education
+Ski Schools,skischools,Education
+Speech Training,speechtraining,Education
+Surf Schools,surfschools,Education
+Traffic Schools,trafficschools,Education
+Vocational & Technical School,vocation,Education
+Bikes,bikes,Shopping
+Dive Shops,diveshops,Shopping
+Golf Equipment,golfequipment,Shopping
+Hockey Equipment,hockeyequipment,Shopping
+Hunting & Fishing Supplies,huntingfishingsupplies,Shopping
+Outdoor Gear,outdoorgear,Shopping
+Skate Shops,skateshops,Shopping
+Ski & Snowboard Shops,skishops,Shopping
+Dance Wear,dancewear,Shopping
+Spray Tanning,spraytanning,Professional Services
+Tanning Beds,tanningbeds,Professional Services
+Cheese Tasting Classes,cheesetastingclasses,Education
+Wine Tasting Classes,winetasteclasses,Education
+Tui Na,tuina,Wellness
+Aerial Tours,aerialtours,Travel
+Architectural Tours,architecturaltours,Travel
+Art Tours,arttours,Travel
+Beer Tours,beertours,Travel
+Bike tours,biketours,Travel
+Boat Tours,boattours,Travel
+Bus Tours,bustours,Travel
+Food Tours,foodtours,Travel
+Historical Tours,historicaltours,Travel
+Scooter Tours,scootertours,Travel
+Walking Tours,walkingtours,Travel
+Whale Watching Tours,whalewatchingtours,Travel
+Wine Tours,winetours,Travel
+Airlines,airlines,Travel
+Airport Shuttles,airport_shuttles,Travel
+Bike Sharing,bikesharing,Travel
+Buses,buses,Travel
+Bus Stations,busstations,Travel
+Cable Cars,cablecars,Travel
+Dolmus Station,dolmusstation,Travel
+Ferries,ferries,Travel
+Limos,limos,Travel
+Metro Stations,metrostations,Travel
+Pedicabs,pedicabs,Travel
+Private Jet Charter,privatejetcharter,Travel
+Public Transportation,publictransport,Travel
+Shared Taxis,sharedtaxis,Travel
+Taxis,taxis,Travel
+Town Car Service,towncarservice,Travel
+Trains,trains,Travel
+Water Taxis,watertaxis,Travel
+Luggage Storage,luggagestorage,Travel
+Passport & Visa Services,passportvisaservices,Travel
+Travel Agents,travelagents,Travel
+Visitor Centers,visitorcenters,Travel
+Chee Kufta,cheekufta,Food & Drink
+Gozleme,gozleme,Food & Drink
+Homemade Food,homemadefood,Food & Drink
+Lahmacun,lahmacun,Food & Drink
+Ottoman Cuisine,ottomancuisine,Food & Drink
+Turkish Ravioli,turkishravioli,Food & Drink
+Electricity Suppliers,electricitysuppliers,Professional Services
+Natural Gas Suppliers,naturalgassuppliers,Professional Services
+Water Suppliers,watersuppliers,Professional Services
+Restaurant Supplies,suppliesrestaurant,Professional Services
+Wine Tasting Room,winetastingroom,Alcohol
+Petting Zoos,pettingzoos,Attraction
+Active Life,active,Activity
+Arts & Entertainment,arts,Activity
+Automotive,auto,Auto
+Beauty & Spas,beautysvc,Beauty
+Bicycles,bicycles,Activity
+Education,education,Education
+Event Planning & Services,eventservices,Professional Services
+Financial Services,financialservices,Professional Services
+Food,food,Food & Drink
+Health & Medical,health,Wellness
+Home Services,homeservices,Home Services
+Hotels & Travel,hotelstravel,Travel
+Local Flavor,localflavor,Food & Drink
+Local Services,localservices,Professional Services
+Mass Media,massmedia,Media
+Nightlife,nightlife,Nightlife
+Pets,pets,Pets
+Professional Services,professional,Professional Services
+Public Services & Government,publicservicesgovt,Government
+Religious Organizations,religiousorgs,Religious
+Restaurants,restaurants,Food & Drink
+Shopping,shopping,Shopping

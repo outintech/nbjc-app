@@ -22,8 +22,11 @@
 >  * Install `redis-server`
 >  * Edit the `supervised` directive to `systemd`, see [tutorial][redis-ubuntu-tutorial].
 
-- Create a new user with the password as specified in `database.yml` by using the postgres command `CREATE USER new_user with PASSWORD 'your_super_secret_password';`
-- Give the user roles to create db - `alter user nbjc_app with CREATEROLE CREATEDB;`
+- Create a new user with the password as specified in `database.yml`.
+  * Open the postgres console `psql postgres`
+  * Check all your users and roles using the `du` postgres command
+  * If you don't have a user you can create one by using the postgres command `CREATE USER new_user with PASSWORD 'your_super_secret_password';`
+  * Create the role for the app using `CREATE ROLE nbjc_app LOGIN SUPERUSER PASSWORD 'pw_from_database_yml';`
 
 - Start the services.
 	> If you installed these with `brew`, you can start them with `brew services start <SERVICE>`. 
