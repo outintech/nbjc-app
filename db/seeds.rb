@@ -7,10 +7,12 @@ require "csv"
 
 Dir.glob("db/seed_data/*.csv") do |file|
   model = Object.const_get(file.split("/").last.split(".").first.singularize.camelcase)
-  CSV.foreach(file, headers: true) do |row|
-    model.create!(row.to_hash)
+  if !model.name.include?("CategoryAlias")
+    CSV.foreach(file, headers: true) do |row|
+      model.create!(row.to_hash)
+    end
+    puts "#{model} seeded"
   end
-  puts "#{model} seeded"
 end
 
 # Used for development purposes only
@@ -91,6 +93,15 @@ open("yelp_response_ny.json") do |file|
     spaces << space
   end
   Space.create!(spaces)
+end
+
+Dir.glob("db/seed_data/category_aliases.csv") do |file|
+  model = Object.const_get(file.split("/").last.split(".").first.singularize.camelcase)
+    CSV.foreach(file, headers: true) do |row|
+      new_alias = CategoryAlias.new(title: row["title"], alias: row["alias"], category_bucket: CategoryBucket.find_by(name: row["cagetory_bucket"]))
+      new_alias.save
+    end
+    puts "#{model} seeded"
 end
 
 puts "Done seeding"

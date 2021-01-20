@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_16_172136) do
+ActiveRecord::Schema.define(version: 2021_01_20_000915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,11 +32,16 @@ ActiveRecord::Schema.define(version: 2021_01_16_172136) do
     t.string "alias"
     t.string "title"
     t.bigint "category_bucket_id"
-    t.bigint "space_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_bucket_id"], name: "index_category_aliases_on_category_bucket_id"
-    t.index ["space_id"], name: "index_category_aliases_on_space_id"
+  end
+
+  create_table "category_aliases_spaces", id: false, force: :cascade do |t|
+    t.bigint "category_alias_id", null: false
+    t.bigint "space_id", null: false
+    t.index ["category_alias_id"], name: "index_category_aliases_spaces_on_category_alias_id"
+    t.index ["space_id"], name: "index_category_aliases_spaces_on_space_id"
   end
 
   create_table "category_buckets", force: :cascade do |t|
@@ -140,7 +145,6 @@ ActiveRecord::Schema.define(version: 2021_01_16_172136) do
 
   add_foreign_key "addresses", "spaces"
   add_foreign_key "category_aliases", "category_buckets"
-  add_foreign_key "category_aliases", "spaces"
   add_foreign_key "photos", "spaces"
   add_foreign_key "reviews", "spaces"
   add_foreign_key "reviews", "users"

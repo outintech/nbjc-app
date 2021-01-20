@@ -4,7 +4,6 @@ class CreateCategoryAliases < ActiveRecord::Migration[6.0]
       t.string :alias 
       t.string :title
       t.belongs_to :category_bucket, foreign_key: true
-      t.belongs_to :space, foreign_key: true
       t.timestamps
     end
   end
