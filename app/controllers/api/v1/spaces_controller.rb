@@ -1,7 +1,7 @@
 class Api::V1::SpacesController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!, only: [:create, :update]
   before_action :find_space, only: [:show, :update, :destroy]
-
   # GET /spaces
   def index
     # handle search
