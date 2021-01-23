@@ -17,17 +17,17 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  username: nbjc_app
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  password: <%= ENV['NBJC_APP_DATABASE_PASSWORD'] %>
+  host: <%= ENV['NBJC_APP_DATABASE_IP'] %>
+  port: 5432
 
 development:
   <<: *default
   database: nbjc_app_development
-  username: nbjc_app
-  password: password1
-  host: localhost
-  port: 5432
 
   # Schema search path. The server defaults to $user,public
   #schema_search_path: myapp,sharedapp,public
@@ -67,7 +67,3 @@ test:
 production:
   <<: *default
   database: nbjc_app_production
-  username: nbjc_app
-  password: <%= ENV['NBJC_APP_DATABASE_PASSWORD'] %>
-  host: <%= ENV['NBJC_APP_DATABASE_IP'] %>
-  port: 5432
