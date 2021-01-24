@@ -4,18 +4,23 @@ class Api::V1::SpacesController < ApplicationController
   before_action :find_space, only: [:show, :update, :destroy]
   # GET /spaces
   def index
+    @page = params[:page].to_i || 1
+    @per_page = params[:per_page].to_i || 20
     # handle search
     if params[:search].blank? || params[:search].nil?
-      @spaces = Space.all
+      @spaces = Space.all.page(@page).per(@per_page)
     else
       @terms = params[:search].downcase
       @spaces = Space.where("lower(spaces.name) LIKE :search", search: "%#{@terms}%")
     end
-
+    
     #handle filtering
     @spaces = @spaces.filter_by_price(filtering_params['price']).with_indicators(filtering_params['indicators'])
+    @total_count = @spaces.count
+    @spaces = @spaces.page(@page).per(@per_page)
+
     # TODO calculate average rating
-    render json: { data: @spaces }, include: [:address, :reviews, :photos, :indicators, :languages]
+    render json: { data: @spaces, meta: { total_count: @total_count, page: @page, per_page: @per_page } }, include: [:address, :reviews, :photos, :indicators, :languages]
   end
 
   # GET /spaces/:id
