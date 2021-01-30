@@ -190,6 +190,9 @@ rails destroy model <MODEL_NAME>
 ## Auth0
 Diagram for login [here][auth-flow]
 
+### Testing
+- To get a bearer token for testing, login to the auth0 dashboard, navigate to the nbjc-app API and on the testing tab follow the instructions.
+
 
 ## Running tests
 `rspec`

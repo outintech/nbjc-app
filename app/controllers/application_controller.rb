@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
   protect_from_forgery unless: -> { request.format.json? }
 
   respond_to :json
-
+  
   private
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username])

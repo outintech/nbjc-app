@@ -18,3 +18,4 @@ PGPASSWORD: 'postgres'  # make sure you set the nbjc_app user to have the passwo
 RAILS_ENV: 'development'
 
 AUTH0_APP_DOMAIN: 'login to Auth0 dashboard - Applications - Default APP'
+
