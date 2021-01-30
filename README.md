@@ -185,6 +185,7 @@ rails destroy model <MODEL_NAME>
 </table>
 </div>
 
+
 ## Running tests
 `rspec`
 
@@ -196,6 +197,13 @@ You can find the build pipeline in the circleci dashboard. Reach out in Slack fo
 ### Contribution
 - A PR can only be merged when both build and test circleci jobs pass.
 
+# Authentication and Authorization
+
+## Auth0
+Diagram for login [here][auth-flow]
+
+
+
 [redis-ubuntu-tutorial]: https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04
 [postgres-ubuntu-tutorial]: https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart
 [schema]: https://github.com/outintech/nbjc-app/blob/main/db/schema.rb
@@ -204,3 +212,5 @@ You can find the build pipeline in the circleci dashboard. Reach out in Slack fo
 [indicators]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/api/v1indicators
 [schema-sheet]: https://docs.google.com/spreadsheets/d/1825fpT5UzzrGEKcjvgeZmKQ9xdnfNUvj3xu11WbTxKQ/edit?usp=sharing
 [tagging]: https://git-scm.com/book/en/v2/Git-Basics-Tagging
+[auth-flow]: https://auth0.com/docs/flows/authorization-code-flow-with-proof-key-for-code-exchange-pkce
+
