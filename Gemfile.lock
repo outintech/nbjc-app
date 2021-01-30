@@ -137,7 +137,6 @@ GEM
     nokogiri (1.11.2)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
-    orm_adapter (0.5.0)
     pg (1.2.3)
     public_suffix (4.0.6)
     puma (4.3.7)
@@ -182,9 +181,6 @@ GEM
       ffi (~> 1.0)
     redis (4.2.5)
     regexp_parser (2.1.1)
-    responders (3.0.1)
-      actionpack (>= 5.0)
-      railties (>= 5.0)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -301,4 +297,4 @@ RUBY VERSION
    ruby 2.7.2p137
 
 BUNDLED WITH
-   2.1.4
+   2.2.13

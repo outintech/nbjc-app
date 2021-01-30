@@ -185,6 +185,11 @@ rails destroy model <MODEL_NAME>
 </table>
 </div>
 
+# Authentication and Authorization
+
+## Auth0
+Diagram for login [here][auth-flow]
+
 
 ## Running tests
 `rspec`
