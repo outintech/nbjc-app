@@ -202,6 +202,9 @@ You can find the build pipeline in the circleci dashboard. Reach out in Slack fo
 ## Auth0
 Diagram for login [here][auth-flow]
 
+### Testing
+- To get a bearer token for testing, login to the auth0 dashboard, navigate to the nbjc-app API and on the testing tab follow the instructions.
+
 
 
 [redis-ubuntu-tutorial]: https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04

@@ -5,8 +5,8 @@ class ApplicationController < ActionController::API
 
   respond_to :json
   # before_action :underscore_params!
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user
+  # before_action :configure_permitted_parameters, if: :devise_controller?
+  # before_action :authenticate_user
 
   private
   def configure_permitted_parameters
