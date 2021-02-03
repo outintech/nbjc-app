@@ -17,12 +17,12 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: nbjc_app
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  password: <%= ENV['NBJC_APP_DATABASE_PASSWORD'] %>
-  host: <%= ENV['NBJC_APP_DATABASE_IP'] %>
+  user: postgres
+  password: postgres
+  host: <%= ENV.fetch("NBJC_APP_DATABASE_IP") { 'localhost' } %>
   port: 5432
 
 development:
@@ -43,6 +43,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  user: <%= ENV.fetch("PGUSER") %>
+  password: <% ENV.fetch("PGPASSWORD") %>
   database: nbjc_app_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
@@ -66,4 +68,6 @@ test:
 #
 production:
   <<: *default
+  username: nbjc_app
   database: nbjc_app_production
+  password: <%= ENV.fetch("NBJC_APP_DATABASE_PASSWORD") %>

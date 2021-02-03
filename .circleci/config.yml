@@ -19,9 +19,44 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
           cache-key: "yarn.lock"
-    
 
-# Run tests on new code
+  test: # Run tests on new code
+    parallelism: 3
+    docker:
+      - image: cimg/ruby:2.7.2-node # primary image where step commands run
+        auth:
+          username: outintech
+          password: $DOCKERHUB_PASSWORD
+      - image: circleci/postgres:9.5-alpine
+        auth:
+          username: outintech
+          password: $DOCKERHUB_PASSWORD
+        environment: # POSTGRES environment variables
+          POSTGRES_USER: circleci-nbjc-test
+          POSTGRES_DB: nbjc_app_test
+          POSTGRES_PASSWORD: ""
+    environment:
+      BUNDLE_JOBS: "3"
+      BUNDLE_RETRY: "3"
+      NBJC_APP_DATABASE_IP: 127.0.0.1
+      PGUSER: circleci-nbjc-test
+      PGPASSWORD: ""
+      RAILS_ENV: test
+    steps:
+      - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
+      - run: # wait for db container to boot before running
+          name: Wait for DB boot
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
+      # Run rspec in parallel
+      - ruby/rspec-test
+
 # Build new image using docker
 # 3. Push new image to docker hub
 # sign into docker hub
@@ -33,6 +68,9 @@ jobs:
 # Workflows to orchestrate jobs declared above
 workflows:
   version: 2
-  build:
+  build_and_test:
     jobs:
       - build
+      - test:
+          requires: # test requires build to pass before running
+            - build

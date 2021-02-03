@@ -8,3 +8,7 @@
 # makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
 NBJC_APP_DATABASE_IP: 'replace with database IP address from digital ocean'
 NBJC_APP_DATABASE_PASSWORD: 'replace with acual value'
+NBJC_APP_DATABASE_IP: 'db'
+PGUSER: 'postgres'
+PGPASSWORD: 'postgres'
+RAILS_ENV: 'development'
