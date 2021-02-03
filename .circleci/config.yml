@@ -21,7 +21,6 @@ jobs:
           cache-key: "yarn.lock"
 
   test: # Run tests on new code
-    parallelism: 3
     docker:
       - image: cimg/ruby:2.7.2-node # primary image where step commands run
         auth:
