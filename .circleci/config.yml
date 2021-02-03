@@ -38,6 +38,7 @@ jobs:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
       NBJC_APP_DATABASE_IP: 127.0.0.1
+      NBJC_APP_DATABASE_PASSWORD: ""
       PGUSER: circleci-nbjc-test
       PGPASSWORD: ""
       RAILS_ENV: test
