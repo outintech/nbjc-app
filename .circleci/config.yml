@@ -35,8 +35,6 @@ jobs:
           POSTGRES_DB: nbjc_app_test
           POSTGRES_PASSWORD: ""
     environment:
-      BUNDLE_JOBS: "3"
-      BUNDLE_RETRY: "3"
       NBJC_APP_DATABASE_IP: 127.0.0.1
       NBJC_APP_DATABASE_PASSWORD: ""
       PGUSER: circleci-nbjc-test
@@ -74,3 +72,7 @@ workflows:
       - test:
           requires: # test requires build to pass before running
             - build
+          filters:
+            branches:
+              only:
+                - main
