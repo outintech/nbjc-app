@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         resources :space_languages
       end
       resources :indicators
+      resources :categories
     end
   end
 end
