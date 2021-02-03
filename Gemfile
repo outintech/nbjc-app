@@ -41,6 +41,7 @@ group :development, :test do
   gem 'faker'
   gem 'json'
   gem 'database_cleaner'
+  gem 'rspec_junit_formatter'
 end
 
 group :development do
