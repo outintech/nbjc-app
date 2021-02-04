@@ -12,4 +12,11 @@ FactoryBot.define do
     email { "admin@nbjcapp.com" }
     user_roles { user_role(user: user) }
   end
+
+  factory :user, class: "User" do
+    id {1}
+    email {"faketest@user.com"}
+    password {"qwertyFake"}
+    username {"faketestuser"}
+  end
 end

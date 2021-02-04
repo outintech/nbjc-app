@@ -57,4 +57,5 @@ FactoryBot.define do
       space.save
     end
   end
+
 end

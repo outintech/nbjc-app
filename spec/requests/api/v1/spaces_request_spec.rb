@@ -1,6 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Spaces" do
+RSpec.describe Api::V1::SpacesController, type: :controller do
+
+  login_user
+  
   describe "GET spaces route" do
     describe "With no search terms or filters", type: :request do
       let!(:spaces) {FactoryBot.create_list(:random_space, 20)}
