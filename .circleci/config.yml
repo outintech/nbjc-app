@@ -105,10 +105,6 @@ workflows:
       - test:
           requires: # test requires build to pass before running
             - build
-          filters:
-            branches:
-              only:
-                - main
       - build-image: # building a new docker image depends on build and tests passing
           requires:
             - build
