@@ -30,8 +30,8 @@ jobs:
           cache-key: "yarn.lock"
 
   test: # Run tests on new code
+    executor: docker-ruby
     docker:
-      executor: docker-ruby
       - image: circleci/postgres:9.5-alpine
         auth:
           username: outintech
@@ -110,7 +110,7 @@ workflows:
               only:
                 - main
       - build-image: # building a new docker image depends on build and tests passing
-          require:
+          requires:
             - build
             - test
           filters:
@@ -119,7 +119,7 @@ workflows:
             branches:
               ignore: /.*/
       - publish-image:
-          require:
+          requires:
             - build-image
           filters:
             tags:
