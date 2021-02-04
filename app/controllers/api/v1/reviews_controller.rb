@@ -76,7 +76,7 @@ class Api::V1::ReviewsController < ApplicationController
     end
   
     def load_a_review
-      @review = Review.find(params[:id])
+      @review = Review.find(params[:review_id])
     end
   
     def new_anonymous_user

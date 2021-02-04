@@ -4,8 +4,10 @@ class Api::V1::SpacesController < ApplicationController
   before_action :find_space, only: [:show, :update, :destroy]
   # GET /spaces
   def index
-    @page = params[:page].to_i || 1
-    @per_page = params[:per_page].to_i || 20
+    @page = 1
+    @per_page = 20
+    @page = params[:page].to_i unless params[:page].nil? || params[:page].to_i == 0
+    @per_page = params[:per_page].to_i unless params[:per_page].nil? || params[:per_page].to_i == 0
     # handle search
     if params[:search].blank? || params[:search].nil?
       @spaces = Space.all.page(@page).per(@per_page)
