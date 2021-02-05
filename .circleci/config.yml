@@ -95,8 +95,8 @@ jobs:
             docker push $IMAGE_NAME:$IMAGE_TAG
   deploy:
     executor: docker-ruby
-      environment:
-        IMAGE_NAME: outintech/nbjc-app
+    environment:
+      IMAGE_NAME: outintech/nbjc-app
     steps:
       - checkout
       - run:
@@ -132,7 +132,7 @@ workflows:
             branches:
               ignore: /.*/
       - deploy:
-          require:
+          requires:
             - publish-image
           filters:
             branches:
