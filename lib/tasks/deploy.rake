@@ -1,6 +1,7 @@
 # use SSHKit directly
 require 'sshkit'
 require 'sshkit/dsl'
+include SSHKit::DSL
 
 # set the identifier used to used to tag our Docker images
 deploy_tag = ENV['DEPLOY_TAG']
@@ -28,7 +29,7 @@ namespace :docker do
   task :login do
     on server do
       within deploy_path do
-        execute 'docker', 'login', '-e' , ENV['DOCKER_EMAIL'], '-u', ENV['DOCKER_USER'], '-p', "'#{ENV['DOCKERHUB_PASSWORD']}'"
+        execute 'docker', 'login', '-u', ENV['DOCKER_USER'], '-p', "'#{ENV['DOCKERHUB_PASSWORD']}'"
       end
     end
   end

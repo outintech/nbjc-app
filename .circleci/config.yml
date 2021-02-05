@@ -96,7 +96,7 @@ jobs:
   deploy:
     executor: docker-ruby
     environment:
-      IMAGE_NAME: outintech/nbjc-app
+      IMAGE_NAME: nbjc-app
     steps:
       - checkout
       - run:
