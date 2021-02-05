@@ -89,12 +89,21 @@ jobs:
           name: Publish Docker Image to Docker Hub
           command: |
             echo "$DOCKERHUB_PASSWORD" | docker login -u outintech --password-stdin
-            IMAGE_TAGE=${CIRCLE_TAG/v/''}
+            IMAGE_TAG=${CIRCLE_TAG/v/''}
             docker tag $IMAGE_NAME:latest $IMAGE_NAME:$IMAGE_TAG
             docker push $IMAGE_NAME:latest
             docker push $IMAGE_NAME:$IMAGE_TAG
-  # deploy:
-
+  deploy:
+    executor: docker-ruby
+      environment:
+        IMAGE_NAME: outintech/nbjc-app
+    steps:
+      - checkout
+      - run:
+          name: Run deploy script
+          command: |
+            DEPLOY_TAG=${CIRCLE_TAG/v/''}
+            bundle exec rake docker:deploy
 
 # Workflows to orchestrate jobs declared above
 workflows:
@@ -122,10 +131,10 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
-      # - deploy:
-      #     require:
-      #       - publish-image
-      #     filters:
-      #       branches:
-      #         only:
-      #           - main
+      - deploy:
+          require:
+            - publish-image
+          filters:
+            branches:
+              only:
+                - main

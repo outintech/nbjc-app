@@ -17,6 +17,8 @@ services:
       - '3000:3000'
     env_file:
       - .env
+    volumes:
+      - docker-nbjc-api-logs:/var/www/nbjc-app/log
 
 volumes:
   redis:
