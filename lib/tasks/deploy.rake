@@ -39,7 +39,7 @@ namespace :docker do
     on server do
       within deploy_path do
         with rails_env: deploy_env, deploy_tag: deploy_tag do
-          execute 'docker-compose', '-f', 'docker-compose.production.yml', 'stop'
+          execute 'docker-compose', '-f', 'docker-compose.yml', 'stop'
         end
       end
     end
@@ -73,7 +73,7 @@ namespace :docker do
     on server do
       within deploy_path do
         with rails_env: deploy_env, deploy_tag: deploy_tag do
-          execute 'docker-compose', '-f', 'docker-compose.yml', 'run', 'app', 'bundle', 'exec', 'rake', 'db:migrate'
+          execute 'docker-compose', '-f', 'docker-compose.yml', 'run', 'api', 'bundle', 'exec', 'rake', 'db:migrate'
         end
       end
     end
