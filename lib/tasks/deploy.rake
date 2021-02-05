@@ -80,5 +80,5 @@ namespace :docker do
   end
 
   desc 'pulls images, stops old containers, updates the database, and starts new containers'
-  task deploy: %w{docker:pull docker:stop docker:migrate docker:start} # pull images manually to reduce down time
+  task deploy: %w{docker:pull docker:stop docker:start} # pull images manually to reduce down time
 end

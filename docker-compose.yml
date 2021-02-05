@@ -10,11 +10,11 @@ services:
       
   api:
     image: outintech/nbjc-app:$DEPLOY_TAG
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    command: bundle exec rails s -p 80 -b '0.0.0.0'
     depends_on:
       - redis
     ports:
-      - '3000:3000'
+      - '80:80'
     env_file:
       - .env
     volumes:
