@@ -48,6 +48,10 @@ jobs:
       RAILS_ENV: test
     steps:
       - checkout
+      - run:
+          name: Force Bundler Version
+          command: |
+            sudo gem update --system
       - ruby/install-deps
       - node/install-packages:
           pkg-manager: yarn
