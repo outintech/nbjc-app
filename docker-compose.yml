@@ -9,15 +9,18 @@ services:
       - redis:/var/lib/redis/data
       
   api:
-    image: outintech/nbjc-app:latest
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    image: outintech/nbjc-app:$DEPLOY_TAG
+    command: bundle exec rails s -p 80 -b '0.0.0.0'
     depends_on:
       - redis
     ports:
-      - '3000:3000'
+      - '80:80'
     env_file:
       - .env
+    volumes:
+      - api-logs:/var/www/nbjc-app/log
 
 volumes:
   redis:
+  api-logs:
       
