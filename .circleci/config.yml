@@ -10,7 +10,7 @@ executors:
     environment:
       IMAGE_NAME: outintech/nbjc-app
     docker:
-      - image: circleci/buildpacks-deps:stretch
+      - image: circleci/buildpack-deps:stretch
         auth:
           username: outintech
           password: $DOCKERHUB_PASSWORD
