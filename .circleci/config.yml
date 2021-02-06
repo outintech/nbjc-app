@@ -68,16 +68,13 @@ jobs:
       - ruby/rspec-test
   build-image: # build new docker image
     executor: docker-publisher
-    environment:
-      USER_ID: 1000
-      GROUP_ID: 1000
     steps:
       - checkout
       - setup_remote_docker
       - run:
           name: Build Docker Image
           command: |
-            docker build -t $IMAGE_NAME:latest .
+            docker build -t $IMAGE_NAME:latest --build-arg USER_ID=1000 --build-arg GROUP_ID=1000 .
       - run:
           name: Archive Docker image
           command: docker save -o image.tar $IMAGE_NAME
