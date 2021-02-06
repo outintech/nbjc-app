@@ -68,7 +68,7 @@ jobs:
       - ruby/rspec-test
   build-image: # build new docker image
     executor: docker-publisher
-    environement:
+    environment:
       USER_ID: 1000
       GROUP_ID: 1000
     steps:
