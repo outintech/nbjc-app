@@ -31,11 +31,11 @@ jobs:
 
   test: # Run tests on new code
     docker:
-     - image: cimg/ruby:2.7.2-node
+      - image: cimg/ruby:2.7.2-node
         auth:
-          username: outintech
-          password: $DOCKERHUB_PASSWORD
-     - image: circleci/postgres:9.5-alpine
+         username: outintech
+         password: $DOCKERHUB_PASSWORD
+      - image: circleci/postgres:9.5-alpine
         auth:
           username: outintech
           password: $DOCKERHUB_PASSWORD
