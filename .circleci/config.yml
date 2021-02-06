@@ -30,9 +30,12 @@ jobs:
           cache-key: "yarn.lock"
 
   test: # Run tests on new code
-    executor: docker-ruby
     docker:
-      - image: circleci/postgres:9.5-alpine
+     - image: cimg/ruby:2.7.2-node
+        auth:
+          username: outintech
+          password: $DOCKERHUB_PASSWORD
+     - image: circleci/postgres:9.5-alpine
         auth:
           username: outintech
           password: $DOCKERHUB_PASSWORD
@@ -48,10 +51,6 @@ jobs:
       RAILS_ENV: test
     steps:
       - checkout
-      - run:
-          name: Install Bundler
-          command: |
-            gem install bundler
       - ruby/install-deps
       - node/install-packages:
           pkg-manager: yarn
