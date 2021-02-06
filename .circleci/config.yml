@@ -49,9 +49,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Force Bundler Version
+          name: Install Bundler
           command: |
-            sudo gem update --system
+            gem install bundler
       - ruby/install-deps
       - node/install-packages:
           pkg-manager: yarn
