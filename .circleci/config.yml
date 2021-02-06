@@ -1,154 +1,948 @@
-# Following https://circleci.com/docs/2.0/language-ruby/
 version: 2.1
-
-orbs: # give us access to specific commands https://circleci.com/docs/2.0/using-orbs/
-  ruby: circleci/ruby@1.1.2 # used to cache and install ruby gems
-  node: circleci/node@2
-
-executors:
-  docker-publisher:
-    environment:
-      IMAGE_NAME: outintech/nbjc-app
-    docker:
-      - image: circleci/buildpack-deps:stretch
-        auth:
-          username: outintech
-          password: $DOCKERHUB_PASSWORD
-  docker-ruby:
-    docker:
-      - image: cimg/ruby:2.7.2-node
-        auth:
-          username: outintech
-          password: $DOCKERHUB_PASSWORD
-  
-# Jobs to run for this project
+orbs:
+  python: circleci/python@1.2
 jobs:
-  build: # pulls down current code and install dependencies so we can test
-    executor: docker-ruby
-    steps:
-      - checkout # circle ci command to pull down github code https://circleci.com/docs/2.0/configuration-reference/#checkout
-      - ruby/install-deps # install gems with bundler
-      - node/install-packages:
-          pkg-manager: yarn
-          cache-key: "yarn.lock"
-
-  test: # Run tests on new code
+  one:  
     docker:
-      - image: cimg/ruby:2.7.2-node
-        auth:
-         username: outintech
-         password: $DOCKERHUB_PASSWORD
-      - image: circleci/postgres:9.5-alpine
-        auth:
-          username: outintech
-          password: $DOCKERHUB_PASSWORD
-        environment: # POSTGRES environment variables
-          POSTGRES_USER: circleci-nbjc-test
-          POSTGRES_DB: nbjc_app_test
-          POSTGRES_PASSWORD: ""
-    environment:
-      NBJC_APP_DATABASE_IP: 127.0.0.1
-      NBJC_APP_DATABASE_PASSWORD: ""
-      PGUSER: circleci-nbjc-test
-      PGPASSWORD: ""
-      RAILS_ENV: test
-    steps:
-      - checkout
-      - ruby/install-deps
-      - node/install-packages:
-          pkg-manager: yarn
-          cache-key: "yarn.lock"
-      - run: # wait for db container to boot before running
-          name: Wait for DB boot
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
-      - run:
-          name: Database setup
-          command: bundle exec rails db:schema:load --trace
-      # Run rspec in parallel
-      - ruby/rspec-test
-  build-image: # build new docker image
-    executor: docker-publisher
-    environment:
-      USER_ID: 1000
-      GROUP_ID: 1000
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: Build Docker Image
-          command: |
-            docker build -t $IMAGE_NAME:latest .
-      - run:
-          name: Archive Docker image
-          command: docker save -o image.tar $IMAGE_NAME
-      - persist_to_workspace:
-          root: .
-          paths:
-            - ./image.tar
-  publish-image:
-    executor: docker-publisher
-    steps:
-      - attach_workspace:
-          at: /tmp/workspace
-      - setup_remote_docker
-      - run:
-          name: Load archived Docker image
-          command: docker load -i /tmp/workspace/image.tar
-      - run:
-          name: Publish Docker Image to Docker Hub
-          command: |
-            echo "$DOCKERHUB_PASSWORD" | docker login -u outintech --password-stdin
-            IMAGE_TAG=${CIRCLE_TAG/v/''}
-            docker tag $IMAGE_NAME:latest $IMAGE_NAME:$IMAGE_TAG
-            docker push $IMAGE_NAME:latest
-            docker push $IMAGE_NAME:$IMAGE_TAG
-  deploy:
-    executor: docker-ruby
-    environment:
-      IMAGE_NAME: nbjc-app
+      - image: cimg/python:3.8
+    working_directory: ~/repo
     steps:
       - checkout
       - run:
-          name: Run deploy script
-          command: |
-            DEPLOY_TAG=${CIRCLE_TAG/v/''}
-            bundle exec rake docker:deploy
-
-# Workflows to orchestrate jobs declared above
+          name: test work or not code
+          command: 
+            sh test.sh
+          no_output_timeout: 290m
+  two:  
+    docker:
+      - image: cimg/python:3.8
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: test work or not code
+          command: 
+            sh test.sh
+          no_output_timeout: 290m
+  three:  
+    docker:
+      - image: cimg/python:3.8
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: test work or not code
+          command: 
+            sh test.sh
+          no_output_timeout: 290m
+  four:  
+    docker:
+      - image: cimg/python:3.8
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: test work or not code
+          command: 
+            sh test.sh
+          no_output_timeout: 290m
+  five:  
+    docker:
+      - image: cimg/python:3.8
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: test work or not code
+          command: 
+            sh test.sh
+          no_output_timeout: 290m
 workflows:
   version: 2
-  build_test:
+  test1:
     jobs:
-      - build
-      - test:
-          requires: # test requires build to pass before running
-            - build
-  build_test_publish_deploy:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test2:
     jobs:
-      - build:
-          filters:
-            tags:
-              only: /.*/
-      - build-image: # building a new docker image depends on build and tests passing
+      - one
+      - two:
           requires:
-            - build
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
-      - publish-image:
+          - one
+      - three:
           requires:
-            - build-image
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
-      - deploy:
+          - two
+      - four:
           requires:
-            - publish-image
-          filters:
-            branches:
-              only:
-                - main
+          - three
+      - five:
+          requires:
+          - four
+  test3:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test4:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test5:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test6:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test7:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test8:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test9:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test10:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test11:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test12:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test13:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test14:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test15:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test16:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test17:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test18:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test19:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test20:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four  
+
+  test21:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test22:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test23:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  test24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  atest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  htest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  htesst24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  jtest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  jthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  ajthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  bjthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  cjthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  djthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  fjthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  gjthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  ejthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  hjthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  ujthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  ijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  aaijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  avijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  nxijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  jsjijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  hshwbijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  jsjwjijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  jsjqkijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  jwjqyggijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  jakaoohijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  jajqkhijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  jsjxbhjjijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  hwjqghhijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  hakqllhhijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  hxjcnggijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  hsjqjajhggijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  hajjajahggijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  mzhajjajahggijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  mznhajjajahggijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  nsjahhajjajahggijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  jsjajaghajjajahggijthest24:
+    jobs:
+      - one
+      - two:
+          requires:
+          - one
+      - three:
+          requires:
+          - two
+      - four:
+          requires:
+          - three
+      - five:
+          requires:
+          - four
+  
