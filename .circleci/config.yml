@@ -11,6 +11,9 @@ executors:
       IMAGE_NAME: outintech/nbjc-app
     docker:
       - image: circleci/buildpacks-deps:stretch
+        auth:
+          username: outintech
+          password: $DOCKERHUB_PASSWORD
   docker-ruby:
     docker:
       - image: cimg/ruby:2.7.2-node
