@@ -8,6 +8,14 @@ class Api::V1::SpacesController < ApplicationController
     @per_page = 20
     @page = params[:page].to_i unless params[:page].nil? || params[:page].to_i == 0
     @per_page = params[:per_page].to_i unless params[:per_page].nil? || params[:per_page].to_i == 0
+    
+    @fields = []
+    @include = []
+    @fields = params[:fields].split(',') unless params[:fields].nil? || params[:fields].blank?
+    # todo: validate includable fields?
+    @include = params[:include].split(',') unless params[:include].nil? || params[:include].blank?
+    p @fields
+    p @include
     # handle search
     if params[:search].blank? || params[:search].nil?
       @spaces = Space.all
@@ -15,14 +23,18 @@ class Api::V1::SpacesController < ApplicationController
       @terms = params[:search].downcase
       @spaces = Space.where("lower(spaces.name) LIKE :search", search: "%#{@terms}%")
     end
-    
     #handle filtering
     @spaces = @spaces.filter_by_price(filtering_params['price']).with_indicators(filtering_params['indicators'])
+
+    # handle pagination
     @total_count = @spaces.count
+    if @fields.length > 0
+      @spaces = @spaces.select(@fields)
+    end
     @spaces = @spaces.page(@page).per(@per_page)
 
     # TODO calculate average rating
-    render json: { data: @spaces, meta: { total_count: @total_count, page: @page, per_page: @per_page } }, include: [:address, :reviews, :photos, :indicators, :languages]
+    render json: { data: @spaces, meta: { total_count: @total_count, page: @page, per_page: @per_page } }, include: @include
   end
 
   # GET /spaces/:id
