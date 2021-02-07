@@ -10,7 +10,10 @@ executors:
     environment:
       IMAGE_NAME: outintech/nbjc-app
     docker:
-      - image: circleci/buildpacks-deps:stretch
+      - image: circleci/buildpack-deps:stretch
+        auth:
+          username: outintech
+          password: $DOCKERHUB_PASSWORD
   docker-ruby:
     docker:
       - image: cimg/ruby:2.7.2-node
@@ -30,8 +33,11 @@ jobs:
           cache-key: "yarn.lock"
 
   test: # Run tests on new code
-    executor: docker-ruby
     docker:
+      - image: cimg/ruby:2.7.2-node
+        auth:
+         username: outintech
+         password: $DOCKERHUB_PASSWORD
       - image: circleci/postgres:9.5-alpine
         auth:
           username: outintech
@@ -48,10 +54,6 @@ jobs:
       RAILS_ENV: test
     steps:
       - checkout
-      - run:
-          name: Install Bundler
-          command: |
-            gem install bundler
       - ruby/install-deps
       - node/install-packages:
           pkg-manager: yarn
@@ -66,6 +68,9 @@ jobs:
       - ruby/rspec-test
   build-image: # build new docker image
     executor: docker-publisher
+    environment:
+      USER_ID: 1000
+      GROUP_ID: 1000
     steps:
       - checkout
       - setup_remote_docker
@@ -112,16 +117,21 @@ jobs:
 # Workflows to orchestrate jobs declared above
 workflows:
   version: 2
-  build_test_publish_deploy:
+  build_test:
     jobs:
       - build
       - test:
           requires: # test requires build to pass before running
             - build
+  build_test_publish_deploy:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
       - build-image: # building a new docker image depends on build and tests passing
           requires:
             - build
-            - test
           filters:
             tags:
               only: /^v.*/
