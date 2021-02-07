@@ -10,7 +10,7 @@ class Api::V1::SpacesController < ApplicationController
     @per_page = params[:per_page].to_i unless params[:per_page].nil? || params[:per_page].to_i == 0
     # handle search
     if params[:search].blank? || params[:search].nil?
-      @spaces = Space.all.page(@page).per(@per_page)
+      @spaces = Space.all
     else
       @terms = params[:search].downcase
       @spaces = Space.where("lower(spaces.name) LIKE :search", search: "%#{@terms}%")

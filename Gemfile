@@ -42,6 +42,7 @@ group :development, :test do
   gem 'json'
   gem 'database_cleaner'
   gem 'rspec_junit_formatter'
+  gem 'sshkit'
 end
 
 group :development do

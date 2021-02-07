@@ -4,15 +4,24 @@ version: 2.1
 orbs: # give us access to specific commands https://circleci.com/docs/2.0/using-orbs/
   ruby: circleci/ruby@1.1.2 # used to cache and install ruby gems
   node: circleci/node@2
+
+executors:
+  docker-publisher:
+    environment:
+      IMAGE_NAME: outintech/nbjc-app
+    docker:
+      - image: circleci/buildpacks-deps:stretch
+  docker-ruby:
+    docker:
+      - image: cimg/ruby:2.7.2-node
+        auth:
+          username: outintech
+          password: $DOCKERHUB_PASSWORD
   
 # Jobs to run for this project
 jobs:
   build: # pulls down current code and install dependencies so we can test
-    docker:
-      - image: cimg/ruby:2.7.2-node # using the same version as our Gemfile
-        auth:
-          username: outintech
-          password: $DOCKERHUB_PASSWORD
+    executor: docker-ruby
     steps:
       - checkout # circle ci command to pull down github code https://circleci.com/docs/2.0/configuration-reference/#checkout
       - ruby/install-deps # install gems with bundler
@@ -21,11 +30,8 @@ jobs:
           cache-key: "yarn.lock"
 
   test: # Run tests on new code
+    executor: docker-ruby
     docker:
-      - image: cimg/ruby:2.7.2-node # primary image where step commands run
-        auth:
-          username: outintech
-          password: $DOCKERHUB_PASSWORD
       - image: circleci/postgres:9.5-alpine
         auth:
           username: outintech
@@ -42,6 +48,10 @@ jobs:
       RAILS_ENV: test
     steps:
       - checkout
+      - run:
+          name: Install Bundler
+          command: |
+            gem install bundler
       - ruby/install-deps
       - node/install-packages:
           pkg-manager: yarn
@@ -54,24 +64,80 @@ jobs:
           command: bundle exec rails db:schema:load --trace
       # Run rspec in parallel
       - ruby/rspec-test
-
-# Build new image using docker
-# 3. Push new image to docker hub
-# sign into docker hub
-# push to docker hub
-# 4. Run pending migrations
-# 5. Rerun docker-compose
-# need to figure out how to run migrations without losing data
+  build-image: # build new docker image
+    executor: docker-publisher
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Docker Image
+          command: |
+            docker build -t $IMAGE_NAME:latest .
+      - run:
+          name: Archive Docker image
+          command: docker save -o image.tar $IMAGE_NAME
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./image.tar
+  publish-image:
+    executor: docker-publisher
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - setup_remote_docker
+      - run:
+          name: Load archived Docker image
+          command: docker load -i /tmp/workspace/image.tar
+      - run:
+          name: Publish Docker Image to Docker Hub
+          command: |
+            echo "$DOCKERHUB_PASSWORD" | docker login -u outintech --password-stdin
+            IMAGE_TAG=${CIRCLE_TAG/v/''}
+            docker tag $IMAGE_NAME:latest $IMAGE_NAME:$IMAGE_TAG
+            docker push $IMAGE_NAME:latest
+            docker push $IMAGE_NAME:$IMAGE_TAG
+  deploy:
+    executor: docker-ruby
+    environment:
+      IMAGE_NAME: nbjc-app
+    steps:
+      - checkout
+      - run:
+          name: Run deploy script
+          command: |
+            DEPLOY_TAG=${CIRCLE_TAG/v/''}
+            bundle exec rake docker:deploy
 
 # Workflows to orchestrate jobs declared above
 workflows:
   version: 2
-  build_and_test:
+  build_test_publish_deploy:
     jobs:
       - build
       - test:
           requires: # test requires build to pass before running
             - build
+      - build-image: # building a new docker image depends on build and tests passing
+          requires:
+            - build
+            - test
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+      - publish-image:
+          requires:
+            - build-image
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+      - deploy:
+          requires:
+            - publish-image
           filters:
             branches:
               only:
