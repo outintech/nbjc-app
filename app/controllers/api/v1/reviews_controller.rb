@@ -3,19 +3,31 @@ class Api::V1::ReviewsController < ApplicationController
     before_action :load_a_review, only: [:show, :update, :destroy]
   
     def index
-      anonymous_reviews = load_anonymous_space_reviews
-      non_anon_reviews = load_non_anonymous_space_reviews
-      anon_user = new_anonymous_user
-  
-      @all_reviews_safe = []
-  
-      anonymous_reviews.each do |ar|
-        ar.user = anon_user
-        @all_reviews_safe << ar
+      if params[:user_id].blank? || params[:user_id].nil?
+        anonymous_reviews = load_anonymous_space_reviews
+        non_anon_reviews = load_non_anonymous_space_reviews
+        anon_user = new_anonymous_user
+    
+        @all_reviews_safe = []
+    
+        anonymous_reviews.each do |ar|
+          ar.user = anon_user
+          @all_reviews_safe << ar
+        end
+    
+        @all_reviews_safe << non_anon_reviews
+        render json: { data: @all_reviews_safe }
+      else
+        # todo: enforce authorization here?
+        # this is adding a bit of obfuscation by not showing the actual review
+        # ideally we would enforce this through autorization token instead
+        user_review_for_space = load_review_for_space_user
+        if (user_review_for_space.length > 0)
+          render json: { data: { exists: true }}
+        else
+          render json: { data: { exists: false }}
+        end
       end
-  
-      @all_reviews_safe << non_anon_reviews
-      render json: { data: @all_reviews_safe }
     end
   
     def show
@@ -26,6 +38,7 @@ class Api::V1::ReviewsController < ApplicationController
     end
   
     def create
+      # todo: this allows you to create a review for another user.
       @review = Review.new(review_params)
       if @review.valid?
         @review.save
@@ -70,7 +83,11 @@ class Api::V1::ReviewsController < ApplicationController
     def load_non_anonymous_space_reviews
       Review.all.where({anonymous: false, space_id: params[:space_id]})
     end
-  
+    
+    def load_review_for_space_user
+      Review.all.where({ space_id: params[:space_id], user_id: params[:user_id]})
+    end
+
     def review_params
       params.require(:review).permit(:anonymous, :vibe_check, :rating, :content, :space_id, :user_id)
     end
