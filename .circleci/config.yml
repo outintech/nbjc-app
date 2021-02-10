@@ -74,7 +74,7 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
-            docker build -t $IMAGE_NAME:latest --build-arg USER_ID=1000 --build-arg GROUP_ID=1000 .
+            docker build -t $IMAGE_NAME:latest --build-arg USER_ID=1000 --build-arg GROUP_ID=1000 --build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY} .
       - run:
           name: Archive Docker image
           command: docker save -o image.tar $IMAGE_NAME
@@ -109,7 +109,7 @@ jobs:
       - run:
           name: Run deploy script
           command: |
-            DEPLOY_TAG=latest
+            export DEPLOY_TAG={CIRCLE_TAG/v/''}
             bundle exec rake docker:deploy
 
 # Workflows to orchestrate jobs declared above
