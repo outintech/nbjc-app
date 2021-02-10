@@ -105,6 +105,7 @@ jobs:
       IMAGE_NAME: nbjc-app
     steps:
       - checkout
+      - ruby/install-deps
       - run:
           name: Run deploy script
           command: |
