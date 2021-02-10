@@ -147,5 +147,7 @@ workflows:
             - publish-image
           filters:
             branches:
-              only:
-                - main
+              tags:
+                only: /^v.*/
+              branches:
+                ignore: /.*/
