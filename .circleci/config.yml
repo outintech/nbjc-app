@@ -109,7 +109,7 @@ jobs:
       - run:
           name: Run deploy script
           command: |
-            DEPLOY_TAG=${CIRCLE_TAG/v/''}
+            DEPLOY_TAG=latest
             bundle exec rake docker:deploy
 
 # Workflows to orchestrate jobs declared above
