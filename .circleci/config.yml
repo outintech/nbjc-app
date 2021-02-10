@@ -146,8 +146,7 @@ workflows:
           requires:
             - publish-image
           filters:
+            tags:
+              only: /^v.*/
             branches:
-              tags:
-                only: /^v.*/
-              branches:
-                ignore: /.*/
+              ignore: /.*/
