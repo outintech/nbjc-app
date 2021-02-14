@@ -15,6 +15,15 @@ Dir.glob("db/seed_data/*.csv") do |file|
   end
 end
 
+Dir.glob("db/seed_data/category_aliases.csv") do |file|
+  model = Object.const_get(file.split("/").last.split(".").first.singularize.camelcase)
+    CSV.foreach(file, headers: true) do |row|
+      new_alias = CategoryAlias.new(title: row["title"], alias: row["alias"], category_bucket: CategoryBucket.find_by(name: row["category_bucket"]))
+      new_alias.save!
+    end
+    puts "#{model} seeded"
+end
+
 # Used for development purposes only
 puts "Adding spaces"
 open("yelp_response_ny.json") do |file|
@@ -23,6 +32,7 @@ open("yelp_response_ny.json") do |file|
   businesses_data = JSON.parse(json_string)
   businesses = businesses_data["businesses"]
   businesses.each do |business|
+    category_aliases = business["categories"].collect{ |category|  CategoryAlias.find_by(alias: category["alias"]) }
     space = {
       "provider_urn": "yelp:" + business["id"],
       "provider_url": business["url"],
@@ -40,6 +50,7 @@ open("yelp_response_ny.json") do |file|
                                                                 Faker::Number.between(from: 0, to: Language.all.count - 1))
                                                                 .map{|n| { name: n } } : [],
       "indicators_attributes": Indicator.all.pluck(:name).sample(Faker::Number.between(from: 1, to: Indicator.all.count - 1)).map{ |n| { name: n } },
+      "category_aliases": category_aliases,
       "photos_attributes": [{ "url": business["image_url"], "cover": true
                             }],
       "phone": business["phone"],
@@ -93,15 +104,6 @@ open("yelp_response_ny.json") do |file|
     spaces << space
   end
   Space.create!(spaces)
-end
-
-Dir.glob("db/seed_data/category_aliases.csv") do |file|
-  model = Object.const_get(file.split("/").last.split(".").first.singularize.camelcase)
-    CSV.foreach(file, headers: true) do |row|
-      new_alias = CategoryAlias.new(title: row["title"], alias: row["alias"], category_bucket: CategoryBucket.find_by(name: row["category_bucket"]))
-      new_alias.save!
-    end
-    puts "#{model} seeded"
 end
 
 puts "Done seeding"
