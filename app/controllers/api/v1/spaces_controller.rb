@@ -14,14 +14,26 @@ class Api::V1::SpacesController < ApplicationController
     @fields = params[:fields].split(',') unless params[:fields].nil? || params[:fields].blank?
     # todo: validate includable fields?
     @include = params[:include].split(',') unless params[:include].nil? || params[:include].blank?
-    p @fields
-    p @include
+
+    @search = params[:search] unless params[:search].nil? || params[:search].blank?
+    @category = params[:category] unless params[:category].nil? || params[:category].blank?
+
     # handle search
-    if params[:search].blank? || params[:search].nil?
+    if @search.nil? && @category.nil?
       @spaces = Space.all
-    else
-      @terms = params[:search].downcase
+    elsif !!(@search && @category)
+      @terms = @search
       @spaces = Space.where("lower(spaces.name) LIKE :search", search: "%#{@terms}%")
+      @category_alias = CategoryAlias.find_by(alias: @category)
+      @cas = CategoryAliasesSpace.where(category_alias: @category_alias)
+      @spaces = @spaces.or(Space.where(category_aliases_spaces: @cas))
+    elsif !!(@search)
+      @terms = @search
+      @spaces = Space.where("lower(spaces.name) LIKE :search", search: "%#{@terms}%")
+    else
+      @category_alias = CategoryAlias.find_by(alias: @category)
+      @cas = CategoryAliasesSpace.where(category_alias: @category_alias)
+      @spaces = Space.where(category_aliases_spaces: @cas)
     end
     #handle filtering
     @spaces = @spaces.filter_by_price(filtering_params['price']).with_indicators(filtering_params['indicators'])
