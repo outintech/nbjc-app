@@ -22,13 +22,13 @@ class Api::V1::SpacesController < ApplicationController
     if @search.nil? && @category.nil?
       @spaces = Space.all
     elsif !!(@search && @category)
-      @terms = @search
+      @terms = @search.downcase
       @spaces = Space.where("lower(spaces.name) LIKE :search", search: "%#{@terms}%")
       @category_alias = CategoryAlias.find_by(alias: @category)
       @cas = CategoryAliasesSpace.where(category_alias: @category_alias)
       @spaces = @spaces.or(Space.where(category_aliases_spaces: @cas))
     elsif !!(@search)
-      @terms = @search
+      @terms = @search.downcase
       @spaces = Space.where("lower(spaces.name) LIKE :search", search: "%#{@terms}%")
     else
       @category_alias = CategoryAlias.find_by(alias: @category)
