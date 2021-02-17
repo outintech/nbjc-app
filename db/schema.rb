@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_20_000915) do
+ActiveRecord::Schema.define(version: 2021_02_17_231219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,10 +116,11 @@ ActiveRecord::Schema.define(version: 2021_01_20_000915) do
     t.text "provider_url"
     t.text "url"
     t.jsonb "hours_of_op"
-    t.point "coordinates"
     t.integer "price_level"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "latitude"
+    t.decimal "longitude"
   end
 
   create_table "user_roles", force: :cascade do |t|
