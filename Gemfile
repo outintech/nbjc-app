@@ -21,6 +21,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+# For sshkit
+gem 'ed25519', '>= 1.2', '<=2.0'
+gem 'bcrypt_pbkdf', '>=1.0', '<=2.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -42,6 +45,7 @@ group :development, :test do
   gem 'json'
   gem 'database_cleaner'
   gem 'rspec_junit_formatter'
+  gem 'sshkit'
 end
 
 group :development do

@@ -3,6 +3,7 @@ MAINTAINER devs@outintech.com
 
 ARG USER_ID
 ARG GROUP_ID
+ARG RAILS_MASTER_KEY
 
 RUN addgroup --gid $GROUP_ID user
 RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user
@@ -20,7 +21,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends nodejs yarn
 WORKDIR $RAILS_ROOT
 # Setting env up
 ENV RAILS_ENV='production'
-ENV RACK_ENV='production' 
+ENV RACK_ENV='production'
+ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
 
 # Adding gems
 RUN gem install rails bundler
