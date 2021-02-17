@@ -15,7 +15,7 @@ class Api::V1::ReviewsController < ApplicationController
       end
   
       @all_reviews_safe << non_anon_reviews
-      render json: { data: @all_reviews_safe }
+      render json: { data: @all_reviews_safe },include: [:space]
     end
   
     def show
@@ -76,7 +76,7 @@ class Api::V1::ReviewsController < ApplicationController
     end
   
     def load_a_review
-      @review = Review.find(params[:review_id])
+      @review = Review.find(params[:id])
     end
   
     def new_anonymous_user
