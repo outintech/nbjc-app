@@ -33,4 +33,13 @@ FactoryBot.define do
     password {"qwertyFake"}
     username {"fakereviewuser8675309"}
   end
+
+  factory :create_review_user, class: "User" do
+    id{98765}
+    email {"fakereview98765@user.com"}
+    password {"qwertyFake"}
+    username {"fakereviewuser98765"}
+  end
+
+
 end
