@@ -17,77 +17,92 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
         end
     end
 
-    # describe "POST review route" do
-    #     space = Space.new(
-    #         name: Faker::Company.name,
-    #     )
-    #     if space.valid?
-    #         space.save
-    #     end
-
-    #     user = User.new(
-    #         email: "fakereview@user.com",
-    #         password: "qwertyFake",
-    #         username: "fakereviewuser"
-    #     )
-    #     if user.valid?
-    #         user.save
-    #     end
-
-    #     review_fake = Review.new(
-    #         anonymous: false, 
-    #         vibe_check: rand(1..3), 
-    #         rating: rand(1..5), 
-    #         content: "Lorem ipsum dolor sit amet etc etc etc", 
-    #         user_id: user.id,
-    #         space_id: space.id
-    #     )
-
+    # describe "POST review and GET review routes" do
     #     before do
-    #         controller.stub(:authenticate_user! => true)
-    #         post :create, params: {review: review_fake}
-    #     end
 
+    #         space = create(:random_space)
+    #         @space_id = space.id
+
+    #         user = create(:create_review_user)
+
+    #         review_test = Review.new(
+    #             anonymous: false, 
+    #             vibe_check: rand(1..3), 
+    #             rating: rand(1..5), 
+    #             content: "Lorem ipsum dolor sit amet etc etc etc", 
+    #             user_id: user.id,
+    #             space_id: @space_id
+    #         )
+        
+    #         controller.stub(:authenticate_user! => true)
+    #         post :create, params: { :review=> review_test }
+    #     end
+    
     #     it 'returns the review' do
-    #         p response
+    #       expect(JSON.parse(response.body).size).to eq(1)
+    #     end
+    
+    #     it 'returns a created status' do
+    #       expect(response).to have_http_status(:created)
+    #     end
+    
+    #     it 'returns all the details for a space' do
+    #       id = JSON.parse(response.body)['data']['review']['id']
+    #       get :show, params: {id: id, space_id: @space_id}
+    #       p data = JSON.parse(response.body)['data']
     #     end
     # end
 
-    # describe "SHOW review route" do
-    #     space = Space.new(
-    #         name: Faker::Company.name,
-    #     )
-    #     if space.valid?
-    #         space.save
-    #     end
+    describe "Update a space's details" do
 
-    #     user = User.new(
-    #         email: "fakereview2@user.com",
-    #         password: "qwertyFake",
-    #         username: "fakereview2user"
-    #     )
-    #     if user.valid?
-    #         user.save
-    #     end
+        before do
+            space = Space.new(
+            name: Faker::Company.name,
+            )
+            if space.valid?
+                space.save
+            end
+            @space_id = space.id
 
-    #     review = Review.new(
-    #         anonymous: false, 
-    #         vibe_check: rand(1..3), 
-    #         rating: rand(1..5), 
-    #         content: "Lorem ipsum dolor sit amet etc etc etc", 
-    #         user_id: user.id,
-    #         space_id: space.id
-    #     )
-    #     review.save
+            user = create(:review_user_one)
 
-    #     before do
-    #         controller.stub(:authenticate_user! => true)
-    #         get :show, params: {review_id: review.id}
-    #     end
+            @review = create(:random_review_assign_space_user, space_id: space.id, user_id: user.id)
+        end
+    
+        it 'updates a review' do
+          @new_content = "New lorem ipsum text"
+          controller.stub(:authenticate_user! => true)
+          put :update, params: { space_id: @space_id, id: @review.id, review: { content: @new_content } }
+    
+          expect(response.status).to eq(302)
+          expect(Review.find(@review.id).content).to eq(@new_content)
+        end
+    end
+    
+    describe "Delete a review" do
 
-    #     it 'returns the review' do
-    #         p response
-    #     end
-    # end
+        before(:each) do
+
+            space = create(:random_space)
+            user = create(:review_user_two)
+            
+            @space_id = space.id
+            @review_one = create(:random_review_assign_space_user, space_id: space.id, user_id: user.id)
+            @review_two = create(:random_anon_review_assign_space_user, space_id: space.id, user_id: user.id)
+        end
+    
+        it 'should delete the review' do
+          get :index, params: { space_id: @space_id }
+          expect(response.status).to eq(200)
+          expect(JSON.parse(response.body)['data'].size).to eq(2)
+          
+          controller.stub(:authenticate_user! => true)
+          delete :destroy, params: {space_id: @space_id, id: @review_one.id}
+          expect(response.status).to eq(204)
+    
+          get :index, params: { space_id: @space_id }
+          expect(response.status).to eq(200)
+        end
+    end
 
 end

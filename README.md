@@ -22,11 +22,12 @@
 >  * Install `redis-server`
 >  * Edit the `supervised` directive to `systemd`, see [tutorial][redis-ubuntu-tutorial].
 
-- Create a new user with the password as specified in `database.yml`.
+- Create a new user with the password see `database.yml`.
   * Open the postgres console `psql postgres`
   * Check all your users and roles using the `du` postgres command
   * If you don't have a user you can create one by using the postgres command `CREATE USER new_user with PASSWORD 'your_super_secret_password';`
   * Create the role for the app using `CREATE ROLE nbjc_app LOGIN SUPERUSER PASSWORD 'pw_from_database_yml';`
+  > NOTE: Don't forget to update the database.yml file if you are using a different pw.
 
 - Start the services.
 	> If you installed these with `brew`, you can start them with `brew services start <SERVICE>`. 
@@ -35,6 +36,7 @@
   * Redis
 
 - Install gems with `bundle install`
+- Check your local env setup with `config/local_env.yml.example`
 
 ### Adding and removing a new model
 
@@ -183,6 +185,13 @@ rails destroy model <MODEL_NAME>
 </table>
 </div>
 
+## Deployment
+
+You can find the build pipeline in the circleci dashboard. Reach out in Slack for the pipeline link. Deployments only happen for tagged versions. See the circleci config in the `.circleci` folder.
+- See the tagging guidlines [here][tagging]
+
+### Contribution
+- A PR can only be merged when both build and test circleci jobs pass.
 
 [redis-ubuntu-tutorial]: https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04
 [postgres-ubuntu-tutorial]: https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart
@@ -191,3 +200,4 @@ rails destroy model <MODEL_NAME>
 [bakeries]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/api/v1/spaces
 [indicators]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/api/v1indicators
 [schema-sheet]: https://docs.google.com/spreadsheets/d/1825fpT5UzzrGEKcjvgeZmKQ9xdnfNUvj3xu11WbTxKQ/edit?usp=sharing
+[tagging]: https://git-scm.com/book/en/v2/Git-Basics-Tagging

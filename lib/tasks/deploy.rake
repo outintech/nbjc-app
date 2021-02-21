@@ -4,7 +4,7 @@ require 'sshkit/dsl'
 include SSHKit::DSL
 
 # set the identifier used to used to tag our Docker images
-deploy_tag = ENV['DEPLOY_TAG']
+deploy_tag = ENV['DEPLOY_TAG'] || "latest"
 
 # set the name of the environment we are deploying to (e.g. staging, production, etc.)
 deploy_env = ENV['DEPLOY_ENV'] || :production

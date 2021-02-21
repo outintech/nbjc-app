@@ -59,6 +59,7 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     bcrypt (3.1.16)
+    bcrypt_pbkdf (1.1.0)
     bindex (0.8.1)
     bootsnap (1.5.1)
       msgpack (~> 1.0)
@@ -84,6 +85,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.4.4)
+    ed25519 (1.2.4)
     erubi (1.10.0)
     factory_bot (6.1.0)
       activesupport (>= 5.0.0)
@@ -265,12 +267,14 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
+  bcrypt_pbkdf (>= 1.0, <= 2.0)
   bootsnap (>= 1.4.2)
   byebug
   cancancan
   capybara (>= 2.15)
   database_cleaner
   devise
+  ed25519 (>= 1.2, <= 2.0)
   factory_bot_rails
   faker
   geocoder
