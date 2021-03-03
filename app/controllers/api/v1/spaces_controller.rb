@@ -1,6 +1,6 @@
 class Api::V1::SpacesController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_user!, only: [:create, :update]
+  before_action :authenticate_user!, only: [:create, :update, :create_yelp_search]
   before_action :find_space, only: [:show, :update, :destroy]
   # GET /spaces
   def index
@@ -29,10 +29,22 @@ class Api::V1::SpacesController < ApplicationController
     render json: { data: @space }, include: [:address, :reviews, :photos, :indicators, :languages]
   end
 
+  def create_yelp_search
+    yelp_query = YelpApiSearch.new(yelp_search_params)
+    @search_results = yelp_query.submit_search
+    @total_count = @search_results.count
+    @page = params[:page].to_i || 1
+    @per_page = params[:per_page].to_i || 20
+
+    @spaces = @search_results.page(@page).per(@per_page)
+    render json: {data: @spaces, meta: { total_count: @total_count, page: @page, per_page: @per_page} }
+  end
+
   # POST /spaces
   def create
     @space = Space.new(space_params)
     if @space.save!
+      @space.update_hours_of_operation
       render json: { data: { space: @space } }, status: 201
     else
       render json: { error: 'Unable to create space' }, status:400
@@ -72,4 +84,9 @@ class Api::V1::SpacesController < ApplicationController
   def filtering_params
     params.fetch(:filters, {})
   end
+
+  def yelp_search_params
+    params.require(:space_search).permit(:location, :term, :radius)
+  end
+
 end
