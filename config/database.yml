@@ -23,7 +23,7 @@ default: &default
 
   # dev setup
   user: nbjc_app
-  password: jS7yPr72NfeZ8HJM6ecHt # make sure this corresponds to your local postgres user's password
+  password: password # make sure this corresponds to your local postgres user's password
   host: <%= ENV.fetch("NBJC_APP_DATABASE_IP") { 'localhost' } %>
   port: 5432
 

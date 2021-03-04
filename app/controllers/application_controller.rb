@@ -4,9 +4,6 @@ class ApplicationController < ActionController::API
   protect_from_forgery unless: -> { request.format.json? }
 
   respond_to :json
-  # before_action :underscore_params!
-  # before_action :configure_permitted_parameters, if: :devise_controller?
-  # before_action :authenticate_user
 
   private
   def configure_permitted_parameters
