@@ -1,6 +1,7 @@
 class Api::V1::SpacesController < ApplicationController
   include Secured
   skip_before_action :verify_authenticity_token
+  # The only routes not secured are the GET /spaces and GET /spaces/:id
   skip_before_action :authenticate_request!, only: [:index, :show]
 
   before_action :find_space, only: [:show, :update, :destroy]

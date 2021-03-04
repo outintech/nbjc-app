@@ -200,7 +200,7 @@ Diagram for login [here][auth-flow]
 ## Deployment
 
 You can find the build pipeline in the circleci dashboard. Reach out in Slack for the pipeline link. Deployments only happen for tagged versions. See the circleci config in the `.circleci` folder.
-- See the tagging guidlines [here][tagging]
+- See the tagging guidelines [here][tagging]
 
 ### Contribution
 - A PR can only be merged when both build and test circleci jobs pass.
