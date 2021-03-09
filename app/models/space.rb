@@ -38,5 +38,4 @@ class Space < ApplicationRecord
       Indicator.find_by(name: indicator.name)
     end
   end
-
 end

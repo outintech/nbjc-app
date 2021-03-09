@@ -3,7 +3,7 @@ class Api::V1::ReviewsController < ApplicationController
     before_action :load_a_review, only: [:show, :update, :destroy]
   
     def index
-      if params[:userxw_id].blank? || params[:user_id].nil?
+      if params[:user_id].blank? || params[:user_id].nil?
         anonymous_reviews = load_anonymous_space_reviews
         non_anon_reviews = load_non_anonymous_space_reviews
         anon_user = new_anonymous_user
@@ -16,8 +16,8 @@ class Api::V1::ReviewsController < ApplicationController
         end
     
         @all_reviews_safe << non_anon_reviews
-        render json: { data: @all_reviews_safe }
-      elsex
+        render json: { data: @all_reviews_safe },include: [:space]
+      else
         # todo: enforce authorization here?
         # this is adding a bit of obfuscation by not showing the actual review
         # ideally we would enforce this through autorization token instead
@@ -28,9 +28,6 @@ class Api::V1::ReviewsController < ApplicationController
           render json: { data: { exists: false }}
         end
       end
-  
-      @all_reviews_safe << non_anon_reviews
-      render json: { data: @all_reviews_safe },include: [:space]
     end
   
     def show
