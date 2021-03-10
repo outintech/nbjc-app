@@ -118,6 +118,7 @@ RSpec.describe Api::V1::SpacesController, type: :controller do
       id = JSON.parse(response.body)['data']['space']['id']
       get :show, params: {id: id}
       data = JSON.parse(response.body)['data']
+      p data
       expect(data['name']).to eq(space[:name])
       expect(data['price_level']).to eq(space[:price_level])
       expect(data['phone']).to eq(space[:phone])

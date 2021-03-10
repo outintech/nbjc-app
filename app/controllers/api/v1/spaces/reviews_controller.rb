@@ -1,22 +1,11 @@
-class Api::V1::ReviewsController < ApplicationController
+class Api::V1::Spaces::ReviewsController < ApplicationController
     before_action :authenticate_user!, only: [:create, :update, :destroy]
     before_action :load_a_review, only: [:show, :update, :destroy]
   
     def index
       if params[:user_id].blank? || params[:user_id].nil?
-        anonymous_reviews = load_anonymous_space_reviews
-        non_anon_reviews = load_non_anonymous_space_reviews
-        anon_user = new_anonymous_user
-    
-        @all_reviews_safe = []
-    
-        anonymous_reviews.each do |ar|
-          ar.user = anon_user
-          @all_reviews_safe << ar
-        end
-    
-        @all_reviews_safe << non_anon_reviews
-        render json: { data: @all_reviews_safe },include: [:space]
+        @reviews = load_space_reviews
+        render json: { data: @reviews.as_json(except: [:user, :user_id, :updated_at], include: :space) }
       else
         # todo: enforce authorization here?
         # this is adding a bit of obfuscation by not showing the actual review
@@ -34,12 +23,17 @@ class Api::V1::ReviewsController < ApplicationController
       if @review.anonymous? && @review.user.email != "anonymous@email.com"
         @review.user = new_anonymous_user
       end
-      render json: {data: @review}, include: [:space]
+      render json: {data: @review.as_json(except: [:user, :user_id, :updated_at], include: :space)}
     end
   
     def create
       # todo: this allows you to create a review for another user.
       @review = Review.new(review_params)
+      
+      if @review.anonymous == false
+        @review.update_attributed_user
+      end
+      
       if @review.valid?
         @review.save
         render json: {data: {review: @review} }, status: 201
@@ -51,9 +45,14 @@ class Api::V1::ReviewsController < ApplicationController
     def update
       if @review
         @review.assign_attributes(review_params)
+
+        if @review.anonymous == false
+          @review.update_attributed_user
+        end
+
         if @review.valid?
           @review.save
-          redirect_to api_v1_space_review_path(@review)
+          redirect_to api_v1_spaces_review_path(@review)
         else
           render json: { errors: review.errors }, status: 400
         end
@@ -73,7 +72,7 @@ class Api::V1::ReviewsController < ApplicationController
   
     private
     def load_space_reviews
-      Review.find_by(params[:space_id])
+      Review.all.where({space_id: params[:space_id]})
     end
   
     def load_anonymous_space_reviews

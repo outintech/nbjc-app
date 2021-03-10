@@ -52,7 +52,13 @@ class Api::V1::SpacesController < ApplicationController
   # GET /spaces/:id
   def show
     # TODO calculate average rating
-    render json: { data: @space }, include: [:address, :reviews, :photos, :indicators, :languages]
+    render json: {data: @space.as_json(:include=>{
+      :address =>{},
+      :reviews => {except: [:user, :user_id, :updated_at]},
+      :photos => {}, 
+      :indicators =>{}, 
+      :languages => {}
+    })}
   end
 
   # POST /spaces
