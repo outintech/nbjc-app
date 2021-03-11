@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  scope :api, defaults: { format: :json } do
-    resource :user, only: [:show, :update]
-  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
@@ -17,6 +14,7 @@ Rails.application.routes.draw do
       
       resources :indicators
       resources :categories
+      resources :users
     end
   end
 end
