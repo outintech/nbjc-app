@@ -185,6 +185,9 @@ rails destroy model <MODEL_NAME>
 </table>
 </div>
 
+## Running tests
+`rspec`
+
 ## Deployment
 
 You can find the build pipeline in the circleci dashboard. Reach out in Slack for the pipeline link. Deployments only happen for tagged versions. See the circleci config in the `.circleci` folder.
