@@ -19,8 +19,7 @@ FactoryBot.define do
   factory :random_space, class: Space do
     name {Faker::Company.name}
 
-    after (:create) do |space|
-      puts space
+    after (:build) do |space|
       space.address ||= create(:address, :space => space)
     end
   
