@@ -19,6 +19,10 @@ FactoryBot.define do
   factory :random_space, class: Space do
     name {Faker::Company.name}
 
+    after (:build) do |space|
+      space.address ||= create(:address, :space => space)
+    end
+  
     trait :with_similar_name do
       after(:build) do |space|
         space.name = space.name + " Cafe"
@@ -57,4 +61,5 @@ FactoryBot.define do
       space.save
     end
   end
+
 end

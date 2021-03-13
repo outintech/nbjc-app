@@ -18,6 +18,13 @@ class Space < ApplicationRecord
 
   before_save :find_languages, :find_indicators
 
+  after_validation :geocode
+  geocoded_by :full_address
+
+  def full_address
+    [self.address.address_1, self.address.address_2, self.address.city, self.address.postal_code, self.address.country].compact.join(",")
+  end
+
   private
 
   def find_languages
