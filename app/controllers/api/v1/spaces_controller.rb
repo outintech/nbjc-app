@@ -36,13 +36,22 @@ class Api::V1::SpacesController < ApplicationController
       @spaces = Space.where(category_aliases_spaces: @cas)
     end
     #handle filtering
-    @spaces = @spaces.filter_by_price(filtering_params['price']).with_indicators(filtering_params['indicators'])
+    @indicators = filtering_params['indicators']
+    @spaces = @spaces.filter_by_price(filtering_params['price']).with_indicators(@indicators)
 
     # handle pagination
-    @total_count = @spaces.count
+    if @indicators.nil? || @indicators.blank?
+      @total_count = @spaces.count
+    else
+      # when there are indicators, there is a join with the space_indicators table with a 
+      # group by on spaces.id. So the actual count of spaces found matching is simply the
+      # number of rows of this count query
+      @total_count = @spaces.count.size
+    end
     if @fields.length > 0
       @spaces = @spaces.select(@fields)
     end
+
     @spaces = @spaces.page(@page).per(@per_page)
 
     # TODO calculate average rating
