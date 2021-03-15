@@ -284,7 +284,7 @@ DEPENDENCIES
   rails (~> 6.0.3, >= 6.0.3.5)
   redis (~> 4.0)
   responders
-  rspec-rails (~> 4.0.1)
+  rspec-rails (~> 4.0.2)
   rspec_junit_formatter
   sass-rails (>= 6)
   selenium-webdriver
