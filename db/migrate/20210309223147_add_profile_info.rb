@@ -2,7 +2,6 @@ class AddProfileInfo < ActiveRecord::Migration[6.0]
   def up
     add_column :users, :auth0_id, :string
     add_index :users, :auth0_id
-    change_column_null :users, :auth0_id, false
 
     add_column :users, :pronouns, :string
     add_column :users, :location, :string

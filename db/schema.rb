@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 2021_03_09_223147) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
-    t.string "auth0_id", null: false
+    t.string "auth0_id"
     t.string "pronouns"
     t.string "location"
     t.index ["auth0_id"], name: "index_users_on_auth0_id"
