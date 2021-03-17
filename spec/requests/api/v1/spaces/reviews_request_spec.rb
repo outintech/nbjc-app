@@ -21,12 +21,10 @@ RSpec.describe Api::V1::Spaces::ReviewsController, type: :controller do
             end
 
             user = create(:review_user_two)
-            
             @space_id = space.id
             @review_one = create(:random_review_assign_space_user, space_id: space.id, user_id: user.id)
             @review_two = create(:random_anon_review_assign_space_user, space_id: space.id, user_id: user.id)
 
-            controller.stub(:authenticate_request! => true)
             get :index, params: { space_id: @space_id }
         end
 
