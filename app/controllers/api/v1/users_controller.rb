@@ -7,6 +7,7 @@ class Api::V1::UsersController < ApplicationController
 
   # uused to search for a user by auth0 id
   def index
+    puts "CURRENT USER #{@current_user}"
     if params[:auth0_id].present?
       find_user_by_auth0_id
       if @user

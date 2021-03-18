@@ -5,7 +5,8 @@ module Secured
   extend ActiveSupport::Concern
 
   included do
-    before_action :authenticate_request! 
+    before_action :authenticate_request!
+    before_action :get_current_user!
   end
 
   private
@@ -13,7 +14,7 @@ module Secured
   def authenticate_request!
     auth_token
   rescue JWT::VerificationError, JWT::DecodeError
-    render json: { errors: ['Not Authenticated'] }, status: :unauthorized
+    render json: { errors: ['Access denied! Invalid token'] }, status: :unauthorized
   end
 
   def http_token
@@ -24,5 +25,16 @@ module Secured
 
   def auth_token
     JsonWebToken.verify(http_token)
+  end
+
+  def get_current_user!
+    decoded_token = JsonWebToken.decode(http_token)
+    auth0_id = decoded_token[:sub]
+    @current_user = User.find_by_auth0_id(auth0_id)
+    puts "current user #{@current_user.id}"
+  rescue JWT::ExpiredSignature, JWT::VerificationError
+    render json: { errors: ['Access denied! Token has expired'] }, status: :unauthorized
+  rescue JWT::DecodeError, JWT::VerificationError
+    render json: { errors: ['Access denied! Invalid token'] }, status: :unauthorized
   end
 end

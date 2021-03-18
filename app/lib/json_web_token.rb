@@ -32,4 +32,9 @@ class JsonWebToken
       end
     ]
   end
+
+  def self.decode(token)
+    body = JWT.decode(token, nil, false)[0]
+    HashWithIndifferentAccess.new body
+  end
 end
