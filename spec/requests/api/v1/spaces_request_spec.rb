@@ -1,6 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Spaces" do
+RSpec.describe Api::V1::SpacesController, type: :controller do
+
+  user_token = login_user
+  
   describe "GET spaces route" do
     describe "With no search terms or filters", type: :request do
       let!(:spaces) {FactoryBot.create_list(:random_space, 20)}
@@ -99,7 +102,8 @@ RSpec.describe "Api::V1::Spaces" do
     before do
       Language.create({name: "English"})
       Indicator.create({name: "Indicator"})
-      post '/api/v1/spaces', params: { space: space }
+      controller.stub(:authenticate_user! => true)
+      post :create, params: { space: space }
     end
 
     it 'returns the space' do
@@ -112,7 +116,7 @@ RSpec.describe "Api::V1::Spaces" do
 
     it 'returns all the details for a space' do
       id = JSON.parse(response.body)['data']['space']['id']
-      get "/api/v1/spaces/#{id}"
+      get :show, params: {id: id}
       data = JSON.parse(response.body)['data']
       expect(data['name']).to eq(space[:name])
       expect(data['price_level']).to eq(space[:price_level])
@@ -130,8 +134,8 @@ RSpec.describe "Api::V1::Spaces" do
     it 'updates a space' do
       @new_name = Faker::Company.name
       @new_phone = "+1" + Faker::Number.number(digits: 10).to_s
-      put "/api/v1/spaces/#{@space.id}", params: {
-            space: { name: @new_name, phone: @new_phone } }
+      controller.stub(:authenticate_user! => true)
+      put :update, params: { id: @space.id, space: { name: @new_name, phone: @new_phone } }
 
       expect(response.status).to eq(202)
       expect(Space.find(@space.id).name).to eq(@new_name)
@@ -146,14 +150,15 @@ RSpec.describe "Api::V1::Spaces" do
     end
 
     it 'should delete the space' do
-      get '/api/v1/spaces'
+      get :index
       expect(response.status).to eq(200)
       expect(JSON.parse(response.body)['data'].size).to eq(2)
-
-      delete "/api/v1/spaces/#{@space_one.id}"
+      
+      controller.stub(:authenticate_user! => true)
+      delete :destroy, params: {id: @space_one.id}
       expect(response.status).to eq(204)
 
-      get '/api/v1/spaces'
+      get :index
       expect(response.status).to eq(200)
       expect(JSON.parse(response.body)['data'].size).to eq(1)
     end

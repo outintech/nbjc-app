@@ -8,13 +8,17 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'space/search', to: 'spaces#create_yelp_search'
       resources :spaces, only: [:create, :index, :show, :update, :destroy] do
-        resources :reviews
         resources :address
         resources :photos
         resources :space_indicators
         resources :space_languages
       end
+      namespace :spaces do
+        resources :reviews
+      end
+      
       resources :indicators
+      resources :categories
     end
   end
 end

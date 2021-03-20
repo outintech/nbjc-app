@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_20_000915) do
+ActiveRecord::Schema.define(version: 2021_03_10_195449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2021_01_20_000915) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
+    t.string "attributed_user", default: "Anonymous", null: false
     t.index ["space_id"], name: "index_reviews_on_space_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
@@ -116,10 +117,11 @@ ActiveRecord::Schema.define(version: 2021_01_20_000915) do
     t.text "provider_url"
     t.text "url"
     t.jsonb "hours_of_op"
-    t.point "coordinates"
     t.integer "price_level"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "latitude"
+    t.decimal "longitude"
   end
 
   create_table "user_roles", force: :cascade do |t|

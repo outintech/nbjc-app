@@ -4,29 +4,61 @@ class Api::V1::SpacesController < ApplicationController
   before_action :find_space, only: [:show, :update, :destroy]
   # GET /spaces
   def index
-    @page = params[:page].to_i || 1
-    @per_page = params[:per_page].to_i || 20
-    # handle search
-    if params[:search].blank? || params[:search].nil?
-      @spaces = Space.all.page(@page).per(@per_page)
-    else
-      @terms = params[:search].downcase
-      @spaces = Space.where("lower(spaces.name) LIKE :search", search: "%#{@terms}%")
-    end
+    @page = 1
+    @per_page = 20
+    @page = params[:page].to_i unless params[:page].nil? || params[:page].to_i == 0
+    @per_page = params[:per_page].to_i unless params[:per_page].nil? || params[:per_page].to_i == 0
     
+    @fields = []
+    @include = []
+    @fields = params[:fields].split(',') unless params[:fields].nil? || params[:fields].blank?
+    # todo: validate includable fields?
+    @include = params[:include].split(',') unless params[:include].nil? || params[:include].blank?
+
+    @search = params[:search] unless params[:search].nil? || params[:search].blank?
+    @category = params[:category] unless params[:category].nil? || params[:category].blank?
+
+    # handle search
+    if @search.nil? && @category.nil?
+      @spaces = Space.all
+    elsif !!(@search && @category)
+      @terms = @search.downcase
+      @spaces = Space.where("lower(spaces.name) LIKE :search", search: "%#{@terms}%")
+      @category_alias = CategoryAlias.find_by(alias: @category)
+      @cas = CategoryAliasesSpace.where(category_alias: @category_alias)
+      @spaces = @spaces.or(Space.where(category_aliases_spaces: @cas))
+    elsif !!(@search)
+      @terms = @search.downcase
+      @spaces = Space.where("lower(spaces.name) LIKE :search", search: "%#{@terms}%")
+    else
+      @category_alias = CategoryAlias.find_by(alias: @category)
+      @cas = CategoryAliasesSpace.where(category_alias: @category_alias)
+      @spaces = Space.where(category_aliases_spaces: @cas)
+    end
     #handle filtering
     @spaces = @spaces.filter_by_price(filtering_params['price']).with_indicators(filtering_params['indicators'])
+
+    # handle pagination
     @total_count = @spaces.count
+    if @fields.length > 0
+      @spaces = @spaces.select(@fields)
+    end
     @spaces = @spaces.page(@page).per(@per_page)
 
     # TODO calculate average rating
-    render json: { data: @spaces, meta: { total_count: @total_count, page: @page, per_page: @per_page } }, include: [:address, :reviews, :photos, :indicators, :languages]
+    render json: { data: @spaces, meta: { total_count: @total_count, page: @page, per_page: @per_page } }, include: @include
   end
 
   # GET /spaces/:id
   def show
     # TODO calculate average rating
-    render json: { data: @space }, include: [:address, :reviews, :photos, :indicators, :languages]
+    render json: {data: @space.as_json(:include=>{
+      :address =>{},
+      :reviews => {except: [:user, :user_id, :updated_at]},
+      :photos => {}, 
+      :indicators =>{}, 
+      :languages => {}
+    })}
   end
 
   def create_yelp_search
@@ -74,7 +106,7 @@ class Api::V1::SpacesController < ApplicationController
   private
 
   def space_params
-    params.require(:space).permit(:phone, :name, :price_level, :provider_urn, :provider_url, hours_of_op: {}, address_attributes: [:id, :address_1, :address_2, :city, :postal_code, :country, :state], languages_attributes: [:id, :name], indicators_attributes: [:id, :name], photos_attributes: [:id, :url, :cover], reviews_attributes: [:id, :anonymous, :vibe_check, :rating, :content])
+    params.require(:space).permit(:phone, :name, :price_level, :provider_urn, :provider_url, hours_of_op: {}, address_attributes: [:id, :address_1, :address_2, :city, :postal_code, :country, :state], languages_attributes: [:id, :name], indicators_attributes: [:id, :name], photos_attributes: [:id, :url, :cover], reviews_attributes: [:id, :anonymous, :vibe_check, :rating, :content, :user_id])
   end
 
   def find_space
