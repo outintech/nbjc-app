@@ -126,7 +126,7 @@ workflows:
           filters:
             tags:
               only: /^v.*/
-            branch:
+            branches:
               only: main
       - build-image: # building a new docker image depends on build and tests passing
           requires:
