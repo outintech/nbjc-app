@@ -3,6 +3,7 @@ class Api::V1::UsersController < ApplicationController
   # you need to be logged in to do anything regarding a user
   include Secured
   before_action :find_user, only: [:update, :destroy]
+  skip_before_action :get_current_user!, only: [:create]
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
   # uused to search for a user by auth0 id
@@ -11,7 +12,7 @@ class Api::V1::UsersController < ApplicationController
       find_user_by_auth0_id
       # We want to make sure that you can't ask about someone else's auth0_id
       if @user.id == @current_user.id
-        render json: { data: { user: { user_id: @user.id } } }, status: 200
+        render json: { data: { user: { id: @user.id } } }, status: 200
       else
         render json: { error: 'Forbidden' }, status: 403
       end
@@ -43,7 +44,7 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     # check that the provided :auth0_id corresponds to the token auth0_id
-    if auth0_id != @current_user.auth0_id
+    if params[:auth0_id] != @auth0_id
       render json: { error: 'Forbidden' }, status: 403
     else 
       @user = User.new(user_params)
@@ -57,7 +58,7 @@ class Api::V1::UsersController < ApplicationController
 
   def update
     if verify_user && @current_user.update!(user_params)
-      render :show
+      render json: { data: { user: @user } }, status: 201
     else
       render json: { errors: @current_user.errors }, status: :unprocessable_entity
     end
