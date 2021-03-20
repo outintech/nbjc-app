@@ -185,16 +185,35 @@ rails destroy model <MODEL_NAME>
 </table>
 </div>
 
+# Authentication and Authorization
+
+## Auth0
+Diagram for login [here][auth-flow]
+
+### Testing
+- To get a bearer token for testing, login to the auth0 dashboard, navigate to the nbjc-app API and on the testing tab follow the instructions.
+
+
 ## Running tests
 `rspec`
 
 ## Deployment
 
 You can find the build pipeline in the circleci dashboard. Reach out in Slack for the pipeline link. Deployments only happen for tagged versions. See the circleci config in the `.circleci` folder.
-- See the tagging guidlines [here][tagging]
+- See the tagging guidelines [here][tagging]
 
 ### Contribution
 - A PR can only be merged when both build and test circleci jobs pass.
+
+# Authentication and Authorization
+
+## Auth0
+Diagram for login [here][auth-flow]
+
+### Testing
+- To get a bearer token for testing, login to the auth0 dashboard, navigate to the nbjc-app API and on the testing tab follow the instructions.
+
+
 
 [redis-ubuntu-tutorial]: https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-20-04
 [postgres-ubuntu-tutorial]: https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart
@@ -204,3 +223,5 @@ You can find the build pipeline in the circleci dashboard. Reach out in Slack fo
 [indicators]: https://00895f10-199e-4807-b94f-a924c303a692.mock.pstmn.io/api/v1indicators
 [schema-sheet]: https://docs.google.com/spreadsheets/d/1825fpT5UzzrGEKcjvgeZmKQ9xdnfNUvj3xu11WbTxKQ/edit?usp=sharing
 [tagging]: https://git-scm.com/book/en/v2/Git-Basics-Tagging
+[auth-flow]: https://auth0.com/docs/flows/authorization-code-flow-with-proof-key-for-code-exchange-pkce
+

@@ -86,12 +86,6 @@ ActiveRecord::Schema.define(version: 2021_03_10_195449) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "space_indicators", force: :cascade do |t|
     t.bigint "space_id"
     t.bigint "indicator_id"
@@ -124,26 +118,14 @@ ActiveRecord::Schema.define(version: 2021_03_10_195449) do
     t.decimal "longitude"
   end
 
-  create_table "user_roles", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "role_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["role_id"], name: "index_user_roles_on_role_id"
-    t.index ["user_id"], name: "index_user_roles_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.string "auth0_id"
+    t.string "pronouns"
+    t.string "location"
+    t.index ["auth0_id"], name: "index_users_on_auth0_id"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
