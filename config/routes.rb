@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :spaces, only: [:create, :index, :show, :update, :destroy] do
+        resources :reviews, only: :index
         resources :address
         resources :photos
         resources :space_indicators
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
       
       resources :indicators
       resources :categories
+      resources :geolocations
       resources :users
     end
   end

@@ -7,6 +7,6 @@ class ApplicationController < ActionController::API
   respond_to :json
 
   def handle_record_not_found
-    render json: { error: 'User not found' }, status: 404
+    render json: { error: 'Not found' }, status: 404
   end
 end
