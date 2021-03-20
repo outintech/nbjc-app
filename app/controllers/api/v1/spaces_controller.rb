@@ -1,6 +1,9 @@
 class Api::V1::SpacesController < ApplicationController
+  include Secured
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_user!, only: [:create, :update, :destroy]
+  # The only routes not secured are the GET /spaces and GET /spaces/:id
+  skip_before_action :authenticate_request!, only: [:index, :show]
+  skip_before_action :get_current_user!, only: [:index, :show]
   before_action :find_space, only: [:show, :update, :destroy]
   # GET /spaces
   def index
@@ -96,6 +99,7 @@ class Api::V1::SpacesController < ApplicationController
 
   # POST /spaces
   def create
+    check_user
     @space = Space.new(space_params)
     if @space.save!
       render json: { data: { space: @space } }, status: 201
@@ -106,6 +110,7 @@ class Api::V1::SpacesController < ApplicationController
 
   # PUT /spaces/:id
   def update
+    check_user
     if @space
       @space.update(space_params)
       render json: { message: 'Space updated successfully.' }, status: 202
@@ -116,6 +121,7 @@ class Api::V1::SpacesController < ApplicationController
 
   # DELETE /spaces/:id
   def destroy
+    check_user
     if @space
       @space.destroy
       render json: { message: 'Space deleted successfully.' }, status: 204
@@ -136,5 +142,13 @@ class Api::V1::SpacesController < ApplicationController
 
   def filtering_params
     params.fetch(:filters, {})
+  end
+
+  def check_user
+    if params[:reviews_attributes].present?
+      if params[:reviews_attributes][:user_id] != @current_user.id
+        render json: { error: 'Forbidden' }, status: 403
+      end
+    end
   end
 end

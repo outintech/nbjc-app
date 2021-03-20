@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
+gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -24,6 +24,8 @@ gem 'bcrypt', '~> 3.1.7'
 # For sshkit
 gem 'ed25519', '>= 1.2', '<=2.0'
 gem 'bcrypt_pbkdf', '>=1.0', '<=2.0'
+# For responding
+gem 'responders'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -31,8 +33,6 @@ gem 'bcrypt_pbkdf', '>=1.0', '<=2.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-gem 'devise'
-gem 'cancancan'
 gem 'jwt'
 gem 'rack-cors'
 gem 'kaminari'
@@ -40,7 +40,7 @@ gem 'geocoder'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec-rails', '~> 4.0.1'
+  gem 'rspec-rails', '~> 4.0.2'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'json'
