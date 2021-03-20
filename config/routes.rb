@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
-      post 'space/search', to: 'spaces#create_yelp_search'
+      post 'create_space_search', to: 'spaces#create_yelp_search'
       resources :spaces, only: [:create, :index, :show, :update, :destroy] do
         resources :address
         resources :photos
