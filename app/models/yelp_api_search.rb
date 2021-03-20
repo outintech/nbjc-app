@@ -32,7 +32,7 @@ class YelpApiSearch
         converted_responses
     end
 
-    def get_yelp_business_info(yelp_id)
+    def self.get_yelp_business_info(yelp_id)
         return @yelp_client.business(yelp_id)
     end
 end
