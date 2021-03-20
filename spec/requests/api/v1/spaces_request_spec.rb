@@ -53,7 +53,7 @@ RSpec.describe Api::V1::SpacesController, type: :controller do
       end
 
       it 'returns all spaces with the specified indicators' do
-        get '/api/v1/spaces', params: { filters: { indicators: [6,7]}}
+        get '/api/v1/spaces', params: { filters: { indicators: '6,7'}}
         expect(JSON.parse(response.body)['data'].size).to eq(2)
       end
     end

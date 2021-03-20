@@ -23,7 +23,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         newUser = "provider|5678"
         get :index, params: { auth0_id: newUser }
         expect(response.status).to eq(404)
-        expect(JSON.parse(response.body)["error"]).to eq("User not found")
+        expect(JSON.parse(response.body)["error"]).to eq("Not found")
       end
 
       it 'gets a user id given an auth0 id' do
