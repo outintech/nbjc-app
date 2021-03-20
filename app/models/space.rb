@@ -18,6 +18,12 @@ class Space < ApplicationRecord
 
   before_save :find_languages, :find_indicators
 
+  def update_hours_of_operation
+    yelp_id = self.provider_urn.split("yelp:")
+    response = YelpApiSearch.get_yelp_business_info(yelp_id)
+    self.update_attribute(:hours_of_op, response.hours)
+  end
+  
   after_validation :geocode
   geocoded_by :full_address
 

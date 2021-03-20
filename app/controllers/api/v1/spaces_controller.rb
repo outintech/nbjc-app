@@ -1,9 +1,11 @@
 class Api::V1::SpacesController < ApplicationController
   include Secured
   skip_before_action :verify_authenticity_token
+
   # The only routes not secured are the GET /spaces and GET /spaces/:id
   skip_before_action :authenticate_request!, only: [:index, :show]
   skip_before_action :get_current_user!, only: [:index, :show]
+
   before_action :find_space, only: [:show, :update, :destroy]
   # GET /spaces
   def index
@@ -97,11 +99,25 @@ class Api::V1::SpacesController < ApplicationController
     })}
   end
 
+  def create_yelp_search
+    yelp_query = YelpApiSearch.new(yelp_search_params)
+    @search_results = yelp_query.submit_search
+    @total_count = @search_results.count
+    @page = params[:page].to_i || 1
+    @per_page = params[:per_page].to_i || 20
+
+    @spaces = @search_results.page(@page).per(@per_page)
+    render json: {data: @spaces, meta: { total_count: @total_count, page: @page, per_page: @per_page} }
+  end
+
   # POST /spaces
   def create
     check_user
     @space = Space.new(space_params)
     if @space.save!
+      if Rails.env.production?
+        @space.update_hours_of_operation
+      end
       render json: { data: { space: @space } }, status: 201
     else
       render json: { error: 'Unable to create space' }, status:400
@@ -144,6 +160,10 @@ class Api::V1::SpacesController < ApplicationController
     params.fetch(:filters, {})
   end
 
+  def yelp_search_params
+    params.require(:space_search).permit(:location, :term, :radius)
+  end
+
   def check_user
     if params[:reviews_attributes].present?
       if params[:reviews_attributes][:user_id] != @current_user.id
@@ -151,4 +171,5 @@ class Api::V1::SpacesController < ApplicationController
       end
     end
   end
+
 end
