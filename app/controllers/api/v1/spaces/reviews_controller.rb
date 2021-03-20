@@ -1,6 +1,7 @@
 class Api::V1::Spaces::ReviewsController < ApplicationController
   include Secured
   skip_before_action :authenticate_request!, only: [:index]
+  skip_before_action :get_current_user!, only: [:index]
   before_action :load_a_review, only: [:show, :update, :destroy]
   
   def index
@@ -9,6 +10,7 @@ class Api::V1::Spaces::ReviewsController < ApplicationController
       render json: { data: @reviews.as_json(except: [:user, :user_id, :updated_at], include: :space) }
     else
       # todo: enforce authorization here?
+      # can do so with Secured methods
       # this is adding a bit of obfuscation by not showing the actual review
       # ideally we would enforce this through autorization token instead
       user_review_for_space = load_review_for_space_user
@@ -28,7 +30,8 @@ class Api::V1::Spaces::ReviewsController < ApplicationController
   end
 
   def create
-    # todo: this allows you to create a review for another user.
+    check_user
+
     @review = Review.new(review_params)
 
     if @review.anonymous == false
@@ -44,6 +47,7 @@ class Api::V1::Spaces::ReviewsController < ApplicationController
   end
   
   def update
+    check_user
     if @review
       @review.assign_attributes(review_params)
 
@@ -63,6 +67,7 @@ class Api::V1::Spaces::ReviewsController < ApplicationController
   end
   
   def destroy
+    check_user
     if @review
       @review.destroy
       render json: {message: 'Successfully deleted the review.'}, status: 204
@@ -99,5 +104,11 @@ class Api::V1::Spaces::ReviewsController < ApplicationController
   def new_anonymous_user
     User.new(email: "anonymous@email.com",username: "Anonymous")
   end
-  
+
+  def check_user
+    # You cannot carry out write operations on behalf of another user
+    if params[:user_id] != @current_user.id
+      render json: { error: 'Forbidden' }, status: 403
+    end
+  end
 end

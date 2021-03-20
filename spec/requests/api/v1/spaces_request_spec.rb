@@ -101,6 +101,8 @@ RSpec.describe Api::V1::SpacesController, type: :controller do
       Language.create({name: "English"})
       Indicator.create({name: "Indicator"})
       controller.stub(:authenticate_request! => true)
+      controller.stub(:get_current_user! => nil)
+      controller.stub(:check_user => nil)
       post :create, params: { space: space }
     end
 
@@ -133,6 +135,8 @@ RSpec.describe Api::V1::SpacesController, type: :controller do
       @new_name = Faker::Company.name
       @new_phone = "+1" + Faker::Number.number(digits: 10).to_s
       controller.stub(:authenticate_request! => true)
+      controller.stub(:get_current_user! => nil)
+      controller.stub(:check_user => nil)
       put :update, params: { id: @space.id, space: { name: @new_name, phone: @new_phone } }
 
       expect(response.status).to eq(202)
@@ -153,6 +157,8 @@ RSpec.describe Api::V1::SpacesController, type: :controller do
       expect(JSON.parse(response.body)['data'].size).to eq(2)
       
       controller.stub(:authenticate_request! => true)
+      controller.stub(:get_current_user! => nil)
+      controller.stub(:check_user => nil)
       delete :destroy, params: {id: @space_one.id}
       expect(response.status).to eq(204)
 

@@ -28,10 +28,13 @@ module Secured
   end
 
   def get_current_user!
-    decoded_token = JsonWebToken.decode(http_token)
-    auth0_id = decoded_token[:sub]
+    auth0_id = decode_token!
     @current_user = User.find_by_auth0_id(auth0_id)
-    puts "current user #{@current_user.id}"
+  end
+
+  def decode_token!
+    decoded_token = JsonWebToken.decode(http_token)
+    decoded_token[:sub]
   rescue JWT::ExpiredSignature, JWT::VerificationError
     render json: { errors: ['Access denied! Token has expired'] }, status: :unauthorized
   rescue JWT::DecodeError, JWT::VerificationError
