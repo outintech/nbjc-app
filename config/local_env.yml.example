@@ -6,6 +6,7 @@
 # For example, setting:
 # GMAIL_USERNAME: 'Your_Gmail_Username'
 # makes 'Your_Gmail_Username' available as ENV["GMAIL_USERNAME"]
+
 # Uncomment for production only
 # NBJC_APP_DATABASE_IP: 'replace with database IP address from digital ocean'
 # NBJC_APP_DATABASE_PASSWORD: 'replace with acual value'
@@ -15,3 +16,6 @@ PGUSER: 'nbjc_app'
 PGPASSWORD: 'postgres'  # make sure you set the nbjc_app user to have the password specified here
 # Will be overridden with test when running rspec
 RAILS_ENV: 'development'
+
+AUTH0_APP_DOMAIN: 'login to Auth0 dashboard - Applications - Default APP'
+

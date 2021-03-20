@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::Spaces::ReviewsController, type: :controller do
-    login_user
 
     describe "GET reviews route" do
         before do
@@ -22,12 +21,10 @@ RSpec.describe Api::V1::Spaces::ReviewsController, type: :controller do
             end
 
             user = create(:review_user_two)
-            
             @space_id = space.id
             @review_one = create(:random_review_assign_space_user, space_id: space.id, user_id: user.id)
             @review_two = create(:random_anon_review_assign_space_user, space_id: space.id, user_id: user.id)
 
-            controller.stub(:authenticate_user! => true)
             get :index, params: { space_id: @space_id }
         end
 
@@ -60,7 +57,9 @@ RSpec.describe Api::V1::Spaces::ReviewsController, type: :controller do
             @user_id = user.id
             @username = user.username
         
-            controller.stub(:authenticate_user! => true)
+            controller.stub(:authenticate_request! => true)
+            controller.stub(:get_current_user! => nil)
+            controller.stub(:check_user => nil)
             post :create, params: {review: {
                 anonymous: false, 
                 vibe_check: rand(1..3), 
@@ -118,7 +117,10 @@ RSpec.describe Api::V1::Spaces::ReviewsController, type: :controller do
     
         it 'updates a review' do
           @new_content = "New lorem ipsum text"
-          controller.stub(:authenticate_user! => true)
+          controller.stub(:authenticate_request! => true)
+          controller.stub(:get_current_user! => nil)
+          controller.stub(:check_user => nil)
+
           put :update, params: { space_id: @space_id, id: @review.id, review: { content: @new_content } }
     
           expect(response.status).to eq(302)
@@ -152,13 +154,16 @@ RSpec.describe Api::V1::Spaces::ReviewsController, type: :controller do
             @review_one = create(:random_review_assign_space_user, space_id: space.id, user_id: user.id)
             @review_two = create(:random_anon_review_assign_space_user, space_id: space.id, user_id: user.id)
         end
-    
+
         it 'should delete the review' do
           get :index, params: { space_id: @space_id }
           expect(response.status).to eq(200)
           expect(JSON.parse(response.body)['data'].size).to eq(2)
           
-          controller.stub(:authenticate_user! => true)
+          controller.stub(:authenticate_request! => true)
+          controller.stub(:get_current_user! => nil)
+          controller.stub(:check_user => nil)
+
           delete :destroy, params: {space_id: @space_id, id: @review_one.id}
           expect(response.status).to eq(204)
     
