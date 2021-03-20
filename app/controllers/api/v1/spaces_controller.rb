@@ -35,18 +35,42 @@ class Api::V1::SpacesController < ApplicationController
       @cas = CategoryAliasesSpace.where(category_alias: @category_alias)
       @spaces = Space.where(category_aliases_spaces: @cas)
     end
+
+    # location based search 
+    @location = params[:location]
+    @lat = params[:lat].to_f unless params[:lat].nil? || params[:lat].to_f == 0.0
+    @lng = params[:lng].to_f unless params[:lng].nil? || params[:lng].to_f == 0.0
+    @distance_filter = filtering_params['distance'].to_i unless filtering_params['distance'].nil? || filtering_params['distance'].to_i == 0
+
+    @locationParam = nil
+    if @location
+      @locationParam = @location
+    elsif !(@lat.nil? || @lng.nil?)
+      @locationParam = [@lat, @lng]
+    end
+    if !@locationParam.nil?
+      if @distance_filter.nil?
+        @spaces = @spaces.near @locationParam
+      else
+
+        @spaces = @spaces.near(@locationParam, @distance_filter)
+      end
+    end
     #handle filtering
     @indicators = filtering_params['indicators']
     @spaces = @spaces.filter_by_price(filtering_params['price']).with_indicators(@indicators)
 
     # handle pagination
-    if @indicators.nil? || @indicators.blank?
+    if (@indicators.nil? || @indicators.blank?) && @locationParam.nil?
       @total_count = @spaces.count
-    else
+    elsif @locationParam.nil?
       # when there are indicators, there is a join with the space_indicators table with a 
       # group by on spaces.id. So the actual count of spaces found matching is simply the
       # number of rows of this count query
       @total_count = @spaces.count.size
+    else
+      # TODO: how to do total count when there is location?
+      @total_count = Space.all.count
     end
     if @fields.length > 0
       @spaces = @spaces.select(@fields)
