@@ -115,7 +115,9 @@ class Api::V1::SpacesController < ApplicationController
     check_user
     @space = Space.new(space_params)
     if @space.save!
-      @space.update_hours_of_operation
+      if Rails.env.production?
+        @space.update_hours_of_operation
+      end
       render json: { data: { space: @space } }, status: 201
     else
       render json: { error: 'Unable to create space' }, status:400
