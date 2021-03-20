@@ -4,7 +4,6 @@ class Api::V1::UsersController < ApplicationController
   include Secured
   before_action :find_user, only: [:update, :destroy]
   skip_before_action :get_current_user!, only: [:create]
-  rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
   # uused to search for a user by auth0 id
   def index
@@ -12,7 +11,7 @@ class Api::V1::UsersController < ApplicationController
       find_user_by_auth0_id
       # We want to make sure that you can't ask about someone else's auth0_id
       if @user.id == @current_user.id
-        render json: { data: { user: { id: @user.id } } }, status: 200
+        render json: { data: { id: @user.id } }, status: 200
       else
         render json: { error: 'Forbidden' }, status: 403
       end
@@ -81,10 +80,6 @@ class Api::V1::UsersController < ApplicationController
     if @user == nil
       raise ActiveRecord::RecordNotFound
     end
-  end
-
-  def handle_record_not_found
-    render json: { error: 'User not found' }, status: 404
   end
 
   def verify_user

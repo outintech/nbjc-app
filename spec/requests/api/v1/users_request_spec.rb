@@ -33,7 +33,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         request.headers["Authorization"] = "Bearer #{token}"
         get :index, params: { auth0_id: @auth0_id_test }
         expect(response.status).to eq(200)
-        expect(JSON.parse(response.body)['data']['user']['id']).to eq(user.id)
+        expect(JSON.parse(response.body)['data']['id']).to eq(user.id)
       end
 
       it 'gets a user\'s profile' do
