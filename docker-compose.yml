@@ -14,17 +14,19 @@ services:
       - redis
     env_file:
       - .env
+    restart: always
     volumes:
       - api-logs:/var/www/nbjc-app/log
 
   web:
     build:
       context: .
-      dockerfile: ./web/DockerFile
+      dockerfile: ./web/Dockerfile
     depends_on:
       - api
     ports:
       - 80:80
+    restart: always
 volumes:
   redis:
   api-logs:
