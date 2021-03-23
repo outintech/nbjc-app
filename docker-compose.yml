@@ -10,16 +10,21 @@ services:
       
   api:
     image: outintech/nbjc-app:$DEPLOY_TAG
-    command: bundle exec rails s -p 80 -b '0.0.0.0'
     depends_on:
       - redis
-    ports:
-      - '80:80'
     env_file:
       - .env
     volumes:
       - api-logs:/var/www/nbjc-app/log
 
+  web:
+    build:
+      context: .
+      dockerfile: ./web/DockerFile
+    depends_on:
+      - api
+    ports:
+      - 80:80
 volumes:
   redis:
   api-logs:
