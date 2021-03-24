@@ -13,7 +13,7 @@ class YelpApiSearch
         @yelp_client = Yelp::Fusion::Client.new(ENV['YELP_API_KEY'])
         responses = @yelp_client.search(@location, {term: @term, radius: @radius})
         filtered_responses = filter_yelp_responses(responses)
-        converted_responses = convert_filtered_responses(client, filtered_responses)
+        converted_responses = convert_filtered_responses(filtered_responses)
         converted_responses
     end
 

@@ -3,7 +3,7 @@ class Api::V1::SpacesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   # The only routes not secured are the GET /spaces and GET /spaces/:id
-  skip_before_action :authenticate_request!, only: [:index, :show]
+  skip_before_action :authenticate_request!, only: [:index, :show, :create_yelp_search]
   skip_before_action :get_current_user!, only: [:index, :show]
 
   before_action :find_space, only: [:show, :update, :destroy]
@@ -102,12 +102,7 @@ class Api::V1::SpacesController < ApplicationController
   def create_yelp_search
     yelp_query = YelpApiSearch.new(yelp_search_params)
     @search_results = yelp_query.submit_search
-    @total_count = @search_results.count
-    @page = params[:page].to_i || 1
-    @per_page = params[:per_page].to_i || 20
-
-    @spaces = @search_results.page(@page).per(@per_page)
-    render json: {data: @spaces, meta: { total_count: @total_count, page: @page, per_page: @per_page} }
+    render json: {data: @search_results}
   end
 
   # POST /spaces
@@ -161,7 +156,7 @@ class Api::V1::SpacesController < ApplicationController
   end
 
   def yelp_search_params
-    params.require(:space_search).permit(:location, :term, :radius)
+    params.require(:space_search).permit(:location, :term, :radius, :zipcode, :user_id)
   end
 
   def check_user
