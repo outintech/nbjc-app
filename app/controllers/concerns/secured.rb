@@ -6,6 +6,7 @@ module Secured
 
   included do
     before_action :authenticate_request!
+    before_action :get_auth0_id
     before_action :get_current_user!
   end
 
@@ -27,8 +28,11 @@ module Secured
     JsonWebToken.verify(http_token)
   end
 
-  def get_current_user!
+  def get_auth0_id
     @auth0_id = decode_token!
+  end
+
+  def get_current_user!
     @current_user = User.find_by_auth0_id(@auth0_id)
     if @current_user == nil
       raise ActiveRecord::RecordNotFound
@@ -41,6 +45,6 @@ module Secured
   rescue JWT::ExpiredSignature, JWT::VerificationError
     render json: { errors: ['Access denied! Token has expired'] }, status: :unauthorized
   rescue JWT::DecodeError, JWT::VerificationError
-    render json: { errors: ['Access denied! Invalid token'] }, status: :unauthorized
+    render json: { errors: ['Access denied! Invalid token decode'] }, status: :unauthorized
   end
 end

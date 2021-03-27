@@ -2,6 +2,7 @@ class Api::V1::Spaces::ReviewsController < ApplicationController
   include Secured
   skip_before_action :authenticate_request!, only: [:index]
   skip_before_action :get_current_user!, only: [:index]
+  skip_before_action :get_auth0_id, only: [:index]
   before_action :load_a_review, only: [:show, :update, :destroy]
   
   def index

@@ -3,7 +3,7 @@ class Api::V1::UsersController < ApplicationController
   # you need to be logged in to do anything regarding a user
   include Secured
   before_action :find_user, only: [:update, :destroy]
-  skip_before_action :get_current_user!, only: [:create]
+  skip_before_action :get_current_user!, :only => [:create]
 
   # uused to search for a user by auth0 id
   def index
