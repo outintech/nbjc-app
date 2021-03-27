@@ -72,7 +72,7 @@ class Api::V1::SpacesController < ApplicationController
       # when there are indicators, there is a join with the space_indicators table with a 
       # group by on spaces.id. So the actual count of spaces found matching is simply the
       # number of rows of this count query
-      @total_count = @spaces.count.size
+      @total_count = @spaces.count.size 
     else
       # TODO: how to do total count when there is location?
       @total_count = Space.all.count

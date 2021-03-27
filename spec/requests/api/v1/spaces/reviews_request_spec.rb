@@ -83,6 +83,7 @@ RSpec.describe Api::V1::Spaces::ReviewsController, type: :controller do
           id = JSON.parse(response.body)['data']['review']['id']
           get :show, params: {id: id, space_id: @space_id}
           data = JSON.parse(response.body)['data']
+          p data
           expect(data["space_id"]).to eq(@space_id)
           expect(data["content"]).to eq("Lorem ipsum dolor sit amet etc etc etc")
           expect(data["attributed_user"]).to eq(@username)

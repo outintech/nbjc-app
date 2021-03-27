@@ -31,6 +31,10 @@ class Space < ApplicationRecord
     [self.address.address_1, self.address.address_2, self.address.city, self.address.postal_code, self.address.country].compact.join(",")
   end
 
+  def calculate_average_rating
+    self.update_attribute(:avg_rating, self.reviews.average(:rating))
+  end
+
   private
 
   def find_languages

@@ -60,50 +60,58 @@ RSpec.describe Api::V1::SpacesController, type: :controller do
   end
 
   describe "POST spaces and GET space details routes" do
-    space = {
-      provider_urn: "yelp:" + Faker::Crypto.md5,
-      provider_url: Faker::Internet.url,
-      name: Faker::Company.name,
-      price_level: Faker::Boolean.boolean ? Faker::Number.between(from: 1, to: 4) : nil,
-      phone: "+" + Faker::Number.number(digits: 10).to_s,
-      hours_of_op: {
-        start: "0800",
-        stop: "1500",
-        day: 0
-      },
-      address_attributes: {
-        address_1: Faker::Address.street_address,
-        address_2: Faker::Address.secondary_address,
-        city: Faker::Address.city_prefix + " " + Faker::Address.city_suffix,
-        postal_code: Faker::Address.postcode,
-        country: "US",
-        state: Faker::Address.state_abbr
-      },
-      photos_attributes: [
-        {
-          url: Faker::Internet.url,
-          cover: true
-        }
-      ],
-      languages_attributes: [
-        {
-          name: "English"
-        }
-      ],
-      indicators_attributes: [
-        {
-          name: "Indicator"
-        }
-      ]
-    }
-    
     before do
+      user = create(:review_user_two)
+      @space = {
+        user_id: user.id,
+        provider_urn: "yelp:" + Faker::Crypto.md5,
+        provider_url: Faker::Internet.url,
+        name: Faker::Company.name,
+        price_level: Faker::Boolean.boolean ? Faker::Number.between(from: 1, to: 4) : nil,
+        phone: "+" + Faker::Number.number(digits: 10).to_s,
+        hours_of_op: {
+          start: "0800",
+          stop: "1500",
+          day: 0
+        },
+        address_attributes: {
+          address_1: Faker::Address.street_address,
+          address_2: Faker::Address.secondary_address,
+          city: Faker::Address.city_prefix + " " + Faker::Address.city_suffix,
+          postal_code: Faker::Address.postcode,
+          country: "US",
+          state: Faker::Address.state_abbr
+        },
+        photos_attributes: [
+          {
+            url: Faker::Internet.url,
+            cover: true
+          }
+        ],
+        languages_attributes: [
+          {
+            name: "English"
+          }
+        ],
+        indicators_attributes: [
+          {
+            name: "Indicator"
+          }
+        ],
+        reviews_attributes: [
+          {
+            rating: 4,
+            content: "This is a great place",
+            user_id: user.id,
+          }
+        ]
+      }
       Language.create({name: "English"})
       Indicator.create({name: "Indicator"})
       controller.stub(:authenticate_request! => true)
       controller.stub(:get_current_user! => nil)
       controller.stub(:check_user => nil)
-      post :create, params: { space: space }
+      post :create, params: { space: @space }
     end
 
     it 'returns the space' do
@@ -118,11 +126,12 @@ RSpec.describe Api::V1::SpacesController, type: :controller do
       id = JSON.parse(response.body)['data']['space']['id']
       get :show, params: {id: id}
       data = JSON.parse(response.body)['data']
-      expect(data['name']).to eq(space[:name])
-      expect(data['price_level']).to eq(space[:price_level])
-      expect(data['phone']).to eq(space[:phone])
-      expect(data['provider_urn']).to eq(space[:provider_urn])
-      expect(data['provider_url']).to eq(space[:provider_url])
+      expect(data['name']).to eq(@space[:name])
+      expect(data['price_level']).to eq(@space[:price_level])
+      expect(data['phone']).to eq(@space[:phone])
+      expect(data['provider_urn']).to eq(@space[:provider_urn])
+      expect(data['provider_url']).to eq(@space[:provider_url])
+      expect(data['avg_rating']).to eq(4)
     end
   end
 
