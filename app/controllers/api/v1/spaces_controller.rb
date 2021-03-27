@@ -74,8 +74,7 @@ class Api::V1::SpacesController < ApplicationController
       # number of rows of this count query
       @total_count = @spaces.count.size 
     else
-      # TODO: how to do total count when there is location?
-      @total_count = Space.all.count
+      @total_count = @spaces.count(:all)
     end
     if @fields.length > 0
       @spaces = @spaces.select(@fields)
@@ -83,13 +82,11 @@ class Api::V1::SpacesController < ApplicationController
 
     @spaces = @spaces.page(@page).per(@per_page)
 
-    # TODO calculate average rating
     render json: { data: @spaces, meta: { total_count: @total_count, page: @page, per_page: @per_page } }, include: @include
   end
 
   # GET /spaces/:id
   def show
-    # TODO calculate average rating
     render json: {data: @space.as_json(:include=>{
       :address =>{},
       :reviews => {except: [:user, :user_id, :updated_at]},
