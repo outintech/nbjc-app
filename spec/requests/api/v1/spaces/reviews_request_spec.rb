@@ -58,6 +58,7 @@ RSpec.describe Api::V1::Spaces::ReviewsController, type: :controller do
             @username = user.username
         
             controller.stub(:authenticate_request! => true)
+            controller.stub(:get_auth0_id => nil)
             controller.stub(:get_current_user! => nil)
             controller.stub(:check_user => nil)
             post :create, params: {review: {
@@ -83,7 +84,6 @@ RSpec.describe Api::V1::Spaces::ReviewsController, type: :controller do
           id = JSON.parse(response.body)['data']['review']['id']
           get :show, params: {id: id, space_id: @space_id}
           data = JSON.parse(response.body)['data']
-          p data
           expect(data["space_id"]).to eq(@space_id)
           expect(data["content"]).to eq("Lorem ipsum dolor sit amet etc etc etc")
           expect(data["attributed_user"]).to eq(@username)
@@ -119,6 +119,7 @@ RSpec.describe Api::V1::Spaces::ReviewsController, type: :controller do
         it 'updates a review' do
           @new_content = "New lorem ipsum text"
           controller.stub(:authenticate_request! => true)
+          controller.stub(:get_auth0_id => nil)
           controller.stub(:get_current_user! => nil)
           controller.stub(:check_user => nil)
 
@@ -162,6 +163,7 @@ RSpec.describe Api::V1::Spaces::ReviewsController, type: :controller do
           expect(JSON.parse(response.body)['data'].size).to eq(2)
           
           controller.stub(:authenticate_request! => true)
+          controller.stub(:get_auth0_id => nil)
           controller.stub(:get_current_user! => nil)
           controller.stub(:check_user => nil)
 
