@@ -58,7 +58,6 @@ class Api::V1::SpacesController < ApplicationController
       if @distance_filter.nil?
         @spaces = @spaces.near @locationParam
       else
-
         @spaces = @spaces.near(@locationParam, @distance_filter)
       end
     end
@@ -74,8 +73,10 @@ class Api::V1::SpacesController < ApplicationController
       # group by on spaces.id. So the actual count of spaces found matching is simply the
       # number of rows of this count query
       @total_count = @spaces.count.size 
-    else
+    elsif (@indicators.nil? || @indicators.blank?)
       @total_count = @spaces.count(:all)
+    else 
+      @total_count = @spaces.count(:all).size
     end
     if @fields.length > 0
       @spaces = @spaces.select(@fields)
