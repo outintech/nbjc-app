@@ -64,7 +64,7 @@ class Api::V1::SpacesController < ApplicationController
     end
     #handle filtering
     @indicators = filtering_params['indicators']
-    @spaces = @spaces.filter_by_price(filtering_params['price']).with_indicators(@indicators)
+    @spaces = @spaces.filter_by_price(filtering_params['price']).filter_by_rating(filtering_params['rating']).with_indicators(@indicators)
 
     # handle pagination
     if (@indicators.nil? || @indicators.blank?) && @locationParam.nil?
@@ -93,7 +93,8 @@ class Api::V1::SpacesController < ApplicationController
       :reviews => {except: [:user, :user_id, :updated_at]},
       :photos => {}, 
       :indicators =>{}, 
-      :languages => {}
+      :languages => {},
+      :category_buckets => {}
     })}
   end
 

@@ -1,5 +1,6 @@
 class Space < ApplicationRecord
   scope :filter_by_price, -> (price) { where("spaces.price_level <= ?", price) if price }
+  scope :filter_by_rating, -> (rating) { where("spaces.avg_rating >= ?", rating) if rating }
   scope :with_indicators, -> (ids) { joins(:indicators).group(:id).having('array_agg(indicators.id) @> ARRAY[?]::bigint[]', ids.split(',')) if ids }
 
   has_many :reviews, dependent: :destroy
