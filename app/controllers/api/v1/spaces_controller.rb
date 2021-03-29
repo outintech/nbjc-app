@@ -5,6 +5,7 @@ class Api::V1::SpacesController < ApplicationController
   # The only routes not secured are the GET /spaces and GET /spaces/:id
   skip_before_action :authenticate_request!, only: [:index, :show]
   skip_before_action :get_current_user!, only: [:index, :show]
+  skip_before_action :get_auth0_id, only: [:index, :show]
 
   before_action :find_space, only: [:show, :update, :destroy]
   # GET /spaces
@@ -57,13 +58,12 @@ class Api::V1::SpacesController < ApplicationController
       if @distance_filter.nil?
         @spaces = @spaces.near @locationParam
       else
-
         @spaces = @spaces.near(@locationParam, @distance_filter)
       end
     end
     #handle filtering
     @indicators = filtering_params['indicators']
-    @spaces = @spaces.filter_by_price(filtering_params['price']).with_indicators(@indicators)
+    @spaces = @spaces.filter_by_price(filtering_params['price']).filter_by_rating(filtering_params['rating']).with_indicators(@indicators)
 
     # handle pagination
     if (@indicators.nil? || @indicators.blank?) && @locationParam.nil?
@@ -72,10 +72,11 @@ class Api::V1::SpacesController < ApplicationController
       # when there are indicators, there is a join with the space_indicators table with a 
       # group by on spaces.id. So the actual count of spaces found matching is simply the
       # number of rows of this count query
-      @total_count = @spaces.count.size
-    else
-      # TODO: how to do total count when there is location?
-      @total_count = Space.all.count
+      @total_count = @spaces.count.size 
+    elsif (@indicators.nil? || @indicators.blank?)
+      @total_count = @spaces.count(:all)
+    else 
+      @total_count = @spaces.count(:all).size
     end
     if @fields.length > 0
       @spaces = @spaces.select(@fields)
@@ -83,19 +84,18 @@ class Api::V1::SpacesController < ApplicationController
 
     @spaces = @spaces.page(@page).per(@per_page)
 
-    # TODO calculate average rating
     render json: { data: @spaces, meta: { total_count: @total_count, page: @page, per_page: @per_page } }, include: @include
   end
 
   # GET /spaces/:id
   def show
-    # TODO calculate average rating
     render json: {data: @space.as_json(:include=>{
       :address =>{},
       :reviews => {except: [:user, :user_id, :updated_at]},
       :photos => {}, 
       :indicators =>{}, 
-      :languages => {}
+      :languages => {},
+      :category_buckets => {}
     })}
   end
 

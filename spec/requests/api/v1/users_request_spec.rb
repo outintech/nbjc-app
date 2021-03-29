@@ -19,6 +19,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
       
       it 'gets returns an error if user is not found' do
+        controller.stub(:get_auth0_id => nil)
         controller.stub(:get_current_user! => nil)
         newUser = "provider|5678"
         get :index, params: { auth0_id: newUser }
@@ -71,6 +72,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       before do
         Identity.create({name: "Identity"})
         controller.stub(:authenticate_request! => true)
+        controller.stub(:get_auth0_id => nil)
       end
 
       it 'creates a new user' do
