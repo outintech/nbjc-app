@@ -3,9 +3,9 @@ class Api::V1::SpacesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   # The only routes not secured are the GET /spaces and GET /spaces/:id
-  skip_before_action :authenticate_request! # , only: [:index, :show, :create_yelp_search]
-  skip_before_action :get_current_user!#, only: [:index, :show]
-  skip_before_action :get_auth0_id#, only: [:index, :show]
+  skip_before_action :authenticate_request!, only: [:index, :show]
+  skip_before_action :get_current_user!, only: [:index, :show]
+  skip_before_action :get_auth0_id, only: [:index, :show]
 
   before_action :find_space, only: [:show, :update, :destroy]
   # GET /spaces
