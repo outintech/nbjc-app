@@ -10,7 +10,7 @@ class Space < ApplicationRecord
   has_many :indicators, :through => :space_indicators
   has_many :space_languages, dependent: :destroy
   has_many :languages, :through => :space_languages
-  has_many :category_aliases_spaces
+  has_many :category_aliases_spaces, dependent: :destroy
   has_many :category_aliases, :through => :category_aliases_spaces
   has_many :category_buckets, :through => :category_aliases
 
@@ -23,6 +23,16 @@ class Space < ApplicationRecord
     yelp_id = self.provider_urn.split("yelp:")
     response = YelpApiSearch.get_yelp_business_info(yelp_id)
     self.update_attribute(:hours_of_op, response.hours)
+  end
+
+  def convert_yelp_categories_to_category_alias_spaces(yelp_categories_hash)
+    yelp_categories_hash.each do |alias_hash|
+      begin
+        category_alias = CategoryAlias.find_by(alias: alias_hash[:alias])
+        self.category_aliases_spaces.create(category_alias: category_alias, space: self)
+      rescue
+      end
+    end
   end
   
   after_validation :geocode

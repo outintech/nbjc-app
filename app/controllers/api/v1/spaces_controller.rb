@@ -3,9 +3,9 @@ class Api::V1::SpacesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   # The only routes not secured are the GET /spaces and GET /spaces/:id
-  skip_before_action :authenticate_request!, only: [:index, :show, :create_yelp_search]
-  skip_before_action :get_current_user!, only: [:index, :show]
-  skip_before_action :get_auth0_id, only: [:index, :show]
+  skip_before_action :authenticate_request! # , only: [:index, :show, :create_yelp_search]
+  skip_before_action :get_current_user!#, only: [:index, :show]
+  skip_before_action :get_auth0_id#, only: [:index, :show]
 
   before_action :find_space, only: [:show, :update, :destroy]
   # GET /spaces
@@ -110,6 +110,7 @@ class Api::V1::SpacesController < ApplicationController
     check_user
     @space = Space.new(space_params)
     if @space.save!
+      @space.convert_yelp_categories_to_category_alias_spaces(space_params[:categories])
       if Rails.env.production?
         @space.update_hours_of_operation
       end
@@ -144,7 +145,7 @@ class Api::V1::SpacesController < ApplicationController
   private
 
   def space_params
-    params.require(:space).permit(:phone, :name, :price_level, :provider_urn, :provider_url, :address_attributes=> [:id, :address_1, :address_2, :city, :postal_code, :country, :state], :languages_attributes => [:id, :name], :indicators_attributes=> [:id, :name], photos_attributes: [:id, :url, :cover], :reviews_attributes => [:id, :anonymous, :vibe_check, :rating, :content, :user_id])
+    params.require(:space).permit(:phone, :name, :price_level, :categories, :provider_urn, :provider_url, :address_attributes=> [:id, :address_1, :address_2, :city, :postal_code, :country, :state], :languages_attributes => [:id, :name], :indicators_attributes=> [:id, :name], photos_attributes: [:id, :url, :cover], :reviews_attributes => [:id, :anonymous, :vibe_check, :rating, :content, :user_id])
   end
 
   def find_space
