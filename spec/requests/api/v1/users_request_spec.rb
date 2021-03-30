@@ -19,6 +19,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
       
       it 'gets returns an error if user is not found' do
+        controller.stub(:get_auth0_id => nil)
         controller.stub(:get_current_user! => nil)
         newUser = "provider|5678"
         get :index, params: { auth0_id: newUser }
@@ -61,10 +62,17 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     describe "With a valid auth token" do
       test_user = {
         auth0_id: "provider|5678",
-        username: "username"
+        username: "username",
+        identities_attributes: [
+          {
+            name: "Identity",
+          }
+        ]
       }
-      before do 
+      before do
+        Identity.create({name: "Identity"})
         controller.stub(:authenticate_request! => true)
+        controller.stub(:get_auth0_id => nil)
       end
 
       it 'creates a new user' do
@@ -87,14 +95,20 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     describe "With a valid auth token" do
       before do 
         controller.stub(:authenticate_request! => true)
+        Identity.create({ name: "Identity" })
       end
       it 'updates a user\'s profile' do
         @auth0_id_test = "provider|1234"
         payload = { sub: @auth0_id_test }
         token = JWT.encode payload, nil, 'none'
         request.headers["Authorization"] = "Bearer #{token}"        
-        get :update, params: { id: 9, user: { id: 9, username: "newUserName" } }
+        get :update, params: { id: 9, user: { id: 9, username: "newUserName", identities_attributes: [{ name: "Identity" }] } }
         expect(response).to have_http_status(:created)
+
+        get :show, params: { id: 9, include: 'identities'}
+        data = JSON.parse(response.body)['data']
+        expect(data['user']['identities'].length).to eq(1)
+        expect(data['user']['identities'][0]['name']).to eq('Identity')
       end
     end
   end

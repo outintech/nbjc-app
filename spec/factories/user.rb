@@ -29,5 +29,16 @@ FactoryBot.define do
     username {"fakereviewuser98765"}
     auth0_id { "provider|" + Faker::Number.number(digits: 10).to_s }
   end
+
+  factory :user_with_identity, parent: :random_user do
+    transient do
+      user { FactoryBot.create(:identity) }
+    end
+
+    after(:create) do |user, evaluator|
+      user.identities << evaluator.identities
+      user.save
+    end
+  end
 end
 
