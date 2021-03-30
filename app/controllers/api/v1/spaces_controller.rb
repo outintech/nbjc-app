@@ -157,7 +157,7 @@ class Api::V1::SpacesController < ApplicationController
   end
 
   def yelp_search_params
-    params.require(:space_search).permit(:location, :term, :radius, :zipcode, :user_id)
+    params.require(:space_search).permit(:location, :term, :radius, :zipcode, :user_id, :auth0_id)
   end
 
   def check_user
