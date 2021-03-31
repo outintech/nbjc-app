@@ -19,10 +19,11 @@ class Space < ApplicationRecord
 
   before_save :find_indicators #, :find_languages
 
-  def update_hours_of_operation
-    yelp_id = self.provider_urn.split("yelp:")
-    response = YelpApiSearch.get_yelp_business_info(yelp_id)
-    self.update_attribute(:hours_of_op, response.hours)
+  def update_from_yelp_direct
+    yelp_id = self.provider_urn.split("yelp:")[1]
+    response = YelpApiSearch.new.get_yelp_business_info(yelp_id)
+    self.update_attribute(:hours_of_op, response.business.hours)
+    self.convert_yelp_categories_to_category_alias_spaces(response.business.categories)
   end
 
   def convert_yelp_categories_to_category_alias_spaces(yelp_categories)
@@ -44,6 +45,29 @@ class Space < ApplicationRecord
 
   def calculate_average_rating
     self.update_attribute(:avg_rating, self.reviews.average(:rating))
+  end
+
+  def self.create_space_with_yelp_params(params)
+    space = Space.new(
+      provider_urn: params["provider_urn"], 
+      phone: params["phone"], 
+      name: params["name"], 
+      provider_url: params["provider_url"], 
+      price_level: params["price_level"],  
+      latitude: params["latitude"], 
+      longitude: params["longitude"],
+    )
+    Address.new(
+      address_1: params["address_attributes"]["address_1"],
+      address_2: params["address_attributes"]["address_2"],
+      city: params["address_attributes"]["city"],
+      postal_code: params["address_attributes"]["postal_code"],
+      country: params["address_attributes"]["country"],
+      state: params["address_attributes"]["state"],
+      space: space
+    )
+    
+    return space
   end
 
   private

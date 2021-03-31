@@ -108,14 +108,14 @@ class Api::V1::SpacesController < ApplicationController
   # POST /spaces
   def create
     check_user
-    @space = create_space_with_yelp(space_params)
-    @category_alias_params = space_params["category_alias_attributes"]
+    @space = Space.create_space_with_yelp_params(space_params)
+    @review = Review.new(space_params["reviews_attributes"])
+    @review.space = @space
     if @space.save!
-      @space.reviews.create(space_params["reviews_attributes"])
-      @space.convert_yelp_categories_to_category_alias_spaces(@category_alias_params)
-      if Rails.env.production?
-        @space.update_hours_of_operation
-      end
+      @review.save
+      # if Rails.env.production?
+        @space.update_from_yelp_direct
+      # end
       render json: { data: { space: @space } }, status: 201
     else
       render json: { error: 'Unable to create space' }, status:400
@@ -158,7 +158,7 @@ class Api::V1::SpacesController < ApplicationController
       :category_aliases_attributes=> [:alias],
       :address_attributes=> [:address_1, :address_2, :city, :postal_code, :country, :state], 
       :indicators_attributes=> [:name], 
-      :reviews_attributes => [:anonymous, :rating, :content]
+      :reviews_attributes => [:anonymous, :rating, :content, :user_id]
     )
   end
 
@@ -180,28 +180,6 @@ class Api::V1::SpacesController < ApplicationController
         render json: { error: 'Forbidden' }, status: 403
       end
     end
-  end
-
-  def create_space_with_yelp(params)
-    space = Space.new(
-      provider_urn: params["provider_urn"], 
-      phone: params["phone"], 
-      name: params["name"], 
-      provider_url: params["provider_url"], 
-      price_level: params["price_level"],  
-      latitude: params["latitude"], 
-      longitude: params["longitude"],
-    )
-    Address.new(
-      address_1: params["address_attributes"][0]["address_1"],
-      address_2: params["address_attributes"][0]["address_2"],
-      city: params["address_attributes"][0]["city"],
-      postal_code: params["address_attributes"][0]["postal_code"],
-      country: params["address_attributes"][0]["country"],
-      state: params["address_attributes"][0]["state"],
-      space: space
-    )
-    return space
   end
 
 end
