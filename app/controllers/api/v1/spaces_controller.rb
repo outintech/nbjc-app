@@ -102,22 +102,19 @@ class Api::V1::SpacesController < ApplicationController
   def create_yelp_search
     yelp_query = YelpApiSearch.new(yelp_search_params)
     @search_results = yelp_query.submit_search
-    @total_count = @search_results.count
-    @page = params[:page].to_i || 1
-    @per_page = params[:per_page].to_i || 20
-
-    @spaces = @search_results.page(@page).per(@per_page)
-    render json: {data: @spaces, meta: { total_count: @total_count, page: @page, per_page: @per_page} }
+    render json: {data: @search_results}
   end
 
   # POST /spaces
   def create
     check_user
-    @space = Space.new(space_params)
+    @space = Space.create_space_with_yelp_params(space_params)
+    @review = Review.new(space_params["reviews_attributes"])
+    @review.space = @space
     if @space.save!
-      if Rails.env.production?
-        @space.update_hours_of_operation
-      end
+      @review.save
+      # do we care when we call Yelp to update hours/categories/photos? Rails.env.production?
+      @space.update_from_yelp_direct
       render json: { data: { space: @space } }, status: 201
     else
       render json: { error: 'Unable to create space' }, status:400
@@ -149,7 +146,19 @@ class Api::V1::SpacesController < ApplicationController
   private
 
   def space_params
-    params.require(:space).permit(:phone, :name, :price_level, :provider_urn, :provider_url, hours_of_op: {}, address_attributes: [:id, :address_1, :address_2, :city, :postal_code, :country, :state], languages_attributes: [:id, :name], indicators_attributes: [:id, :name], photos_attributes: [:id, :url, :cover], reviews_attributes: [:id, :anonymous, :vibe_check, :rating, :content, :user_id])
+    params.require(:space).permit(
+      :phone, 
+      :name, 
+      :price_level, 
+      :provider_urn, 
+      :provider_url,
+      :latitude,
+      :longitude,
+      :category_aliases_attributes=> [:alias],
+      :address_attributes=> [:address_1, :address_2, :city, :postal_code, :country, :state], 
+      :indicators_attributes=> [:name], 
+      :reviews_attributes => [:anonymous, :rating, :content, :user_id]
+    )
   end
 
   def find_space
@@ -161,7 +170,7 @@ class Api::V1::SpacesController < ApplicationController
   end
 
   def yelp_search_params
-    params.require(:space_search).permit(:location, :term, :radius)
+    params.require(:space_search).permit(:location, :term, :radius, :zipcode, :user_id, :auth0_id)
   end
 
   def check_user

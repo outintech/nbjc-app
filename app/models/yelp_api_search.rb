@@ -6,14 +6,13 @@ class YelpApiSearch
         @location = args[:location]
         @term = args[:term]
         @radius = args[:radius]
-
+        @yelp_client = Yelp::Fusion::Client.new(ENV['YELP_API_KEY'])
     end
 
     def submit_search
-        @yelp_client = Yelp::Fusion::Client.new(ENV['YELP_API_KEY'])
         responses = @yelp_client.search(@location, {term: @term, radius: @radius})
         filtered_responses = filter_yelp_responses(responses)
-        converted_responses = convert_filtered_responses(client, filtered_responses)
+        converted_responses = convert_filtered_responses(filtered_responses)
         converted_responses
     end
 
@@ -32,7 +31,7 @@ class YelpApiSearch
         converted_responses
     end
 
-    def self.get_yelp_business_info(yelp_id)
+    def get_yelp_business_info(yelp_id)
         return @yelp_client.business(yelp_id)
     end
 end

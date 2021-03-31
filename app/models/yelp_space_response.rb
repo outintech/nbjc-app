@@ -6,7 +6,7 @@ class YelpSpaceResponse
         @name = data.name
         @provider_url = data.url
         @coordinates = data.coordinates
-        @price_level = data.price.length
+        @price_level = data.price && data.price.length > 0 ? data.price.length : nil
         @categories = data.categories
         @location = data.location
         @distance = data.distance
