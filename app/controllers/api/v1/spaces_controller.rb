@@ -113,9 +113,9 @@ class Api::V1::SpacesController < ApplicationController
     @review.space = @space
     if @space.save!
       @review.save
-      # if Rails.env.production?
+      if Rails.env.production?
         @space.update_from_yelp_direct
-      # end
+      end
       render json: { data: { space: @space } }, status: 201
     else
       render json: { error: 'Unable to create space' }, status:400

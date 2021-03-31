@@ -21,9 +21,13 @@ class Space < ApplicationRecord
 
   def update_from_yelp_direct
     yelp_id = self.provider_urn.split("yelp:")[1]
-    response = YelpApiSearch.new.get_yelp_business_info(yelp_id)
-    self.update_attribute(:hours_of_op, response.business.hours)
-    self.convert_yelp_categories_to_category_alias_spaces(response.business.categories)
+    begin
+      response = YelpApiSearch.new.get_yelp_business_info(yelp_id)
+      self.update_attribute(:photos, response.business.photos)
+      self.update_attribute(:hours_of_op, response.business.hours)
+      self.convert_yelp_categories_to_category_alias_spaces(response.business.categories)
+    rescue
+    end
   end
 
   def convert_yelp_categories_to_category_alias_spaces(yelp_categories)

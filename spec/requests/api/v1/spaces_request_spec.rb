@@ -98,13 +98,12 @@ RSpec.describe Api::V1::SpacesController, type: :controller do
             name: "Indicator"
           }
         ],
-        reviews_attributes: [
-          {
+        reviews_attributes:{
             rating: 4,
+            anonymous: false,
             content: "This is a great place",
             user_id: user.id,
           }
-        ]
       }
       Language.create({name: "English"})
       Indicator.create({name: "Indicator"})
