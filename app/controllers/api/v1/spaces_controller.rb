@@ -108,9 +108,11 @@ class Api::V1::SpacesController < ApplicationController
   # POST /spaces
   def create
     check_user
-    @space = Space.new(space_params)
+    @space = create_space_with_yelp(space_params)
+    @category_alias_params = space_params["category_alias_attributes"]
     if @space.save!
-      @space.convert_yelp_categories_to_category_alias_spaces(space_params[:categories])
+      @space.reviews.create(space_params["reviews_attributes"])
+      @space.convert_yelp_categories_to_category_alias_spaces(@category_alias_params)
       if Rails.env.production?
         @space.update_hours_of_operation
       end
@@ -145,7 +147,19 @@ class Api::V1::SpacesController < ApplicationController
   private
 
   def space_params
-    params.require(:space).permit(:phone, :name, :price_level, :categories, :provider_urn, :provider_url, :address_attributes=> [:id, :address_1, :address_2, :city, :postal_code, :country, :state], :languages_attributes => [:id, :name], :indicators_attributes=> [:id, :name], photos_attributes: [:id, :url, :cover], :reviews_attributes => [:id, :anonymous, :vibe_check, :rating, :content, :user_id])
+    params.require(:space).permit(
+      :phone, 
+      :name, 
+      :price_level, 
+      :provider_urn, 
+      :provider_url,
+      :latitude,
+      :longitude,
+      :category_aliases_attributes=> [:alias],
+      :address_attributes=> [:address_1, :address_2, :city, :postal_code, :country, :state], 
+      :indicators_attributes=> [:name], 
+      :reviews_attributes => [:anonymous, :rating, :content]
+    )
   end
 
   def find_space
@@ -166,6 +180,28 @@ class Api::V1::SpacesController < ApplicationController
         render json: { error: 'Forbidden' }, status: 403
       end
     end
+  end
+
+  def create_space_with_yelp(params)
+    space = Space.new(
+      provider_urn: params["provider_urn"], 
+      phone: params["phone"], 
+      name: params["name"], 
+      provider_url: params["provider_url"], 
+      price_level: params["price_level"],  
+      latitude: params["latitude"], 
+      longitude: params["longitude"],
+    )
+    Address.new(
+      address_1: params["address_attributes"][0]["address_1"],
+      address_2: params["address_attributes"][0]["address_2"],
+      city: params["address_attributes"][0]["city"],
+      postal_code: params["address_attributes"][0]["postal_code"],
+      country: params["address_attributes"][0]["country"],
+      state: params["address_attributes"][0]["state"],
+      space: space
+    )
+    return space
   end
 
 end

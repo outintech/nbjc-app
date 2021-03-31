@@ -15,9 +15,9 @@ class Space < ApplicationRecord
   has_many :category_buckets, :through => :category_aliases
 
   validates :price_level, :inclusion => { :in => 1..4 }, :allow_blank => true
-  accepts_nested_attributes_for :reviews, :address, :photos, :indicators, :languages
+  accepts_nested_attributes_for :reviews, :address, :photos, :indicators, :languages, :category_aliases
 
-  before_save :find_languages, :find_indicators
+  before_save :find_indicators #, :find_languages
 
   def update_hours_of_operation
     yelp_id = self.provider_urn.split("yelp:")
@@ -25,11 +25,11 @@ class Space < ApplicationRecord
     self.update_attribute(:hours_of_op, response.hours)
   end
 
-  def convert_yelp_categories_to_category_alias_spaces(yelp_categories_hash)
-    yelp_categories_hash.each do |alias_hash|
+  def convert_yelp_categories_to_category_alias_spaces(yelp_categories)
+    yelp_categories.each do |category|
       begin
-        category_alias = CategoryAlias.find_by(alias: alias_hash[:alias])
-        self.category_aliases_spaces.create(category_alias: category_alias, space: self)
+        category_alias = CategoryAlias.find_by(alias: category["alias"])
+        self.category_aliases_spaces.create(category_alias: category_alias)
       rescue
       end
     end
@@ -49,14 +49,18 @@ class Space < ApplicationRecord
   private
 
   def find_languages
-    self.languages = self.languages.map do |language|
-      Language.find_by(name: language.name)
+    if self.languages.any?
+      self.languages = self.languages.map do |language|
+        Language.find_by(name: language.name)
+      end
     end
   end
 
   def find_indicators
-    self.indicators = self.indicators.map do |indicator|
-      Indicator.find_by(name: indicator.name)
+    if self.indicators.any?
+      self.indicators = self.indicators.map do |indicator|
+        Indicator.find_by(name: indicator.name)
+      end
     end
   end
 end
