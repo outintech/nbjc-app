@@ -20,6 +20,8 @@ namespace :deploy do
   task :configs do
     on server do
       upload! File.expand_path('../../docker-compose.yml', __dir__), deploy_path
+      upload! File.expand_path('../../web/Dockerfile', __dir__), deploy_path
+      upload! File.expand_path('../../web/nginx.conf', __dir__), deploy_path
     end
   end
 end
