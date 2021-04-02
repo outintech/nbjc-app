@@ -42,4 +42,6 @@ VOLUME ["$INSTALL_PATH/public"]
 COPY entrypoint.sh /usr/bin/
 ENTRYPOINT ["entrypoint.sh"]
 
+EXPOSE 8080
+
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]

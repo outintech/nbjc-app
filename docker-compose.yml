@@ -10,15 +10,36 @@ services:
       
   api:
     image: outintech/nbjc-app:$DEPLOY_TAG
-    command: bundle exec rails s -p 80 -b '0.0.0.0'
     depends_on:
       - redis
-    ports:
-      - '80:80'
     env_file:
       - .env
+    restart: always
     volumes:
       - api-logs:/var/www/nbjc-app/log
+
+  web:
+    build:
+      context: .
+      dockerfile: ./web/Dockerfile
+    depends_on:
+      - api
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 volumes:
   redis:
