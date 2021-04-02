@@ -23,20 +23,30 @@ class Space < ApplicationRecord
     yelp_id = self.provider_urn.split("yelp:")[1]
     begin
       response = YelpApiSearch.new.get_yelp_business_info(yelp_id)
-      self.update_attribute(:photos, response.business.photos)
       self.update_attribute(:hours_of_op, response.business.hours)
+      self.handle_yelp_photos(response.business.photos)
       self.convert_yelp_categories_to_category_alias_spaces(response.business.categories)
     rescue
     end
   end
 
-  def convert_yelp_categories_to_category_alias_spaces(yelp_categories)
-    yelp_categories.each do |category|
+  def convert_yelp_categories_to_category_alias_spaces_test(yelp_categories)
+    yelp_aliases = yelp_categories.map do |entry| 
+      entry.alias
+    end
+    yelp_aliases.each do |yelp_alias|
       begin
-        category_alias = CategoryAlias.find_by(alias: category["alias"])
+        # safe catch in case the category alias is not successfully found
+        category_alias = CategoryAlias.find_by(alias: yelp_alias)
         self.category_aliases_spaces.create(category_alias: category_alias)
       rescue
       end
+    end
+  end
+
+  def handle_yelp_photos(yelp_photos)
+    yelp_photos.each do |photo_url|
+      self.photos.create(url: photo_url)
     end
   end
   
