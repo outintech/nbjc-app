@@ -17,13 +17,13 @@ class Space < ApplicationRecord
   validates :price_level, :inclusion => { :in => 1..4 }, :allow_blank => true
   accepts_nested_attributes_for :reviews, :address, :photos, :indicators, :languages, :category_aliases
 
-  before_save :find_indicators #, :find_languages
+  # before_save :find_languages
 
   def update_from_yelp_direct
     yelp_id = self.provider_urn.split("yelp:")[1]
     begin
       response = YelpApiSearch.new.get_yelp_business_info(yelp_id)
-      self.update_attribute(:hours_of_op, response.business.hours)
+      self.update_attribute(:hours_of_op, response.business.hours[0])
       self.handle_yelp_photos(response.business.photos)
       self.convert_yelp_categories_to_category_alias_spaces(response.business.categories)
     rescue
@@ -50,7 +50,7 @@ class Space < ApplicationRecord
     end
   end
   
-  after_validation :geocode
+  after_save :geocode
   geocoded_by :full_address
 
   def full_address
@@ -90,14 +90,6 @@ class Space < ApplicationRecord
     if self.languages.any?
       self.languages = self.languages.map do |language|
         Language.find_by(name: language.name)
-      end
-    end
-  end
-
-  def find_indicators
-    if self.indicators.any?
-      self.indicators = self.indicators.map do |indicator|
-        Indicator.find_by(name: indicator.name)
       end
     end
   end

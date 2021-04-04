@@ -110,9 +110,11 @@ class Api::V1::SpacesController < ApplicationController
     check_user
     @space = Space.create_space_with_yelp_params(space_params)
     @review = Review.new(space_params["reviews_attributes"])
+    @space_indicators = SpaceIndicator.create_indicators_for_space(space_params["indicators_attributes"], @space)
     @review.space = @space
     if @space.save!
       @review.save
+      SpaceIndicator.save_indicators(@space_indicators)
       # do we care when we call Yelp to update hours/categories/photos? only in Rails.env.production?
       @space.update_from_yelp_direct
       render json: { data: { space: @space } }, status: 201
