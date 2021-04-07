@@ -47,8 +47,10 @@ class Api::V1::UsersController < ApplicationController
       render json: { error: 'Forbidden' }, status: 403
     else 
       @user = User.new(user_params)
+      @user_identities = UserIdentity.create_identities_for_user(user_params["identities_attributes"], @user)
       if @user.save!
-        render json: { data: { user: @user } }, status: 201
+        UserIdentity.save_identities(@user_identities)
+        render json: { data: { user: @user } }, status: 201, include: :identities
       else
         render json: { error: 'Unable to save user' }, status: 400
       end

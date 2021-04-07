@@ -78,7 +78,10 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       it 'creates a new user' do
         post :create, params: { user: test_user }
         expect(response).to have_http_status(:created)
-        expect(JSON.parse(response.body).size).to eq(1)
+        data = JSON.parse(response.body)['data']
+        data = JSON.parse(response.body)['data']
+        expect(data['user']['identities'].length).to eq(1)
+        expect(data['user']['identities'][0]['name']).to eq('Identity')
       end
     end
   end
