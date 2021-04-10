@@ -59,10 +59,48 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
     end
 
+    describe "Without a valid name" do
+      test_user_without_name = {
+        auth0_id: "provider|5678",
+        username: "username",
+        identities_attributes: [
+          {
+            name: "Identity",
+          }
+        ]
+      }
+      test_user_with_invalid_name = {
+        auth0_id: "provider|5678",
+        username: "username",
+        name: "n@ame with symbols!;",
+        identities_attributes: [
+          {
+            name: "Identity",
+          }
+        ]
+      }
+      before do
+        Identity.create({name: "Identity"})
+        controller.stub(:authenticate_request! => true)
+        controller.stub(:get_auth0_id => nil)
+      end
+
+      it 'rejects without name' do
+        post :create, params: { user: test_user_without_name }
+        expect(response.status).to eq(400)
+      end
+
+      it 'reject with invalid name' do
+        post :create, params: { user: test_user_with_invalid_name }
+        expect(response.status).to eq(400)
+      end
+    end
+
     describe "With a valid auth token" do
       test_user = {
         auth0_id: "provider|5678",
         username: "username",
+        name: 'test user',
         identities_attributes: [
           {
             name: "Identity",
@@ -79,7 +117,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         post :create, params: { user: test_user }
         expect(response).to have_http_status(:created)
         data = JSON.parse(response.body)['data']
-        data = JSON.parse(response.body)['data']
+        expect(data['user']['name']).to eq('test user')
         expect(data['user']['identities'].length).to eq(1)
         expect(data['user']['identities'][0]['name']).to eq('Identity')
       end
@@ -89,6 +127,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       test_user = {
         auth0_id: "provider|5679",
         username: "username1",
+        name: 'test user',
       }
       before do
         Identity.create({name: "Identity"})
@@ -124,11 +163,12 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         payload = { sub: @auth0_id_test }
         token = JWT.encode payload, nil, 'none'
         request.headers["Authorization"] = "Bearer #{token}"        
-        get :update, params: { id: 11, user: { id: 11, username: "newUserName", identities_attributes: [{ name: "Identity" }] } }
+        get :update, params: { id: 13, user: { id: 13, username: "newUserName", name: "new name of user", identities_attributes: [{ name: "Identity" }] } }
         expect(response).to have_http_status(:created)
 
-        get :show, params: { id: 11, include: 'identities'}
+        get :show, params: { id: 13, include: 'identities'}
         data = JSON.parse(response.body)['data']
+        expect(data['user']['name']).to eq('new name of user')
         expect(data['user']['identities'].length).to eq(1)
         expect(data['user']['identities'][0]['name']).to eq('Identity')
       end

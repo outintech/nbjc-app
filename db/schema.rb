@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_27_165829) do
+ActiveRecord::Schema.define(version: 2021_04_10_160055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 2021_03_27_165829) do
     t.string "auth0_id"
     t.string "pronouns"
     t.string "location"
+    t.string "name"
     t.index ["auth0_id"], name: "index_users_on_auth0_id"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
