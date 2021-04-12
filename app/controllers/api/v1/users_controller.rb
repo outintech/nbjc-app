@@ -48,7 +48,9 @@ class Api::V1::UsersController < ApplicationController
     else 
       @user = User.new(user_params)
       @user_identities = UserIdentity.create_identities_for_user(user_params["identities_attributes"], @user)
-      if @user.save!
+      if !@user.valid?
+        render json: { data: { user: @user.errors }}, status: 400
+      elsif @user.save!
         UserIdentity.save_identities(@user_identities)
         render json: { data: { user: @user } }, status: 201, include: :identities
       else
@@ -67,7 +69,7 @@ class Api::V1::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:id, :username, :auth0_id, :pronouns, :location, identities_attributes: [:id, :name])
+    params.require(:user).permit(:id, :username, :name, :auth0_id, :pronouns, :location, identities_attributes: [:id, :name])
   end
 
   def find_user
