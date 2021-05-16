@@ -2,7 +2,7 @@ require 'faker'
 
 FactoryBot.define do
   factory :random_user, class: User do
-    username { Faker::Internet.username }
+    username { "user" + SecureRandom.alphanumeric(5) + "name" }
     name { Faker::Name.name }
     auth0_id { "provider|1234" }
   end
