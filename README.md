@@ -20,7 +20,7 @@
 >
 > Redis:
 >  * Install `redis-server`
->  * Edit the `supervised` directive to `systemd`, see [tutorial][redis-ubuntu-tutorial].
+>  * Edit the `supervised` directive to `systemd`, see [tutorial][redis-ubuntu-tutorial]. Follow the tutorial to the end of step 3, don't set a redis password.
 
 - Create a new user with the password see `database.yml`.
   * Open the postgres console `psql postgres`
