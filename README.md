@@ -35,7 +35,8 @@
   * Postgres
   * Redis
 
-- Install gems with `bundle install`
+- **Install gems with `bundle install`**
+  - Make sure the dependencies listed above are installed first to avoid errors when running `bundle install`
 - Check your local env setup with `config/local_env.yml.example`
 
 ### Start up the app
