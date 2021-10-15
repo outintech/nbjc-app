@@ -23,7 +23,7 @@
 >  * Edit the `supervised` directive to `systemd`, see [tutorial][redis-ubuntu-tutorial]. Follow the tutorial to the end of step 3, don't set a redis password.
 
 - Create a new user with the password see `database.yml`.
-  * Open the postgres console `psql postgres`
+  * Open the postgres console `psql postgres` or try with elevated privileges `sudo -u postgres psql`
   * Check all your users and roles using the `du` postgres command
   * If you don't have a user you can create one by using the postgres command `CREATE USER new_user with PASSWORD 'your_super_secret_password';`
   * Create the role for the app using `CREATE ROLE nbjc_app LOGIN SUPERUSER PASSWORD 'pw_from_database_yml';`
