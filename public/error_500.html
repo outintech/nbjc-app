@@ -45,7 +45,7 @@ body::backdrop {
   src: 
   local('Omnes'),
   local('Omnes-Bold'),
-  url(/error_500/Omnes-Bold.599a46be.woff2) format('woff2'),
+  url("/error_500/Omnes-Bold.599a46be.woff2") format('woff2'),
   ;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
 }
@@ -57,7 +57,7 @@ body::backdrop {
   src: 
   local('Omnes'),
   local('Omnes-SemiBold'),
-  url(/error_500/Omnes-SemiBold.2ee01274.woff2) format('woff2'),
+  url("/error_500/Omnes-SemiBold.2ee01274.woff2") format('woff2'),
   ;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
 }
@@ -69,7 +69,7 @@ body::backdrop {
   src: 
   local('Omnes'),
   local('Omnes-Medium'),
-  url(/error_500/Omnes-Medium.a7c16de1.woff2) format('woff2'),
+  url("/error_500/Omnes-Medium.a7c16de1.woff2") format('woff2'),
   ;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
 }
@@ -81,7 +81,7 @@ body::backdrop {
   src: 
   local('Omnes'),
   local('Omnes-Regular'),
-  url(/error_500/Omnes-Regular.337b1cab.woff2) format('woff2'),
+  url("/error_500/Omnes-Regular.337b1cab.woff2") format('woff2'),
   ;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
 }
@@ -1013,7 +1013,61 @@ body::backdrop {
     width: 85%;
   }
 }
-</style></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"><div class="App"><div class="jss1"><div class="jss3" data-testid="app-bar"><header class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary jss4 mui-fixed MuiPaper-elevation4"><div class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart" tabindex="0" type="button" aria-label="menu" data-testid="appbar-menu"><span class="MuiIconButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg></span><span class="MuiTouchRipple-root"></span></button><h6 class="MuiTypography-root MuiTypography-h6" data-testid="appbar-title"></h6><div class="MuiAvatar-root MuiAvatar-circle jss9 MuiAvatar-colorDefault"><a class="MuiTypography-root MuiLink-root MuiLink-underlineNone MuiTypography-colorPrimary" href="https://lavenderbook.org/profile"><svg class="MuiSvgIcon-root MuiSvgIcon-colorPrimary" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg></a></div></div></header></div><div class="jss2"><div class="jss18"><img src="./error_500/web-500.svg" alt="500 page" class="jss19"></div></div><div class="jss11"><div class="jss12"><h6 class="MuiTypography-root MuiTypography-subtitle2">The Lavender Book is a crowd-sourced application created by the team at &nbsp;<a href="https://nbjc.org/" target="_blank" rel="noreferrer" class="jss14">National Black Justice Coalition</a>&nbsp; and &nbsp;<a href="https://outintech.com/" target="_blank" rel="noreferrer" class="jss14">Out in Tech</a></h6></div><div class="jss13">
+
+.white {
+  color: white;
+  text-decoration: none;
+}
+</style></head>
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root">
+    <div class="App">
+      <div class="jss1">
+        <div class="jss3" data-testid="app-bar">
+          <header class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary jss4 mui-fixed MuiPaper-elevation4">
+            <div class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters">
+              <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart" tabindex="0" type="button" aria-label="menu" data-testid="appbar-menu">
+                <a class="MuiTypography-root MuiLink white" href="https://lavenderbook.org">
+                <span class="MuiIconButton-label">
+                  <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+                  </svg>
+                </span>
+                <span class="MuiTouchRipple-root"></span>
+              </button>
+              <h6 class="MuiTypography-root MuiTypography-h6" data-testid="appbar-title">Home</h6>
+            </a>
+            <div class="jss10"><img src="error_500/web-appBar-logo.svg" alt="logo"></div>
+              <!-- <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-edgeStart" tabindex="0" type="button" aria-label="menu" data-testid="appbar-menu">
+                <span class="MuiIconButton-label">
+                  <a class="MuiTypography-root white" href="https://lavenderbook.org">
+                    <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+                    </svg>
+                  </a>
+                </span>
+                <span class="MuiTouchRipple-root"></span>
+              </button> -->
+              <h6 class="MuiTypography-root MuiTypography-h6" data-testid="appbar-title"></h6>
+              <div class="MuiAvatar-root MuiAvatar-circle jss9 MuiAvatar-colorDefault">
+                <a class="MuiTypography-root MuiLink-root MuiLink-underlineNone MuiTypography-colorPrimary" href="https://lavenderbook.org/profile">
+                  <svg class="MuiSvgIcon-root MuiSvgIcon-colorPrimary" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </header>
+        </div>
+        <div class="jss2">
+          <div class="jss18">
+            <img src="./error_500/web-500.svg" alt="500 page" class="jss19">
+          </div>
+        </div>
+        <div class="jss11">
+          <div class="jss12">
+            <h6 class="MuiTypography-root MuiTypography-subtitle2">The Lavender Book is a crowd-sourced application created by the team at &nbsp;<a href="https://nbjc.org/" target="_blank" rel="noreferrer" class="jss14">National Black Justice Coalition</a>&nbsp; and &nbsp;<a href="https://outintech.com/" target="_blank" rel="noreferrer" class="jss14">Out in Tech</a></h6></div><div class="jss13">
   <p class="MuiTypography-root jss15 MuiTypography-body1">
     <a href="https://lavenderbook.org/community-guidelines">Community Guidelines</a><a href="https://lavenderbook.org/terms-of-service">Terms of Services</a>
     <a href="https://nbjc.org/privacy-policy/" rel="noreferrer" target="_blank">Privacy Policy</a><a href="https://lavenderbook.org/infringement-policies">Infringement Policies</a>
