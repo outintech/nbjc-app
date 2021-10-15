@@ -22,12 +22,12 @@
 >  * Install `redis-server`
 >  * Edit the `supervised` directive to `systemd`, see [tutorial][redis-ubuntu-tutorial]. Follow the tutorial to the end of step 3, don't set a redis password.
 
-- Create a new user with the password see `database.yml`.
+- Create a new user with the password see `config/database.yml`.
   * Open the postgres console `psql postgres`
-  * Check all your users and roles using the `du` postgres command
+  * Check all your users and roles using the `\du` postgres command
   * If you don't have a user you can create one by using the postgres command `CREATE USER new_user with PASSWORD 'your_super_secret_password';`
   * Create the role for the app using `CREATE ROLE nbjc_app LOGIN SUPERUSER PASSWORD 'pw_from_database_yml';`
-  > NOTE: Don't forget to update the database.yml file if you are using a different pw.
+> :exclamation: NOTE: Don't forget to update the `config/database.yml` and `config/local_env.yml.example` files with the password used for the role `nbjc_app`
 
 - Start the services.
 	> If you installed these with `brew`, you can start them with `brew services start <SERVICE>`. 
@@ -35,12 +35,15 @@
   * Postgres
   * Redis
 
-- Install gems with `bundle install`
+- **Install gems with `bundle install`**
+  - Make sure the dependencies listed above are installed first to avoid errors when running `bundle install`
 - Check your local env setup with `config/local_env.yml.example`
 
 ### Start up the app
 
 - Get the database up and running: `rake db:create`
+  - You may need to rename `config/local_env.yml.example` to `config/local_env.yml`
+  - You may need to uncomment the line `NBJC_APP_DATABASE_PASSWORD:` and set the password to the one used when creating the `nbjc_app` role
 
 - Get the [schema][schema] setup: `rake db:migrate`
 > Note: if you make a change in a migration file that has not been committed and do not see the change reflected in the schema run `rake db:rollback` and rerun the migration.
