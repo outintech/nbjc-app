@@ -24,7 +24,7 @@
 
 - Create a new user with the password see `config/database.yml`.
   * Open the postgres console `psql postgres`
-  * Check all your users and roles using the `\du` postgres command
+  * Check all your users and roles using the `\du;` postgres command
   * If you don't have a user you can create one by using the postgres command `CREATE USER new_user with PASSWORD 'your_super_secret_password';`
   * Create the role for the app using `CREATE ROLE nbjc_app LOGIN SUPERUSER PASSWORD 'pw_from_database_yml';`
 > :exclamation: NOTE: Don't forget to update the `config/database.yml` and `config/local_env.yml.example` files with the password used for the role `nbjc_app`
