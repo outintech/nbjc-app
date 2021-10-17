@@ -2,7 +2,9 @@
 
 ## Development setup
 
-- Install ruby-2.7.2 - use whatever ruby manager you want (both rvm and rbenv will work). If you run into any issues finding this version, make sure `ruby-builder` is up to date.
+- Install ruby-2.7.2
+> You will have to install this specific version. To do so, use whatever ruby version manager you want (both rvm and rbenv will work). If you run into any issues finding this version, make sure `ruby-builder` is up to date.
+> 	- On Ubuntu 20.04, you can follow [the rbenv tutorial][rbenv-ubuntu] up to, but not including Step 3.
 
 ### Dependencies
 
@@ -227,4 +229,5 @@ Diagram for login [here][auth-flow]
 [schema-sheet]: https://docs.google.com/spreadsheets/d/1825fpT5UzzrGEKcjvgeZmKQ9xdnfNUvj3xu11WbTxKQ/edit?usp=sharing
 [tagging]: https://git-scm.com/book/en/v2/Git-Basics-Tagging
 [auth-flow]: https://auth0.com/docs/flows/authorization-code-flow-with-proof-key-for-code-exchange-pkce
+[rbenv-ubuntu]: https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-20-04
 
