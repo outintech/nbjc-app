@@ -28,8 +28,8 @@
   * Open the postgres console `psql postgres`
   * Check all your users and roles using the `\du;` postgres command
   * If you don't have a user you can create one by using the postgres command `CREATE USER new_user with PASSWORD 'your_super_secret_password';`
-  * Create the role for the app using `CREATE ROLE nbjc_app LOGIN SUPERUSER PASSWORD 'pw_from_database_yml';`
-> :exclamation: NOTE: You will have to then upde `config/local_env.yml.example` file with the password used for the role `nbjc_app`, otherwise it will think your database password is literally 'password' as that is the assumed default password in `config/database.yml`
+  * Create the role and password for the app using `CREATE ROLE nbjc_app LOGIN SUPERUSER PASSWORD 'YOUR_PASSWORD_HERE';`
+> :exclamation: NOTE: You will have to then upde `config/local_env.yml.example` file with the password used for the role `nbjc_app` in the last step, otherwise it will think your database password is literally 'password' as that is the assumed default password in `config/database.yml`
 
 - Start the services.
 	> If you installed these with `brew`, you can start them with `brew services start <SERVICE>`. 
