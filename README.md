@@ -2,7 +2,9 @@
 
 ## Development setup
 
-- Install ruby-2.7.2 - use whatever ruby manager you want (both rvm and rbenv will work). If you run into any issues finding this version, make sure `ruby-builder` is up to date.
+- Install ruby-2.7.2
+> You will have to install this specific version. To do so, use whatever ruby version manager you want (both rvm and rbenv will work). If you run into any issues finding this version, make sure `ruby-builder` is up to date.
+> 	- On Ubuntu 20.04, you can follow [the rbenv tutorial][rbenv-ubuntu] up to, but not including Step 3.
 
 ### Dependencies
 
@@ -26,8 +28,8 @@
   * Open the postgres console `psql postgres`
   * Check all your users and roles using the `\du;` postgres command
   * If you don't have a user you can create one by using the postgres command `CREATE USER new_user with PASSWORD 'your_super_secret_password';`
-  * Create the role for the app using `CREATE ROLE nbjc_app LOGIN SUPERUSER PASSWORD 'pw_from_database_yml';`
-> :exclamation: NOTE: Don't forget to update the `config/database.yml` and `config/local_env.yml.example` files with the password used for the role `nbjc_app`
+  * Create the role and password for the app using `CREATE ROLE nbjc_app LOGIN SUPERUSER PASSWORD 'YOUR_PASSWORD_HERE';`
+> :exclamation: NOTE: You will have to then upde `config/local_env.yml.example` file with the password used for the role `nbjc_app` in the last step, otherwise it will think your database password is literally 'password' as that is the assumed default password in `config/database.yml`
 
 - Start the services.
 	> If you installed these with `brew`, you can start them with `brew services start <SERVICE>`. 
@@ -227,4 +229,5 @@ Diagram for login [here][auth-flow]
 [schema-sheet]: https://docs.google.com/spreadsheets/d/1825fpT5UzzrGEKcjvgeZmKQ9xdnfNUvj3xu11WbTxKQ/edit?usp=sharing
 [tagging]: https://git-scm.com/book/en/v2/Git-Basics-Tagging
 [auth-flow]: https://auth0.com/docs/flows/authorization-code-flow-with-proof-key-for-code-exchange-pkce
+[rbenv-ubuntu]: https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-20-04
 
