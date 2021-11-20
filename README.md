@@ -5,6 +5,7 @@
 - Install ruby-2.7.2
 > You will have to install this specific version. To do so, use whatever ruby version manager you want (both rvm and rbenv will work). If you run into any issues finding this version, make sure `ruby-builder` is up to date.
 > 	- On Ubuntu 20.04, you can follow [the rbenv tutorial][rbenv-ubuntu] up to, but not including Step 3.
+> 	- For MacOS 10.14.6 Mojave or lower, check the [ruby_installation_troubleshooting document](https://github.com/outintech/nbjc-app/blob/main/ruby_installation_troubleshooting.md)
 
 ### Dependencies
 
