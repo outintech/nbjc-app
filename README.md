@@ -27,9 +27,11 @@
 - Create a new user with the password see `config/database.yml`.
   * Open the postgres console `psql postgres`
   * Check all your users and roles using the `\du;` postgres command
-  * If you don't have a user you can create one by using the postgres command `CREATE USER new_user with PASSWORD 'your_super_secret_password';`
-  * Create the role and password for the app using `CREATE ROLE nbjc_app LOGIN SUPERUSER PASSWORD 'YOUR_PASSWORD_HERE';`
-> :exclamation: NOTE: You will have to then upde `config/local_env.yml.example` file with the password used for the role `nbjc_app` in the last step, otherwise it will think your database password is literally 'password' as that is the assumed default password in `config/database.yml`
+  * If you don't have a **normal** user set for postgres, you can create one by using the postgres command `CREATE USER new_user with PASSWORD 'your_super_secret_password';`
+  * Create the **superuser nbjc_app** role and password for the app using `CREATE ROLE nbjc_app LOGIN SUPERUSER PASSWORD 'YOUR_PASSWORD_HERE';`
+  * In `config/database.yml` uncomment the line `NBJC_APP_DATABASE_PASSWORD:` and set the password to the one used when creating the `nbjc_app` role
+  * Rename `config/local_env.yml.example` to `config/local_env.yml` and add the password for nbjc_app to `NBJC_APP_DATABASE_PASSWORD:`
+> :exclamation: NOTE: You must update both the `config/local_env.yml` file and `config/database.yml` with the password used for the role `nbjc_app`, otherwise it will think your database password is literally 'password' which is the default in `config/database.yml`
 
 - Start the services.
 	> If you installed these with `brew`, you can start them with `brew services start <SERVICE>`. 
@@ -44,8 +46,7 @@
 ### Start up the app
 
 - Get the database up and running: `rake db:create`
-  - You may need to rename `config/local_env.yml.example` to `config/local_env.yml`
-  - You may need to uncomment the line `NBJC_APP_DATABASE_PASSWORD:` and set the password to the one used when creating the `nbjc_app` role
+
 
 - Get the [schema][schema] setup: `rake db:migrate`
 > Note: if you make a change in a migration file that has not been committed and do not see the change reflected in the schema run `rake db:rollback` and rerun the migration.
