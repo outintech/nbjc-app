@@ -74,7 +74,12 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
-            docker build -t $IMAGE_NAME:latest --build-arg USER_ID=1000 --build-arg GROUP_ID=1000 --build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY} .
+            docker build -t $IMAGE_NAME:latest \
+            --build-arg USER_ID=1000 \
+            --build-arg GROUP_ID=1000 \
+            --build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY} \
+            --build-arg ENV=production \
+            .
       - run:
           name: Archive Docker image
           command: docker save -o image.tar $IMAGE_NAME

@@ -1,0 +1,62 @@
+version: '3.7'
+services:
+
+  frontend:
+    image: outintech/nbjc-webapp:latest
+    depends_on:
+      - api
+    ports:
+      - '80:80'
+    environment:
+      # use an env file instead
+      - REACT_APP_DOMAIN=localhost
+      - REACT_APP_API_HOST=api://api:8080
+      - REACT_APP_AUTH0_DOMAIN=GET_FROM_AUTH0 
+      - REACT_APP_AUTH0_CLIENT_ID=GET_FROM_AUTH0
+
+  api:
+    # todo: have a make target to build and push staging image
+    container_name: api
+    image: outintech/nbjc-app:staging
+    depends_on:
+      - redis
+      - db
+    ports:
+      - '8080:8080'
+    environment:
+      # use a env file
+      - NBJC_APP_DATABASE_IP=db
+      - DATABASE_USER=nbjc_app
+      - NBJC_APP_DATABASE_PASSWORD=password
+      - REDIS_URL_SIDEKIQ=redis://redis:6379/1
+      - CACHE_URL=redis://redis:6379/0
+      - JOB_WORKER_URL=redis://redis:6379/0
+      - WORKER_PROCESSES=1
+      - LISTEN_ON=0.0.0.0:3000
+      - AUTH0_APP_DOMAIN=GET_FROM_AUTH0
+      - YELP_API_KEY=GET_FROM_YELP
+    restart: always
+    volumes:
+      - api-logs:/var/www/nbjc-app/log
+      
+  db:
+    image: 'postgres:10-alpine'
+    environment:
+      - POSTGRES_USER=nbjc_app
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=nbjc_app_production
+    volumes:
+      - postgres:/var/lib/postgresql/data
+  
+  redis:
+    image: 'redis:5.0.7'
+    command: redis-server
+    ports:
+      - '6380:6379'
+    volumes:
+      - redis:/var/lib/redis/data
+
+volumes:
+  redis:
+  api-logs:
+  postgres:

@@ -22,6 +22,7 @@ gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 # For sshkit
+gem 'sshkit'
 gem 'ed25519', '>= 1.2', '<=2.0'
 gem 'bcrypt_pbkdf', '>=1.0', '<=2.0'
 # For responding
@@ -38,7 +39,7 @@ gem 'jwt'
 gem 'rack-cors'
 gem 'kaminari'
 gem 'geocoder'
-group :development, :test do
+group :development, :test, :staging do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 4.0.2'
@@ -47,7 +48,6 @@ group :development, :test do
   gem 'json'
   gem 'database_cleaner'
   gem 'rspec_junit_formatter'
-  gem 'sshkit'
 end
 
 group :development do
