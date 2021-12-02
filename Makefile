@@ -24,8 +24,7 @@ image-push:
 
 update-image: image-create image-push
 
-
-docker-run-staging:
+run-staging:
 	@docker-compose -f docker-compose.staging.yaml up -d
 
 docker-stop-staging:

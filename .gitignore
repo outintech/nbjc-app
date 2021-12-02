@@ -33,6 +33,8 @@
 # Ignore any sensitive data
 /config/local_env.yml
 .env*
+!.env*example
+
 
 /public/packs
 /public/packs-test

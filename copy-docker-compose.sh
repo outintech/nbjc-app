@@ -6,3 +6,5 @@ dockercomposefile="$1"
 ip="$2"
 
 scp $dockercomposefile root@$ip:~/docker-compose.yaml
+
+scp .env.$ENV root@$ip:~/
