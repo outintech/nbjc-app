@@ -24,6 +24,9 @@
 /storage/*
 !/storage/.keep
 
+.DS_Store
+*.DS_Store
+
 /public/assets
 .byebug_history
 

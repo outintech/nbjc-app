@@ -7,7 +7,9 @@ ruby '2.7.2'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
-# Use Puma as the app server
+# Use pg_search as the Full Text Search provider
+gem 'pg_search'
+# Use Puma as the app servers
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'

@@ -1,5 +1,7 @@
 class Api::V1::SpacesController < ApplicationController
   include Secured
+  # include PgSearch
+
   skip_before_action :verify_authenticity_token
 
   # The only routes not secured are the GET /spaces and GET /spaces/:id
@@ -8,6 +10,9 @@ class Api::V1::SpacesController < ApplicationController
   skip_before_action :get_auth0_id, only: [:index, :show]
 
   before_action :find_space, only: [:show, :update, :destroy]
+
+  # :avg_rating
+  
   # GET /spaces
   def index
     @page = 1
@@ -25,24 +30,50 @@ class Api::V1::SpacesController < ApplicationController
     @category = params[:category] unless params[:category].nil? || params[:category].blank?
 
     # handle search
+    # TODO - Determine better configuration for the current IF ELSE search conditions
+    # TODO - Disambiguation for User about that "SPACE" means "NAME" of Location
+    # TODO - Disambiguation for User that category is space with that attribute
+    # TODO - Search on multiple terms provided by user for either SPACE or CATEGORY
+    # TODO - Tell Users they have the option of searching by Decimal Degrees with Northing and Easting
+
+    # If the Spaces search box and the Categories search box are both empty
+    # then return all "Spaces" in the database
     if @search.nil? && @category.nil?
+      # What about if there is a City included?
       @spaces = Space.all
-    elsif !!(@search && @category)
+
+    # Are there are default values?
+    # Is an empty search always going to evaluate to true?? 
+    # Is this first condition always going to get triggered?
+    elsif params[:search].present? && params[:category].present?
+    
+      
       @terms = @search.downcase
-      @spaces = Space.where("lower(spaces.name) LIKE :search", search: "%#{@terms}%")
+      # puts "in elsif 1"
+      # rank = <<-RANK
+      #   ts_rank(to_tsvector(@terms), plainto_tsquery(#{sanitize(@terms)}))
+      #   ts_rank(to_tsvector(@category), plainto_tsquery(#{sanitize(@category)}))
+      # RANK
+      @spaces = Space.search_name("%#{@terms}%");
+
+      # @spaces = Space.where("lower(spaces.name) LIKE :search", search: "%#{@terms}%")
       @category_alias = CategoryAlias.find_by(alias: @category)
       @cas = CategoryAliasesSpace.where(category_alias: @category_alias)
       @spaces = @spaces.or(Space.where(category_aliases_spaces: @cas))
     elsif !!(@search)
       @terms = @search.downcase
-      @spaces = Space.where("lower(spaces.name) LIKE :search", search: "%#{@terms}%")
+      # puts "in elsif 2"
+      # @spaces = Space.where("lower(spaces.name) LIKE :search", search: "%#{@terms}%")
+       @spaces = Space.search_name("%#{@terms}%");
     else
+      # Why can't we do a category ONLY search right now?
       @category_alias = CategoryAlias.find_by(alias: @category)
       @cas = CategoryAliasesSpace.where(category_alias: @category_alias)
       @spaces = Space.where(category_aliases_spaces: @cas)
     end
 
     # location based search 
+    # Coordinates can be searched on
     @location = params[:location]
     @lat = params[:lat].to_f unless params[:lat].nil? || params[:lat].to_f == 0.0
     @lng = params[:lng].to_f unless params[:lng].nil? || params[:lng].to_f == 0.0
