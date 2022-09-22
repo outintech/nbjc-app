@@ -40,6 +40,8 @@
 - **Install gems with `bundle install`**
   - Make sure the dependencies listed above are installed first to avoid errors when running `bundle install`
 - Check your local env setup with `config/local_env.yml.example`
+  - Copy `config/local_env.yml.example` to `config/local_env.yml`
+  - Update `config/local_env.yml` with correct variables
 
 ### Start up the app
 
