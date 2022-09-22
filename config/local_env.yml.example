@@ -17,5 +17,7 @@ PGPASSWORD: 'postgres'  # make sure you set the nbjc_app user to have the passwo
 # Will be overridden with test when running rspec
 RAILS_ENV: 'development'
 
+# Make sure to use the Auth0 Tenant corresponding to your env (dev/prod)
 AUTH0_APP_DOMAIN: 'login to Auth0 dashboard - Applications - Default APP'
-
+AUTH0_AUDIENCE: 'get AUTH0 audience from the dashboard above'
+YELP_API_KEY: 'create a free yelp api developer key and paste here'

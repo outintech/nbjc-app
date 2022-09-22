@@ -37,6 +37,8 @@
 
 - Install gems with `bundle install`
 - Check your local env setup with `config/local_env.yml.example`
+  - Copy `config/local_env.yml.example` to `config/local_env.yml`
+  - Update `config/local_env.yml` with correct variables
 
 ### Adding and removing a new model
 
