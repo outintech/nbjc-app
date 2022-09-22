@@ -2,7 +2,9 @@
 
 ## Development setup
 
-- Install ruby-2.7.2 - use whatever ruby manager you want (both rvm and rbenv will work). If you run into any issues finding this version, make sure `ruby-builder` is up to date.
+- Install ruby-2.7.2
+> You will have to install this specific version. To do so, use whatever ruby version manager you want (both rvm and rbenv will work). If you run into any issues finding this version, make sure `ruby-builder` is up to date.
+> 	- On Ubuntu 20.04, you can follow [the rbenv tutorial][rbenv-ubuntu] up to, but not including Step 3.
 
 ### Dependencies
 
@@ -20,14 +22,14 @@
 >
 > Redis:
 >  * Install `redis-server`
->  * Edit the `supervised` directive to `systemd`, see [tutorial][redis-ubuntu-tutorial].
+>  * Edit the `supervised` directive to `systemd`, see [tutorial][redis-ubuntu-tutorial]. Follow the tutorial to the end of step 3, don't set a redis password.
 
-- Create a new user with the password see `database.yml`.
+- Create a new user with the password see `config/database.yml`.
   * Open the postgres console `psql postgres`
-  * Check all your users and roles using the `du` postgres command
+  * Check all your users and roles using the `\du;` postgres command
   * If you don't have a user you can create one by using the postgres command `CREATE USER new_user with PASSWORD 'your_super_secret_password';`
-  * Create the role for the app using `CREATE ROLE nbjc_app LOGIN SUPERUSER PASSWORD 'pw_from_database_yml';`
-  > NOTE: Don't forget to update the database.yml file if you are using a different pw.
+  * Create the role and password for the app using `CREATE ROLE nbjc_app LOGIN SUPERUSER PASSWORD 'YOUR_PASSWORD_HERE';`
+> :exclamation: NOTE: You will have to then upde `config/local_env.yml.example` file with the password used for the role `nbjc_app` in the last step, otherwise it will think your database password is literally 'password' as that is the assumed default password in `config/database.yml`
 
 - Start the services.
 	> If you installed these with `brew`, you can start them with `brew services start <SERVICE>`. 
@@ -35,10 +37,42 @@
   * Postgres
   * Redis
 
-- Install gems with `bundle install`
+- **Install gems with `bundle install`**
+  - Make sure the dependencies listed above are installed first to avoid errors when running `bundle install`
 - Check your local env setup with `config/local_env.yml.example`
   - Copy `config/local_env.yml.example` to `config/local_env.yml`
   - Update `config/local_env.yml` with correct variables
+
+### Start up the app
+
+- Get the database up and running: `rake db:create`
+  - You may need to rename `config/local_env.yml.example` to `config/local_env.yml`
+  - You may need to uncomment the line `NBJC_APP_DATABASE_PASSWORD:` and set the password to the one used when creating the `nbjc_app` role
+
+- Get the [schema][schema] setup: `rake db:migrate`
+> Note: if you make a change in a migration file that has not been committed and do not see the change reflected in the schema run `rake db:rollback` and rerun the migration.
+
+- Seed the database" `rake db:seed`
+> If you need to drop the database and reseed use `rake db:reset`
+
+- Start the app: `rails s`
+
+#### Seeding the database
+
+- All CSV files under `db/seed_data/` will automatically be used to seed the DB
+- To add seeding data for a new table, create a new file under the mentioned directory that matches the table name
+- All CSV files in the directory must contain a header row and columns matching (at least) all required fields
+- See `db/seed_data/languages.csv` (which will seed the `languages` table) for an example
+
+#### Test the routes
+
+- To get a full list of available routes check `rails routes`
+
+##### Mocked routes
+
+- Filtered by indicators with id 1 and 2 (ATM and ASL): [api/v1/spaces?price=3&search=bakery][bakeries]
+- A single space's details: [api/v1/space/1][fake-space-details]
+- All indicators: [api/v1/indicators][indicators]
 
 ### Adding and removing a new model
 
@@ -51,35 +85,6 @@ rails db:migrate:down VERSION=<NUMBER>
 ```sh
 rails destroy model <MODEL_NAME>
 ```
-
-#### Seeding the database
-
-- All CSV files under `db/seed_data/` will automatically be used to seed the DB
-- To add seeding data for a new table, create a new file under the mentioned directory that matches the table name
-- All CSV files in the directory must contain a header row and columns matching (at least) all required fields
-- See `db/seed_data/languages.csv` (which will seed the `languages` table) for an example
-
-### Start up the app
-
-- Get the database up and running: `rake db:create`
-
-- Get the [schema][schema] setup: `rake db:migrate`
-> Note: if you make a change in a migration file that has not been committed and do not see the change reflected in the schema run `rake db:rollback` and rerun the migration.
-
-- Seed the database" `rake db:seed`
-> If you need to drop the database and reseed use `rake db:reset`
-
-- Start the app: `rails s`
-
-#### Test the routes
-
-- To get a full list of available routes check `rails routes`
-
-##### Mocked routes
-
-- Filtered by indicators with id 1 and 2 (ATM and ASL): [api/v1/spaces?price=3&search=bakery][bakeries]
-- A single space's details: [api/v1/space/1][fake-space-details]
-- All indicators: [api/v1/indicators][indicators]
 
 ##### Spaces
 <div>
@@ -226,4 +231,5 @@ Diagram for login [here][auth-flow]
 [schema-sheet]: https://docs.google.com/spreadsheets/d/1825fpT5UzzrGEKcjvgeZmKQ9xdnfNUvj3xu11WbTxKQ/edit?usp=sharing
 [tagging]: https://git-scm.com/book/en/v2/Git-Basics-Tagging
 [auth-flow]: https://auth0.com/docs/flows/authorization-code-flow-with-proof-key-for-code-exchange-pkce
+[rbenv-ubuntu]: https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-20-04
 
