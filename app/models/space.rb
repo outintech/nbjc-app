@@ -49,9 +49,14 @@ class Space < ApplicationRecord
       self.photos.create(url: photo_url)
     end
   end
-  
-  after_save :geocode
-  geocoded_by :full_address
+
+  # NOTE: We don't want to hit the geocoder API unless it's production
+  # for example, when seeding the database, we already provide latitude and longitude data
+  # so we don't geocode seeding data
+  if Rails.env.production?
+    after_save :geocode
+    geocoded_by :full_address
+  end
 
   def full_address
     [self.address.address_1, self.address.address_2, self.address.city, self.address.postal_code, self.address.country].compact.join(",")

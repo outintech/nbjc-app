@@ -55,6 +55,8 @@ if Rails.env.development?
                "photos_attributes": [{ "url": business["image_url"], "cover": true
                                      }],
                "phone": business["phone"],
+               "latitude": business["coordinates"]["latitude"],
+               "longitude": business["coordinates"]["longitude"],
                "hours_of_op": {
                                 "open":[
                                           {
