@@ -47,10 +47,6 @@ if Rails.env.development?
                                       "country": business["location"]["country"],
                                       "state": business["location"]["state"]
                                      },
-               "languages_attributes": Faker::Boolean.boolean ? Language.all.pluck(:name).sample(
-                                                                  Faker::Number.between(from: 0, to: Language.all.count - 1))
-                                                                  .map{|n| { name: n } } : [],
-               "indicators_attributes": Indicator.all.pluck(:name).sample(Faker::Number.between(from: 1, to: Indicator.all.count - 1)).map{ |n| { name: n } },
                "category_aliases": category_aliases,
                "photos_attributes": [{ "url": business["image_url"], "cover": true
                                      }],
@@ -107,6 +103,22 @@ if Rails.env.development?
       spaces << space
     end
     Space.create!(spaces)
+    Space.find_each do |space| 
+      #Saving indicators after creating spaces prevents seeding duplicate indicators/languages in database.
+      @randomIndicatorsIds = Indicator.all.pluck(:id).sample(Faker::Number.between(from: 1, to: Indicator.all.count - 1))
+      @randomIndicators = Indicator.where(id: @randomIndicatorsIds)
+      @indicatorsForSpace = SpaceIndicator.create_indicators_for_space(@randomIndicators, space)
+      SpaceIndicator.save_indicators(@indicatorsForSpace)
+
+      #Do the same for langugaes I guess
+      #@languageAttributes = Faker::Boolean.boolean ? Language.all.pluck(:id).sample(Faker::Number.between(from: 0, to: Language.all.count - 1)) : []
+      #@randomLanguages = Indicator.where(id: @languageAttributes)
+      #@languagesForSpace = SpaceLanguages.create(@randomLanguages, space)
+      #SpaceLanguages.save_languages(@languagesForSpace)
+    end
+    #puts "Indicators post seeding: #{Indicator.all.pluck(:name).length }"
+    #puts "Languages post seeding: #{Language.all.pluck(:name).length}"
+    #puts "Total number of spaces: #{Space.all.pluck(:name).length}"
   end
 end
 
