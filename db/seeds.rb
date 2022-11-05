@@ -104,21 +104,12 @@ if Rails.env.development?
     end
     Space.create!(spaces)
     Space.find_each do |space| 
-      #Saving indicators after creating spaces prevents seeding duplicate indicators/languages in database.
-      @randomIndicatorsIds = Indicator.all.pluck(:id).sample(Faker::Number.between(from: 1, to: Indicator.all.count - 1))
-      @randomIndicators = Indicator.where(id: @randomIndicatorsIds)
-      @indicatorsForSpace = SpaceIndicator.create_indicators_for_space(@randomIndicators, space)
-      SpaceIndicator.save_indicators(@indicatorsForSpace)
+      @indicators_attributes = Indicator.all.pluck(:id).sample(Faker::Number.between(from: 1, to: Indicator.all.count - 1))
+      SpaceIndicator.save_indicators(SpaceIndicator.create_indicators_for_space(Indicator.where(id: @indicators_attributes), space))
 
-      #Do the same for langugaes I guess
-      #@languageAttributes = Faker::Boolean.boolean ? Language.all.pluck(:id).sample(Faker::Number.between(from: 0, to: Language.all.count - 1)) : []
-      #@randomLanguages = Indicator.where(id: @languageAttributes)
-      #@languagesForSpace = SpaceLanguages.create(@randomLanguages, space)
-      #SpaceLanguages.save_languages(@languagesForSpace)
-    end
-    #puts "Indicators post seeding: #{Indicator.all.pluck(:name).length }"
-    #puts "Languages post seeding: #{Language.all.pluck(:name).length}"
-    #puts "Total number of spaces: #{Space.all.pluck(:name).length}"
+      @language_attributes = Faker::Boolean.boolean ? Language.all.pluck(:id).sample(Faker::Number.between(from: 0, to: Language.all.count - 1)) : []
+      SpaceLanguage.save_languages(SpaceLanguage.create_languages_for_space(Language.where(id: @language_attributes), space))
+    end      
   end
 end
 
