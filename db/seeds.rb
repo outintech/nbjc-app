@@ -47,14 +47,12 @@ if Rails.env.development?
                                       "country": business["location"]["country"],
                                       "state": business["location"]["state"]
                                      },
-               "languages_attributes": Faker::Boolean.boolean ? Language.all.pluck(:name).sample(
-                                                                  Faker::Number.between(from: 0, to: Language.all.count - 1))
-                                                                  .map{|n| { name: n } } : [],
-               "indicators_attributes": Indicator.all.pluck(:name).sample(Faker::Number.between(from: 1, to: Indicator.all.count - 1)).map{ |n| { name: n } },
                "category_aliases": category_aliases,
                "photos_attributes": [{ "url": business["image_url"], "cover": true
                                      }],
                "phone": business["phone"],
+               "latitude": business["coordinates"]["latitude"],
+               "longitude": business["coordinates"]["longitude"],
                "hours_of_op": {
                                 "open":[
                                           {
@@ -105,6 +103,13 @@ if Rails.env.development?
       spaces << space
     end
     Space.create!(spaces)
+    Space.find_each do |space| 
+      @indicators_attributes = Indicator.all.pluck(:id).sample(Faker::Number.between(from: 1, to: Indicator.all.count - 1))
+      SpaceIndicator.save_indicators(SpaceIndicator.create_indicators_for_space(Indicator.where(id: @indicators_attributes), space))
+
+      @language_attributes = Faker::Boolean.boolean ? Language.all.pluck(:id).sample(Faker::Number.between(from: 0, to: Language.all.count - 1)) : []
+      SpaceLanguage.save_languages(SpaceLanguage.create_languages_for_space(Language.where(id: @language_attributes), space))
+    end      
   end
 end
 
