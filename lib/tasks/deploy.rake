@@ -75,12 +75,12 @@ namespace :docker do
     on server do
       within deploy_path do
         with rails_env: deploy_env, deploy_tag: deploy_tag do
-          execute 'docker-compose', '-f', 'docker-compose.yml', 'run', 'api', 'bundle', 'exec', 'rake', 'db:migrate'
+          execute 'docker', 'container', 'exec', 'circleci_api_1', 'bundle', 'exec', 'rake', 'db:migrate'
         end
       end
     end
   end
 
   desc 'pulls images, stops old containers, updates the database, and starts new containers'
-  task deploy: %w{docker:pull docker:stop docker:start} # pull images manually to reduce down time
+  task deploy: %w{docker:pull docker:stop docker:start docker:migrate} # pull images manually to reduce down time
 end
