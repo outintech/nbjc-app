@@ -20,7 +20,7 @@ services:
     #image: outintech/nbjc-app:latest
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
       args:
         USER_ID: 1000
         GROUP_ID: 1000
@@ -33,6 +33,7 @@ services:
       - '8080:8080'
     environment:
       # use a env file
+      - PIDFILE=/tmp/pids/server.pid
       - NBJC_APP_DATABASE_IP=db
       - DATABASE_USER=nbjc_app
       - NBJC_APP_DATABASE_PASSWORD=password
