@@ -37,8 +37,11 @@ COPY . .
 RUN chown -R user:user /var/www/nbjc_app
 USER $USER_ID
 RUN yarn install --check-files
+RUN mkdir -p /tmp/pids
 VOLUME ["$INSTALL_PATH/public"]
 
 EXPOSE 8080
+
+
 
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
