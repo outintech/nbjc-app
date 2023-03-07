@@ -77,5 +77,5 @@ production:
 staging:
   <<: *default
   username: <%= ENV.fetch("DATABASE_USER") { 'nbjc_app' } %>
-  database: nbjc_app_production
+  database: nbjc_app_staging
   password: <%= ENV.fetch("NBJC_APP_DATABASE_PASSWORD") { '' } %>
