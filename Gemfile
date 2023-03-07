@@ -11,8 +11,6 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 4.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -22,6 +20,7 @@ gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 # For sshkit
+gem 'sshkit'
 gem 'ed25519', '>= 1.2', '<=2.0'
 gem 'bcrypt_pbkdf', '>=1.0', '<=2.0'
 # For responding
@@ -38,7 +37,7 @@ gem 'jwt'
 gem 'rack-cors'
 gem 'kaminari'
 gem 'geocoder'
-group :development, :test do
+group :development, :test, :staging do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 4.0.2'

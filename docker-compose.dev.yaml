@@ -1,0 +1,64 @@
+version: '3.8'
+services:
+
+  frontend:
+    image: outintech/nbjc-webapp:latest
+    depends_on:
+      - api
+    ports:
+      - '127.0.0.1:80:80'
+    environment:
+      - REACT_APP_DOMAIN=localhost
+      - REACT_APP_API_HOST=api://api:8080
+      - REACT_APP_AUTH0_DOMAIN=GET_FROM_AUTH0
+      - REACT_APP_AUTH0_CLIENT_ID=GET_FROM_AUTH0
+
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: rails server -p 8080 -b '127.0.0.1'
+    depends_on:
+      - redis
+      - db
+    ports:
+      - '127.0.0.1:8080:8080'
+    environment:
+      # use a env file
+      - RAILS_ENV=development
+      - SERVERPORT=8080
+      - PIDFILE=/tmp/pids/server.pid
+      - NBJC_APP_DATABASE_IP=db
+      - PGUSER=nbjc_dev
+      - PGPASSWORD=sekret
+      - REDIS_URL_SIDEKIQ=redis://redis:6379/1
+      - AUTH0_APP_DOMAIN=GET_FROM_DOCS
+      - YELP_API_KEY=GET_FROM_YELP
+    # restart: always
+    volumes:
+      - .:/app
+      - gem_cache:/usr/local/bundle/gems
+    tmpfs:
+      - /tmp/pids/
+      
+  db:
+    image: 'postgres:10-alpine'
+    environment:
+      - POSTGRES_USER=nbjc_dev
+      - POSTGRES_PASSWORD=sekret
+      - POSTGRES_DB=nbjc_app_test
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres:/var/lib/postgresql/data
+  
+  redis:
+    image: 'redis:5.0.7'
+    command: redis-server
+    ports:
+      - '127.0.0.1:6380:6379'
+
+volumes:
+  postgres:
+  gem_cache:

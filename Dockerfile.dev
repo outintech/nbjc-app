@@ -1,0 +1,26 @@
+FROM ruby:2.7.2
+MAINTAINER devs@outintech.com
+
+# nodejs
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg -o /root/yarn-pubkey.gpg && apt-key add /root/yarn-pubkey.gpg
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && apt-get install -y --no-install-recommends\
+	nodejs \
+	yarn
+
+RUN gem install rails bundler
+RUN mkdir -p /app
+# Set working directory
+WORKDIR /app
+
+COPY Gemfile Gemfile.lock ./
+RUN bundle check || bundle install
+
+# Adding project files
+COPY . .
+RUN yarn install --check-files
+
+ENTRYPOINT ["bundle", "exec"]
+
+EXPOSE 8080
+CMD ["rails", "s", "-b", "127.0.0.1"]

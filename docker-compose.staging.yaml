@@ -1,0 +1,48 @@
+version: '3.7'
+services:
+
+  frontend:
+    container_name: frontend
+    image: outintech/nbjc-webapp:staging
+    depends_on:
+      - api
+    ports:
+      - '80:80'
+
+  api:
+    container_name: api
+    image: outintech/nbjc-app:staging
+    depends_on:
+      - redis
+      - db
+    ports:
+      - '8080:8080'
+    env_file:
+      - .env.staging #see .env.staging.example
+
+    restart: always
+    volumes:
+      - api-logs:/var/www/nbjc-app/log
+      
+  db:
+    container_name: db
+    image: 'postgres:10-alpine'
+    environment:
+      - POSTGRES_USER=nbjc_app
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=nbjc_app_production
+    volumes:
+      - postgres:/var/lib/postgresql/data
+  
+  redis:
+    image: 'redis:5.0.7'
+    command: redis-server
+    ports:
+      - '6380:6379'
+    volumes:
+      - redis:/var/lib/redis/data
+
+volumes:
+  redis:
+  api-logs:
+  postgres:
