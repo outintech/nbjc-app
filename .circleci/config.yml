@@ -103,6 +103,7 @@ jobs:
     executor: docker-ruby
     environment:
       IMAGE_NAME: nbjc-app
+      DD_API_KEY: $DD_API_KEY
     steps:
       - checkout
       - ruby/install-deps

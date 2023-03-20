@@ -9,6 +9,7 @@ services:
       - redis:/var/lib/redis/data
       
   api:
+    container_name: rails_api
     image: outintech/nbjc-app:$DEPLOY_TAG
     depends_on:
       - redis
@@ -40,6 +41,20 @@ services:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+  datadog:
+    image: "datadog/agent:latest"
+    environment:
+      - DD_API_KEY=${DD_API_KEY}
+      - DD_LOGS_ENABLED=true
+      - DD_AC_INCLUDE="name:rails_api"
+      - DD_PROCESS_AGENT_ENABLED=true
+      - DD_SITE=datadoghq.eu
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
 
 volumes:
   redis:
